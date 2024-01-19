@@ -1,0 +1,81 @@
+@import '_reset.scss';
+@import url('https://fonts.googleapis.com/css2? family= Montserrat:wght@400;500;600;700;800;900 & display=swap');
+@import '_variables.scss';
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+
+    background:$white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+      
+}
+
+%cart{
+    display: block;
+    text-decoration: none;
+    color: black;
+    min-width:300px;
+    width: calc(300px + 1vw);
+    min-height: 500px;
+    max-height: 500px;
+   
+    overflow: hidden;
+   
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 15px;
+
+    .img{
+       height: 50%;
+       width: 100%;
+       img{
+
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+       }
+      }
+
+     .body_cart{
+       padding: 10px 5px;
+      h3,h2,h4,P{
+       text-align: center;
+       margin: 5px 0;
+      }
+     }
+
+
+
+}
+
+%btn{
+
+      display: flex;
+       justify-content: center;
+       align-items: center;   
+       background: #588157;
+       text-decoration: none;
+       border-radius: 25px;
+       padding: calc(10px + 0.3vw) calc(10px + 0.6vw);
+       color: white;  
+       font-size:calc(0.5rem + 0.4vw) ;
+       font-weight: 600;
+       margin: auto;
+       width: calc(8rem + 3.5vw);
+       transition: 0.3 all;
+        &:hover{
+            background: #a3b18a;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        } 
+}
+
+@import '_navbar.scss';
+@import '_main.scss';
+@import '_form.scss';
+@import '_articles.scss';
+@import '_detail_article.scss';
+@import '_footer.scss';

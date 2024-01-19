@@ -1,0 +1,155 @@
+
+.main{
+
+    min-height: 100vh;
+   
+   
+     .baniere{
+        position: relative;
+
+        width: 90%;
+        height: 70vh ;
+        background: center center /cover url(../images/baniere.jpg);
+        margin: 40px auto;
+        border-radius: 20px;
+      h1{
+
+        font-size: calc(1.2rem + 2vw);
+        font-style: italic;
+        color: white;
+        text-align: center;
+        padding-top: 15px;
+      }
+
+     }
+
+     .lastuser{
+
+        position: absolute;
+        // border: 1px solid black;
+        padding: 20px 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 80%;
+        width: 30%;
+        min-width: 250px;
+        height: 200px;
+        background: white;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 10px;
+
+        .image{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: coral;
+            margin: 10px auto;
+        }
+        h2{
+
+            text-align: center;
+           font-size: calc(0.7rem + 1vw);
+        }
+        h3{
+
+            text-align: center;
+           font-size: calc(0.5rem + 1vw);
+        }
+
+     }
+     .articles{
+        margin-top: 100px;
+
+        h2{
+            text-align: center;
+            font-size: calc(2rem + 2vw);
+            // border-bottom: 4px solid coral;
+            &::after{
+
+                content: "";
+                display: block;
+                
+                height: 4px;
+                width: 300px;
+                background: coral;
+                margin: 10px auto;
+            }
+         }
+     }
+
+     .parentpost{
+
+        width: 70%;
+        margin: 40px auto;
+        height: auto;
+        // background: coral ;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 40px 20px;
+
+        .cart{
+          @extend %cart;
+        }
+
+       }
+     .auteurs{
+        margin-top: 100px;
+        h2{
+            text-align: center;
+            font-size: calc(2rem + 2vw);
+            &::after{
+
+                content: "";
+                display: block;
+                
+                height: 4px;
+                width: 300px;
+                background: coral;
+                margin: 10px auto;
+            }
+        }
+        .parentauteur{
+            width: 80%;
+            margin: 40px auto;
+            height: auto;
+            // background: coral ;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px 20px;
+
+        }
+       .cart{
+
+        min-width:250px;
+        width: calc(250px + 1vw);
+        min-height: 400px;
+       
+        overflow: hidden;
+       
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 15px;
+        .img{
+            height: 70%;
+            width: 100%;
+            img{
+
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+           }
+         h2,h3{
+
+            margin: 5px auto;
+            text-align: center;
+            
+         }  
+      
+       } 
+
+     }
+  
+  
+}

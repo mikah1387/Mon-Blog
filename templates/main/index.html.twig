@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<section class="main">
+
+    <div class="baniere">
+
+        <h1> Bienvenu dans mon Blog </h1>
+        <div class="lastuser">
+            <h2> Dernier utilisateur inscrit </h2>
+            <div class="image">
+                <img src="" alt="">
+            </div>
+            {% for user in lastUserSubscrib %}
+            <h3> {{user.nickname}}</h3>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="articles">
+     <h2> Derniers Articles</h2>
+       <div class="parentpost">
+        {# {{ dump(lastposts) }} #}
+        {% for post in lastposts %}
+        
+        <div class="cart">
+          <div class="img">
+            <img src="{{asset('images/image_style/baniere.jpg')}}" alt="image_article">
+          </div>
+
+          <div class="body_cart">
+            {% for category in post.categories %}
+            <h3>Categorie : {{category.name}}</h3>  
+            {% endfor %}
+            
+           <h3> {{post.title}}</h3>
+           <h4> {{post.slug}}</h4>
+          
+           <h4> Auteur : {{post.users.nickname}}</h4>
+          </div>
+
+        </div>
+    {% endfor %}
+
+       </div> 
+
+   
+
+    </div>
+    <div class="auteurs">
+        <h2> Auteurs actifs</h2> 
+        <div class="parentauteur">
+        {% for user in usersactif %}
+          <div class="cart">
+            <div class="img">
+                <img src="{{asset('images/image_style/baniere.jpg')}}" alt="image_article">
+              </div>
+            <h3> Auteur : {{user.nickname }}</h3> 
+            <h3> Nombre d'articles : {{user.nombre_articles }}</h3>
+          </div>  
+         
+        {% endfor %}
+    </div>
+    </div>
+</section>
+{% endblock %}

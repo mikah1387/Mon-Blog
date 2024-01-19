@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un article {% endblock %}
+
+{% block body %}
+<div class="addpost">
+
+    <h1>Ajouter un articles</h1>
+    
+    {# {{form(addpostform)}} #}
+    {{ form_start(addpostform) }}
+
+{{ form_row(addpostform.title) }}
+{{ form_row(addpostform.content) }}
+{{ form_row(addpostform.categories) }}
+
+
+
+
+<button  type="submit" class="button">{{button_label|default('Ajouter')}}</button>
+{{ form_end(addpostform) }}
+   
+</div>
+
+
+
+{% endblock %}
