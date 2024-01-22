@@ -1,0 +1,14 @@
+{# {{ dump(app.flashes) }} #}
+{% for label,messages in app.flashes %}
+
+{% for message in messages %}
+
+<div class="flash {{label}}">
+
+    <p class="p_flash"> {{message|raw}}</p>
+
+</div>
+    
+{% endfor %}
+
+{% endfor %}

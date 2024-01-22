@@ -351,7 +351,7 @@ body {
   margin: 5px 0;
 }
 
-.button .btn, .addpost form div button {
+.button .btn, .addpost form button, form button, .btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -366,9 +366,85 @@ body {
   width: calc(8rem + 3.5vw);
   transition: 0.3 all;
 }
-.button .btn:hover, .addpost form div button:hover {
+form button:hover, .btn:hover {
   background: #a3b18a;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.addpost form, form {
+  padding: 50px 10px;
+  width: 90%;
+  margin: 50px auto;
+  border-radius: 15px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+@media screen and (min-width: 450px) {
+  .addpost form, form {
+    width: 70%;
+    padding: 50px 10px;
+  }
+}
+@media screen and (min-width: 700px) {
+  .addpost form, form {
+    width: 60%;
+    padding: 50px 10px;
+    padding: 50px 50px;
+    max-width: 500px;
+  }
+}
+.addpost form div, form div {
+  margin: 10px auto;
+}
+.addpost form div label, form div label {
+  display: block;
+  color: #588157;
+  font-weight: 600;
+  margin: 10px auto 5px;
+}
+.addpost form div input, .addpost form div textarea, .addpost form div select, form div input, form div textarea, form div select {
+  background: #ECF3F2;
+  width: 100%;
+  outline: none;
+  line-height: 2;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+  transition: 0.3 all;
+}
+form div input:focus, form div textarea:focus, form div select:focus {
+  box-shadow: #94d3ca 0px 3px 8px;
+}
+.addpost form button, form button {
+  border: none;
+}
+
+.flash {
+  width: 70%;
+  height: 50px;
+  margin: 50px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+.success {
+  background: #ECF3F2;
+  border: 1px solid #588157;
+  color: #588157;
+}
+.success p {
+  font-size: calc(0.8rem + 0.5vw);
+}
+
+.alert {
+  background: #d8c3c2;
+  border: 1px solid #58181f;
+  color: #58181f;
+}
+.alert p {
+  font-size: calc(0.8rem + 0.5vw);
 }
 
 .navbar {
@@ -533,56 +609,10 @@ body {
 }
 .addpost h1 {
   font-size: 2rem;
-  margin: 30px auto;
+  text-align: center;
+  margin: 5px auto;
   color: #588157;
 }
-.addpost form {
-  padding: 50px 10px;
-  width: 90%;
-  margin: 50px auto;
-  border-radius: 15px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-@media screen and (min-width: 450px) {
-  .addpost form {
-    width: 70%;
-    padding: 50px 10px;
-  }
-}
-@media screen and (min-width: 700px) {
-  .addpost form {
-    width: 60%;
-    padding: 50px 10px;
-    padding: 50px 50px;
-    max-width: 500px;
-  }
-}
-.addpost form div {
-  margin: 10px auto;
-}
-.addpost form div label {
-  display: block;
-  color: #588157;
-  font-weight: 600;
-  margin: 10px auto 5px;
-}
-.addpost form div input, .addpost form div textarea, .addpost form div select {
-  background: #ECF3F2;
-  width: 100%;
-  outline: none;
-  line-height: 2;
-  border-radius: 5px;
-  border: none;
-  font-weight: 600;
-  transition: 0.3 all;
-}
-.addpost form div input:focus, .addpost form div textarea:focus, .addpost form div select:focus {
-  box-shadow: #ECF3F2 0px 3px 8px;
-}
-.addpost form div button {
-  border: none;
-}
-
 .articles {
   min-height: 100vh;
   display: flex;
@@ -636,6 +666,11 @@ body {
 }
 .detail .response {
   background-color: coral;
+}
+.detail .commentaire {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 20px auto;
 }
 
 .footer {

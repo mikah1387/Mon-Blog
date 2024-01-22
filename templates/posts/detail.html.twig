@@ -13,7 +13,7 @@
     </div>
 
     <div class="descrip">
-      
+      <h1>{{post.id}}</h1>
       <h2> {{post.title}}</h2>
       <h3> {{post.slug}}</h3>
       <p>{{post.content}}</p>
@@ -25,28 +25,37 @@
     </div>
 
     <div class="descrip">
+      <a class="btn" href="{{path('comments_add', {id:post.id})}}">commenter</a>
       <h1> Comentaires </h1>
-      {# <h2> {{post.comments.users.nickname}}</h2> #}
-      {# <p> {{post.comments.content}} </p> #}
-    {% for comment in post.comments %}
-      <h2> {{comment.users.nickname}}</h2>
-      <p>{{comment.content}} </p>
-      <div class="response">
-      <h3>Reponse </h3>
-      {% for response in comments %}
-      {% if response.parent != null and response.parent.id == comment.id %}
-      <h2> {{response.users.nickname}}</h2>
-      <p>{{response.content}} </p>
-      {% endif %}
-       
-      {# {% if response.parent == comment.id %}
-      <h2> {{response.users.nickname}}</h2>
-      <p>{{response.content}} </p>
-      {% endif %} #}
-    {% endfor %}
 
+
+
+      {% for comment in allcomments %}
+      
+      {% if comment.parent is null %}
+      <div class="commentaire">
+      <h2> {{comment.users.nickname}}</h2>
+      
+      <p>{{comment.content}} </p>
+      <a href=" {{path('comments_add_response',{id:comment.id})}}" class="btn">répondre</a>
+        {% for response in comment.comments %}
+       
+      <div class="response">
+
+        <h2> réponse de {{response.users.nickname}}</h2>
+        <p>{{response.content}} </p>
+    
+      </div>
+
+       
+        {% endfor %}
     </div>
-    {% endfor %}
+      {% endif %}
+
+      
+      {% endfor %}
+
+
 
     </div>
 

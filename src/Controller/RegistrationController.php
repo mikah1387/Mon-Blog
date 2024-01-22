@@ -34,6 +34,7 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
+            $this->addFlash('success', $user->getNickname(). ' vous étes bien connecté');
             // do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(

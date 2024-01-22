@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un commentaire {% endblock %}
+
+{% block body %}
+<div class="addpost">
+
+
+    {# {{form(addpostform)}} #}
+    {{ form_start(addcommentform) }}
+    <h1>Ajouter votre commentaire</h1>   
+    {{ form_row(addcommentform.content) }} 
+    <button type="submit" class="button">{{button_label|default('Ajouter')}}</button>
+    {{ form_end(addcommentform) }}
+
+</div>
+
+
+
+{% endblock %}

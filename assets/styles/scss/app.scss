@@ -52,7 +52,7 @@ body{
 
 }
 
-%btn{
+%btn,.btn{
 
       display: flex;
        justify-content: center;
@@ -73,7 +73,97 @@ body{
         } 
 }
 
+%form,form{
+     
+    padding: 50px 10px;
+    width: 90%;
+    margin:50px auto;
+    border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    @media screen and (min-width:450px) {
+        
+        width: 70%;
+        padding: 50px 10px;
+    }
+    @media screen and (min-width:700px) {
+        
+        width: 60%;
+        padding: 50px 10px;
+        padding: 50px 50px;
+        max-width:500px ;
+
+    }
+
+    div{
+
+        margin: 10px auto;
+        label{
+
+            display: block;
+            color:$greenhigh;
+            font-weight: 600;
+            margin: 10px auto 5px;
+
+        }
+
+        input,textarea, select{
+            background: #ECF3F2;
+            width: 100%;
+            outline: none;
+            line-height: 2;
+            border-radius: 5px;
+            border: none;
+            font-weight: 600;
+            transition: 0.3 all;
+         &:focus{
+        
+          box-shadow: #94d3ca 0px 3px 8px;
+         }
+
+        }
+
+     }
+     button{
+
+        @extend %btn;
+        border: none;
+       }
+}
+
+.flash{
+    width: 70%; 
+    height: 50px;
+    margin: 50px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 5px 10px;
+    
+  }
+  .success{
+    background: $greenlight;
+    border:1px solid $greenhigh;
+    color: $greenhigh;
+    p{
+        font-size: calc(0.8rem + 0.5vw)
+    }
+
+  }
+  .alert{
+    background: #d8c3c2;
+    border:1px solid #58181f;
+    color:  #58181f;
+    p{
+        font-size: calc(0.8rem + 0.5vw)
+    }
+
+  }
+  
+
 @import '_navbar.scss';
+
 @import '_main.scss';
 @import '_form.scss';
 @import '_articles.scss';

@@ -5,21 +5,21 @@
 {% block body %}
 <div class="addpost">
 
-    <h1>Ajouter un articles</h1>
-    
+
     {# {{form(addpostform)}} #}
     {{ form_start(addpostform) }}
+    <h1>Ajouter un article</h1>
 
-{{ form_row(addpostform.title) }}
-{{ form_row(addpostform.content) }}
-{{ form_row(addpostform.categories) }}
+    {{ form_row(addpostform.title) }}
+    {{ form_row(addpostform.content) }}
+    {{ form_row(addpostform.categories) }}
 
 
 
 
-<button  type="submit" class="button">{{button_label|default('Ajouter')}}</button>
-{{ form_end(addpostform) }}
-   
+    <button type="submit" class="button">{{button_label|default('Ajouter')}}</button>
+    {{ form_end(addpostform) }}
+
 </div>
 
 

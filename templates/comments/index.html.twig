@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommentsController!{% endblock %}
+
+{% block body %}
+
+{% for comment in comments %}
+   
+     <ul>
+
+        <li><p>{{comment.content}}</p></li>
+     </ul>
+    
+{% endfor %}
+{% endblock %}

@@ -3,10 +3,12 @@
 {% block title %}touts les articles {% endblock %}
 
 {% block body %}
-
+{% if app.user %}
 <div class="button">
   <a href="{{path('posts_add')}}" class="btn">Ajouter votre article</a>
 </div>
+{% endif %}
+
 <div class="articles">
 
     

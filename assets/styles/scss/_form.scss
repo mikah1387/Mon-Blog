@@ -5,68 +5,14 @@ min-height: 100vh;
 h1{
 
     font-size: 2rem;
-    margin: 30px auto;
+    text-align: center;
+    margin: 5px auto;
     color:$greenhigh;
 
-}
+  }
 
 form{
 
-    
-    padding: 50px 10px;
-    width: 90%;
-    margin:50px auto;
-    border-radius: 15px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
-    @media screen and (min-width:450px) {
-        
-        width: 70%;
-        padding: 50px 10px;
-    }
-    @media screen and (min-width:700px) {
-        
-        width: 60%;
-        padding: 50px 10px;
-        padding: 50px 50px;
-        max-width:500px ;
-
-    }
-
-    div{
-
-        margin: 10px auto;
-        label{
-
-            display: block;
-            color:$greenhigh;
-            font-weight: 600;
-            margin: 10px auto 5px;
-
-        }
-
-        input,textarea, select{
-            background: #ECF3F2;
-            width: 100%;
-            outline: none;
-            line-height: 2;
-            border-radius: 5px;
-            border: none;
-            font-weight: 600;
-            transition: 0.3 all;
-         &:focus{
-        
-          box-shadow: #ECF3F2 0px 3px 8px;
-         }
-
-        }
-    
-   button{
-
-    @extend %btn;
-    border: none;
-   }
-
-}
+   @extend %form;
 }
 }

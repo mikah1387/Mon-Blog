@@ -31,7 +31,7 @@ class PostsController extends AbstractController
     SluggerInterface $slugger, UserInterface $user ): Response
     {
 
-        
+
          $post = new Posts;
          
          $form = $this->createForm(PostsFormType::class,$post);
@@ -50,7 +50,8 @@ class PostsController extends AbstractController
                          return $this->redirectToRoute('posts_index');
          }
  
-         return $this->render('posts/addpost.html.twig',['addpostform' => $form->createView()]);
+         return $this->render('posts/addpost.html.twig',['addpostform' => $form->createView(),
+        'button_label'=> 'Ajouter l\'article']);
     }
 
     #[Route('/{slug}', name: 'detail')]
@@ -58,7 +59,7 @@ class PostsController extends AbstractController
     {
         return $this->render('posts/detail.html.twig', [
             'post' => $post,
-            'comments'=>$comments->findAll()
+            'allcomments'=>$comments->findBy(['posts'=>$post],['id'=>'DESC'])
         ]);
     }
 
