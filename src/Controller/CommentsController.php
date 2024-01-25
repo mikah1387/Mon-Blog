@@ -77,7 +77,7 @@ class CommentsController extends AbstractController
          }
  
          return $this->render('comments/addcomment.html.twig',['addcommentform' => $form->createView(),
-        'button_label'=> 'Commenter']);
+        'button_label'=> 'Répondez']);
       
     }
 }

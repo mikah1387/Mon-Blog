@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} votre profile Mr {{app.user.nickname}}{% endblock %}
+
+{% block body %}
+<section class="profile">
+
+    <aside>
+
+        <ul>
+            <li>Mes information</li>
+            <li> Mes articles</li>
+            <li> Modifier mot de passe</li>
+        </ul>
+    </aside>
+    <main class="main">
+        <h1> bienvenu dans votre espace profile Mr {{app.user.nickname}} </h1>
+        <h2>Mes informations</h2>
+        <h3>{{app.user.email}} </h3>
+         
+        <h2> Mes articles publiés </h2>
+        <ul>
+        {% for post in app.user.posts %}
+          <li><a href="{{path('posts_detail',{slug:post.slug})}}"> {{post.slug}}</a></li>
+            
+        {% endfor %}
+       </ul>
+       
+    </main>
+    
+
+
+
+</section>
+{% endblock %}

@@ -7,10 +7,12 @@
 
         <li> <a href="{{path('main')}}">Accueil</a> </li>
         <li><a href="{{path('posts_index')}}">Articles</a> </li>
-        <li> <a href="">Catégories</a> </li>
+        <li> <a href="{{path('categories_index')}}">Catégories</a> </li>
         <li> <a href="">Auteurs</a> </li>
         <li> <a href="">Contact</a> </li>
         {% if app.user %}
+        <li> <a href="{{path('profile_index')}}">Profile</a> </li>
+
         <li> <a href="{{path('app_logout')}}">Se deconnecter</a> </li>
             {% else %}
         <li> <a href="{{path('login')}}">Se connecter</a> </li>

@@ -4,13 +4,14 @@
 
 {% block body %}
 
+<div class="login">
 {% if error %}
 <div class="alert flash alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
 {% if app.user %}
-<div class="mb-3">
-    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+<div class="mb-3 flash success">
+   <p> You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a></p>
 </div>
 {% endif %}
 
@@ -35,4 +36,5 @@
         Se connecter 
     </button>
 </form>
+</div>
 {% endblock %}

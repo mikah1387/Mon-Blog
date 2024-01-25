@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+<section class="categories">
+
+    {% for categoryP in allcatygories %}
+        {% if categoryP.parent is null %}
+            
+        
+            {# <div class="img">
+              <img src="{{asset('images/image_style/baniere.jpg')}}" alt="image_categorie">
+            </div> #}
+    
+            <div class="cart">
+             <h2> {{categoryP.slug}}</h2>
+             <ul>
+
+             {% for category in categoryP.categories %}
+                    <li>
+              <a href="{{path('categories_postsbycaty',{slug:category.slug})}}">{{category.slug}}</a>
+                    
+                    </li>
+                
+             {% endfor %}
+            </ul>
+            </div>
+    
+          
+        {% endif %}
+    
+    {% endfor %}
+</section>
+{% endblock %}

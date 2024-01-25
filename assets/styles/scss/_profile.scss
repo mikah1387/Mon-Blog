@@ -1,0 +1,35 @@
+.profile {
+
+    display: flex;
+    min-height: 100vh;
+    aside{
+
+        width:300px;
+        background: $greenhigh;
+        color:white;
+        ul{
+
+        li{
+            display: block;
+            text-align: center;
+            padding: 20px 0;
+            transition: 0.3 all;
+            &:hover{
+
+                background: $greenlight;
+                color: $black;
+            }
+
+        }
+        }
+    }
+
+.main{
+ 
+    flex-grow: 1;
+    h1{
+        text-align: center;
+    }
+}
+
+}

@@ -321,7 +321,7 @@ body {
   font-size: 17px;
 }
 
-.articles .cart, .main .parentpost .cart {
+.articles .cart, .main .parentpost .cart, .cart {
   display: block;
   text-decoration: none;
   color: black;
@@ -333,20 +333,20 @@ body {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 15px;
 }
-.articles .cart .img, .main .parentpost .cart .img {
+.main .parentpost .cart .img, .cart .img {
   height: 50%;
   width: 100%;
 }
-.articles .cart .img img, .main .parentpost .cart .img img {
+.main .parentpost .cart .img img, .cart .img img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.articles .cart .body_cart, .main .parentpost .cart .body_cart {
+.main .parentpost .cart .body_cart, .cart .body_cart {
   padding: 10px 5px;
 }
-.articles .cart .body_cart h3, .main .parentpost .cart .body_cart h3, .articles .cart .body_cart h2, .main .parentpost .cart .body_cart h2, .articles .cart .body_cart h4, .main .parentpost .cart .body_cart h4, .articles .cart .body_cart P, .main .parentpost .cart .body_cart P {
+.main .parentpost .cart .body_cart h3, .main .parentpost .cart .body_cart h2, .main .parentpost .cart .body_cart h4, .main .parentpost .cart .body_cart P, .cart .body_cart h3, .cart .body_cart h2, .cart .body_cart h4, .cart .body_cart P {
   text-align: center;
   margin: 5px 0;
 }
@@ -445,6 +445,10 @@ form div input:focus, form div textarea:focus, form div select:focus {
 }
 .alert p {
   font-size: calc(0.8rem + 0.5vw);
+}
+
+.login {
+  min-height: 100vh;
 }
 
 .navbar {
@@ -671,6 +675,41 @@ form div input:focus, form div textarea:focus, form div select:focus {
   border: 1px solid black;
   padding: 10px;
   margin: 20px auto;
+}
+
+.categories {
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 10px;
+  justify-content: space-around;
+  margin: 50px 10%;
+}
+
+.profile {
+  display: flex;
+  min-height: 100vh;
+}
+.profile aside {
+  width: 300px;
+  background: #588157;
+  color: white;
+}
+.profile aside ul li {
+  display: block;
+  text-align: center;
+  padding: 20px 0;
+  transition: 0.3 all;
+}
+.profile aside ul li:hover {
+  background: #ECF3F2;
+  color: #020202;
+}
+.profile .main {
+  flex-grow: 1;
+}
+.profile .main h1 {
+  text-align: center;
 }
 
 .footer {
