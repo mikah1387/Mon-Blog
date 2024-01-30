@@ -316,7 +316,7 @@ template {
 }
 
 body {
-  background: #ffffff;
+  background: rgb(229, 228, 228);
   font-family: "Montserrat", sans-serif;
   font-size: 17px;
 }
