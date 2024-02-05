@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{titre_form}}{% endblock %}
+
+{% block body %}
+<div class="addpost">
+
+
+    {# {{form(addpostform)}} #}
+    {{ form_start(updateform) }}
+    <h1>{{titre_form}}</h1>
+
+    {{ form_row(updateform.title) }}
+    {{ form_row(updateform.content) }}
+    {{ form_row(updateform.categories) }}
+
+
+
+
+    <button type="submit" class="button">{{button_label|default('Ajouter')}}</button>
+    {{ form_end(updateform) }}
+
+</div>
+
+
+
+{% endblock %}

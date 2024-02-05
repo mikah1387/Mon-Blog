@@ -1,7 +1,7 @@
 .profile {
 
     display: flex;
-    min-height: 100vh;
+    height: auto;
     aside{
 
         width:300px;
@@ -27,9 +27,37 @@
 .main{
  
     flex-grow: 1;
-    h1{
+    @extend %centeritem;
+   .container_profil{
+
+    height: 70%;
+    width: 70%;
+    h1,h2,h3,h4{
         text-align: center;
+        margin: 10px auto;
+
     }
+    .carts{
+        a{
+            text-decoration: none;
+            color: inherit;
+           }
+        margin: 50px auto;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        .links{
+          margin: 20px auto;
+          text-align: center;
+            a{
+                text-decoration: none;
+                color: inherit;
+               }
+        }
+      
+    }
+   
+   }
 }
 
 }

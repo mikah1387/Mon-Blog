@@ -321,13 +321,18 @@ body {
   font-size: 17px;
 }
 
+.profile .main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .articles .cart, .main .parentpost .cart, .cart {
   display: block;
   text-decoration: none;
   color: black;
   min-width: 300px;
   width: calc(300px + 1vw);
-  min-height: 500px;
   max-height: 500px;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -688,7 +693,7 @@ form div input:focus, form div textarea:focus, form div select:focus {
 
 .profile {
   display: flex;
-  min-height: 100vh;
+  height: auto;
 }
 .profile aside {
   width: 300px;
@@ -708,8 +713,31 @@ form div input:focus, form div textarea:focus, form div select:focus {
 .profile .main {
   flex-grow: 1;
 }
-.profile .main h1 {
+.profile .main .container_profil {
+  height: 70%;
+  width: 70%;
+}
+.profile .main .container_profil h1, .profile .main .container_profil h2, .profile .main .container_profil h3, .profile .main .container_profil h4 {
   text-align: center;
+  margin: 10px auto;
+}
+.profile .main .container_profil .carts {
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.profile .main .container_profil .carts a {
+  text-decoration: none;
+  color: inherit;
+}
+.profile .main .container_profil .carts .links {
+  margin: 20px auto;
+  text-align: center;
+}
+.profile .main .container_profil .carts .links a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .footer {

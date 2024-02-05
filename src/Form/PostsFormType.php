@@ -21,10 +21,11 @@ class PostsFormType extends AbstractType
             
             ->add('categories', EntityType::class, [
                 'class' => Categories::class,
-         'choice_label' => 'name',
-             'multiple' => true,
-             'group_by'=>'parent.name',
-             'query_builder'=>function (CategoriesRepository $cr){
+                 'choice_label' => 'name',
+                 'multiple' => true,
+                 'mapped'=>false,
+                 'group_by'=>'parent.name',
+                 'query_builder'=>function     (CategoriesRepository $cr){
 
                  return $cr->createQueryBuilder('c')
                            -> where('c.parent IS NOT NULL')
