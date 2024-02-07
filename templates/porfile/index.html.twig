@@ -22,8 +22,6 @@
             <h3>{{app.user.email}} </h3>
 
             <h2> Mes articles publiés </h2>
-
-
             <div class="carts">
                 {% for post in app.user.posts %}
 
@@ -47,15 +45,29 @@
                 {% endfor %}
 
             </div>
-
-
-
             <h2>Mes commentaires </h2>
-            <ul>
+            <div class="comments">
                 {% for comment in app.user.comments %}
-                <li> article : {{comment.posts.title}} -> comment :{{comment.content}}</li>
+                <div class="comment">
+
+                {% if comment.parent is null %}
+                <p class="title"> votre commentaire sur l'article <span>{{comment.posts.title}} </span>
+                {% else %}
+                <p class="title"> votre reponse sur l'article <span>{{comment.posts.title}} </span>
+                {% endif %}
+                     </p class="content">
+                    <p> {{comment.content}} </p>
+                    <div class="links">
+                        <a href=""><span class="material-symbols-outlined">
+                                 delete
+                             </span></a>
+                         <a href=""><span class="material-symbols-outlined">
+                                 edit
+                             </span></a>
+                     </div>
+                </div>
                 {% endfor %}
-            </ul>
+            </div>
 
 
         </div>

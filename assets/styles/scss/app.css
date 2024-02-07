@@ -693,6 +693,7 @@ form div input:focus, form div textarea:focus, form div select:focus {
 
 .profile {
   display: flex;
+  min-height: 100vh;
   height: auto;
 }
 .profile aside {
@@ -712,6 +713,7 @@ form div input:focus, form div textarea:focus, form div select:focus {
 }
 .profile .main {
   flex-grow: 1;
+  height: 100%;
 }
 .profile .main .container_profil {
   height: 70%;
@@ -735,7 +737,37 @@ form div input:focus, form div textarea:focus, form div select:focus {
   margin: 20px auto;
   text-align: center;
 }
-.profile .main .container_profil .carts .links a {
+.profile .main .container_profil .comments {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.profile .main .container_profil .comments .comment {
+  min-width: 300px;
+  max-width: 400px;
+  margin: 5px;
+  justify-items: left;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 5px;
+  background: rgb(223, 221, 221);
+}
+.profile .main .container_profil .comments .comment p {
+  margin: 10px auto;
+  text-align: center;
+  font-size: 0.7rem;
+  color: rgb(110, 109, 109);
+}
+.profile .main .container_profil .comments .comment p span {
+  font-weight: bold;
+  color: black;
+}
+.profile .main .container_profil .comments .comment .links {
+  margin: 5px auto;
+  text-align: center;
+  color: inherit;
+}
+.profile .main .container_profil .comments .comment .links a {
   text-decoration: none;
   color: inherit;
 }
