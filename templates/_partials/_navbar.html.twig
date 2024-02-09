@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar" {% if is_granted('ROLE_ADMIN') %} style="background:#588157" {% endif %}>
   
     <div class="logo">
       <a href="{{path('main')}}"><img src="{{asset('images/image_style/logo2.png')}}" alt=" image_logo_the-blog"> </a>  
@@ -11,6 +11,10 @@
         <li> <a href="">Auteurs</a> </li>
         <li> <a href="">Contact</a> </li>
         {% if app.user %}
+        {% if is_granted('ROLE_ADMIN')  %}
+        <li> <a href="{{path('admin_index')}}">Administration</a> </li>
+            
+        {% endif %}
         <li> <a href="{{path('profile_index')}}">Profile</a> </li>
 
         <li> <a href="{{path('app_logout')}}">Se deconnecter</a> </li>

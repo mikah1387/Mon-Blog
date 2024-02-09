@@ -49,7 +49,8 @@ class CommentsController extends AbstractController
          }
  
          return $this->render('comments/addcomment.html.twig',['addcommentform' => $form->createView(),
-        'button_label'=> 'Commenter']);
+        'button_label'=> 'Commenter',
+        'title'=> 'Ajouter votre commentaire']);
       
     }
 
@@ -77,7 +78,42 @@ class CommentsController extends AbstractController
          }
  
          return $this->render('comments/addcomment.html.twig',['addcommentform' => $form->createView(),
-        'button_label'=> 'Répondez']);
+        'button_label'=> 'Répondez',
+        'title'=> 'Ajouter votre réponse']);
       
     }
+
+    #[Route('/update/{id}', name: 'update')]
+    public function updateComment( Request $request, EntityManagerInterface $em,
+    UserInterface $user,Comments $comment): Response
+    {
+        //  $post=$comment->getPosts();
+         
+         $form = $this->createForm(CommentsFormType::class, $comment);
+         $form->handleRequest($request);
+         
+         if ($form->isSubmitted() && $form->isValid()) {
+             
+              
+             $em->persist($comment);
+             $em->flush();
+             $this->addFlash('success', 'votre commentaire est bien modifié ');
+                         return $this->redirectToRoute('profile_index');
+         }
+ 
+         return $this->render('comments/addcomment.html.twig',['addcommentform' => $form->createView(),
+        'button_label'=> 'modifier',
+        'title'=> 'Modifier votre commentaire']);
+      
+    }
+    #[Route('/delete/{id}', name: 'delete')]
+    public function delete( Comments $comment,EntityManagerInterface $em )
+    {
+
+        $em->remove($comment);
+        $em->flush();
+        $this->addFlash('success', 'votre commentaire est bien suprimé ');
+                    return $this->redirectToRoute('profile_index'); 
+    }
+
 }

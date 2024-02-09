@@ -137,6 +137,27 @@ body{
        }
 }
 
+aside{
+
+    width:300px;
+    background: $greenhigh;
+    color:white;
+    ul{
+
+    li{
+        display: block;
+        text-align: center;
+        padding: 20px 0;
+        transition: 0.3 all;
+        &:hover{
+
+            background: $greenlight;
+            color: $black;
+        }
+
+    }
+    }
+}
 .flash{
     width: 70%; 
     height: 50px;
@@ -178,5 +199,5 @@ body{
 @import '_detail_article.scss';
 @import '_categories.scss';
 @import '_profile.scss';
-
+@import '_admin.scss';
 @import '_footer.scss';

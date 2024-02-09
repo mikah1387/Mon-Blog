@@ -70,40 +70,54 @@ class PostsController extends AbstractController
     public function update(Posts $post, Request $request, EntityManagerInterface $em,
     SluggerInterface $slugger, UserInterface $user ): Response
     {
+        
+          if($user === $post->getUsers() || in_array("ROLE_ADMIN", $user->getRoles())) {
+            $form = $this->createForm(PostsFormType::class,$post);
+            $form->handleRequest($request);
+            
+            if ($form->isSubmitted() && $form->isValid()) {
+                   $categories = $form->get('categories')->getData();
+                
+                   $slug= $slugger->slug($post->getTitle());
+                   $post->setSlug($slug);
+                   $post->setUsers($user);
+                   foreach ($categories as  $categorie) {
+                   $post->addCategory($categorie);
+                   }
+                   $post->setFeaturedImage('url');
+                 
+                $em->persist($post);
+                $em->flush();
+                $this->addFlash('success', 'votre article '.$post->getTitle().' est bien modifier');
+                            return $this->redirectToRoute('profile_index');
+            }
+    
+            return $this->render('posts/updatepost.html.twig',['updateform' => $form->createView(),
+           'button_label'=> 'Modifier l\'article',
+           'titre_form'=> 'Modifier l\'article' ]);
+          }else{
+            $this->addFlash('alert', 'vous n\'avez pas le droit d\'acceder ici');
+            return $this->redirectToRoute('profile_index');
 
-         
-         $form = $this->createForm(PostsFormType::class,$post);
-         $form->handleRequest($request);
-         
-         if ($form->isSubmitted() && $form->isValid()) {
-                $categories = $form->get('categories')->getData();
-             
-                $slug= $slugger->slug($post->getTitle());
-                $post->setSlug($slug);
-                $post->setUsers($user);
-                foreach ($categories as  $categorie) {
-                $post->addCategory($categorie);
-                }
-                $post->setFeaturedImage('url');
-              
-             $em->persist($post);
-             $em->flush();
-             $this->addFlash('success', 'votre article '.$post->getTitle().' est bien modifier');
-                         return $this->redirectToRoute('profile_index');
-         }
- 
-         return $this->render('posts/updatepost.html.twig',['updateform' => $form->createView(),
-        'button_label'=> 'Modifier l\'article',
-        'titre_form'=> 'Modifier l\'article' ]);
+          }
+        
     }
    
     #[Route('/delete/{slug}', name: 'delete')]
-    public function delete(Posts $post, EntityManagerInterface $em)
+    public function delete(Posts $post, EntityManagerInterface $em, UserInterface $user)
     {
-        $em->remove($post);
-        $em->flush();
-        $this->addFlash('success', 'l\'article '. $post->getTitle() .' est bien suprimer');
-        return $this->redirectToRoute('profile_index');
+        if($user === $post->getUsers() || in_array("ROLE_ADMIN", $user->getRoles())) {
+            $em->remove($post);
+            $em->flush();
+            $this->addFlash('success', 'l\'article '. $post->getTitle() .' est bien suprimer');
+            return $this->redirectToRoute('profile_index');
+
+        }else{
+            $this->addFlash('alert', 'vous n\'avez pas le droit d\'acceder ici');
+            return $this->redirectToRoute('profile_index');
+
+          }
+        
 
     }
 

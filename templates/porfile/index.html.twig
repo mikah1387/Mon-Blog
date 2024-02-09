@@ -25,8 +25,7 @@
             <div class="carts">
                 {% for post in app.user.posts %}
 
-              
-                  <a href="{{path('posts_detail',{slug:post.slug})}}">
+                <a href="{{path('posts_detail',{slug:post.slug})}}">
                     <div class="cart">
                         <h3> {{post.slug}}</h3>
                         {% for category in post.categories %}
@@ -41,7 +40,8 @@
                                 </span></a>
                         </div>
                     </div>
-                  </a>
+                </a>
+                
                 {% endfor %}
 
             </div>
@@ -58,10 +58,10 @@
                      </p class="content">
                     <p> {{comment.content}} </p>
                     <div class="links">
-                        <a href=""><span class="material-symbols-outlined">
+                        <a href="{{path('comments_delete',{id:comment.id})}}"><span class="material-symbols-outlined">
                                  delete
                              </span></a>
-                         <a href=""><span class="material-symbols-outlined">
+                         <a href="{{path('comments_update',{id:comment.id})}}"><span class="material-symbols-outlined">
                                  edit
                              </span></a>
                      </div>

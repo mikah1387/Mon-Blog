@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une categorie {% endblock %}
+
+{% block body %}
+<div class="addpost">
+
+    {{ form_start(addcatyform) }}
+    <h1>Ajouter une categorie</h1>
+
+    {{ form_row(addcatyform.name) }}
+    {{ form_row(addcatyform.parent) }}
+    
+    <button type="submit" class="button">{{button_label|default('Ajouter')}}</button>
+    {{ form_end(addcatyform) }}
+
+</div>
+
+{% endblock %}

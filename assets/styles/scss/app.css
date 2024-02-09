@@ -423,6 +423,22 @@ form div input:focus, form div textarea:focus, form div select:focus {
   border: none;
 }
 
+aside {
+  width: 300px;
+  background: #588157;
+  color: white;
+}
+aside ul li {
+  display: block;
+  text-align: center;
+  padding: 20px 0;
+  transition: 0.3 all;
+}
+aside ul li:hover {
+  background: #ECF3F2;
+  color: #020202;
+}
+
 .flash {
   width: 70%;
   height: 50px;
@@ -770,6 +786,53 @@ form div input:focus, form div textarea:focus, form div select:focus {
 .profile .main .container_profil .comments .comment .links a {
   text-decoration: none;
   color: inherit;
+}
+
+.admin {
+  min-height: 100vh;
+  display: flex;
+}
+.admin .main {
+  flex-grow: 1;
+}
+.admin .users, .admin .posts, .admin .catys {
+  margin: 20px auto;
+  width: 60%;
+}
+.admin .users h1, .admin .posts h1, .admin .catys h1 {
+  text-align: center;
+  margin: 20px auto;
+}
+.admin .table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+.admin .table th, .admin .table td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: left;
+}
+.admin .table th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.admin .table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.admin .table tr:hover {
+  background-color: #f2f2f2;
+}
+.admin .table td {
+  transition: background-color 0.3s ease;
+}
+.admin .table td:hover {
+  background-color: #e1e1e1;
+}
+.admin .btn {
+  margin: 20px auto;
 }
 
 .footer {
