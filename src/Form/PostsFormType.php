@@ -8,6 +8,7 @@ use App\Entity\Users;
 use App\Repository\CategoriesRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,6 +33,12 @@ class PostsFormType extends AbstractType
                            ->orderBy('c.name','ASC');
              }
             ])
+            ->add('image', FileType::class,[
+                'multiple'=>false,
+                'mapped'=>false,
+                'required'=>false,
+             
+            ] )
         ;
     }
 

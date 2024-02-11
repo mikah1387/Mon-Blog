@@ -5,7 +5,7 @@ namespace App\Controller\admin;
 use App\Entity\Categories;
 use App\Form\CategoriesFormType;
 use App\Repository\CategoriesRepository;
-
+use App\service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class CategoriesController extends AbstractController
 {
     #[Route('/categories/add', name: 'categorie_add')]
-    public function add(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
+    public function add(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService): Response
     {
         $caty = new Categories;
          
@@ -27,9 +27,11 @@ class CategoriesController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
               
-            
+            $image = $form->get('image')->getData();
+            $imageName = $pictureService->add($image,'categories',300,300);
                $slug= $slugger->slug($caty->getName());
                $caty->setSlug($slug);
+               $caty->setImage($imageName);
              
             $em->persist($caty);
             $em->flush();

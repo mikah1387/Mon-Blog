@@ -706,6 +706,25 @@ aside ul li:hover {
   justify-content: space-around;
   margin: 50px 10%;
 }
+.categories .cart h2 {
+  margin-top: 10px;
+  text-align: center;
+}
+.categories .cart ul li {
+  text-align: center;
+  margin: 5px 0;
+}
+.categories .cart ul li a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+  transition: 0.3s;
+  display: block;
+}
+.categories .cart ul li a:hover {
+  color: gray;
+  transform: scale(1.05);
+}
 
 .profile {
   display: flex;

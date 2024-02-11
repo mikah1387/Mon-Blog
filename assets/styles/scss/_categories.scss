@@ -8,4 +8,32 @@
     justify-content: space-around;
     margin: 50px 10%;
 
+    .cart{
+      
+        h2{
+            margin-top: 10px;
+            text-align: center;
+        }
+        ul{
+          
+           li{
+            text-align: center;
+            margin: 5px 0;
+            a{
+            text-decoration: none;
+             color: inherit;
+             font-weight: 600;
+             transition: 0.3s;
+             display: block;
+             &:hover{
+                color: gray;
+             
+                transform: scale(1.05);
+             }
+            }
+           } 
+
+        }
+    }
+
 }

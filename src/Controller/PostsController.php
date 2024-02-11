@@ -6,6 +6,7 @@ use App\Entity\Posts;
 use App\Form\PostsFormType;
 use App\Repository\CommentsRepository;
 use App\Repository\PostsRepository;
+use App\service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +29,8 @@ class PostsController extends AbstractController
 
     #[Route('/add', name: 'add')]
     public function add(Request $request, EntityManagerInterface $em,
-    SluggerInterface $slugger, UserInterface $user ): Response
+    SluggerInterface $slugger, UserInterface $user,
+    PictureService $pictureService ): Response
     {
 
 
@@ -39,6 +41,8 @@ class PostsController extends AbstractController
          
          if ($form->isSubmitted() && $form->isValid()) {
                 $categories = $form->get('categories')->getData();
+                $image = $form->get('image')->getData();
+                $imageName = $pictureService->add($image,'posts',300,300);
              
                 $slug= $slugger->slug($post->getTitle());
                 $post->setSlug($slug);
@@ -46,7 +50,7 @@ class PostsController extends AbstractController
                 foreach ($categories as  $categorie) {
                 $post->addCategory($categorie);
                 }
-                $post->setFeaturedImage('url');
+                $post->setFeaturedImage($imageName);
               
              $em->persist($post);
              $em->flush();
