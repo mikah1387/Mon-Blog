@@ -6,64 +6,99 @@
 
 <section class="main">
 
-    <div class="baniere">
+  <div class="baniere">
 
-        <h1> Bienvenu dans mon Blog </h1>
-        <div class="lastuser">
-            <h2> Dernier utilisateur inscrit </h2>
-            <div class="image">
-                <img src="" alt="">
-            </div>
-            {% for user in lastUserSubscrib %}
-            <h3> {{user.nickname}}</h3>
-            {% endfor %}
-        </div>
+    <h1> Bienvenu dans mon Blog </h1>
+    <div class="lastuser">
+      <h2> Dernier utilisateur inscrit </h2>
+
+      {% for user in lastUserSubscrib %}
+
+      <div class="image">
+        <img src="{{asset('images/uploads/users/min/300x300-'~ user.image)}}" alt="">
+      </div>
+
+      <h3> {{user.nickname}}</h3>
+      {% endfor %}
     </div>
-    <div class="articles">
-     <h2> Derniers Articles</h2>
-       <div class="parentpost">
-        {# {{ dump(lastposts) }} #}
-        {% for post in lastposts %}
-        
-        <div class="cart">
-          <div class="img">
-            <img src="{{asset('images/image_style/baniere.jpg')}}" alt="image_article">
-          </div>
+  </div>
+  <div class="main_articles">
+    <h2> Derniers Articles</h2>
+    
+      <a href="{{path('posts_index')}}" class="all_article">  Tous les articles » </a>
+    
+    
+    <div class="parentpost">
 
-          <div class="body_cart">
-            {% for category in post.categories %}
-            
-            <h3>Categorie : {{category.name}}</h3>  
-            {% endfor %}
-            
-           <h3> {{post.title}}</h3>
-           <h4> {{post.slug}}</h4>
+      {% for post in lastposts %}
+
+      <a href="{{path('posts_detail',{slug:post.slug})}}" class="cart">
+
+        <div class="img">
+          {% if post.featuredImage is  null %}
+          <img src=" " alt="image_article">
           
-           <h4> Auteur : {{post.users.nickname}}</h4>
+          {% else %}
+          <img src="{{asset('images/uploads/posts/min/300x300-'~ post.featuredImage)}}" alt="image_article">
+          {% endif %}
+         
+        </div>
+
+        <div class="body_cart">
+
+          <div class="autor">
+             <div class="image">
+              <img src="{{asset('images/uploads/users/min/300x300-'~ post.users.image)}}" alt="">
+             </div>
+             <h4> {{post.users.nickname|capitalize}}</h4>
+             <h5> <span class="material-symbols-outlined">
+              calendar_month
+              </span> {{post.CreatedAt|date("F j,Y")}}</h5>
+              
           </div>
+          <h3> {{post.slug}}</h3>
+          <p> {{post.content|slice(0, 150)}}... </p>
+          {% for category in post.categories %}
+          <h6> {{category.name|capitalize}} </h6>
+    
+          {% endfor %}
+
 
         </div>
-    {% endfor %}
 
-       </div> 
-
-   
+      </a>
+      {% endfor %}
 
     </div>
-    <div class="auteurs">
-        <h2> Auteurs actifs</h2> 
-        <div class="parentauteur">
-        {% for user in usersactif %}
-          <div class="cart">
-            <div class="img">
-                <img src="{{asset('images/image_style/baniere.jpg')}}" alt="image_article">
-              </div>
-            <h3> Auteur : {{user.nickname }}</h3> 
-            <h3> Nombre d'articles : {{user.nombre_articles }}</h3>
-          </div>  
-         
-        {% endfor %}
+
+
+
+  </div>
+  <div class="auteurs">
+    <h2> Auteurs actifs</h2>
+    <div class="parentauteur">
+      {% for user in usersactif %}
+      <div class="cart">
+        <div class="circle">
+          <div class="img">
+           {% if user.image is null  %}
+          <img src=" " alt="image_auteur">
+          {% else %}
+          <img src="{{asset('images/uploads/users/min/300x300-'~ user.image)}}" alt="image_auteur">
+          {% endif %} 
+           
+          </div>
+        </div>
+        <div class="body_cart">
+        <div class="infoauteur">
+        <h3> {{user.nickname|capitalize }}</h3>
+        <h4> {{user.nombre_articles }} Articles</h4>
+        </div>
+        </div>
+      </div>
+
+      {% endfor %}
     </div>
-    </div>
+  </div>
 </section>
 {% endblock %}

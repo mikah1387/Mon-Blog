@@ -57,10 +57,9 @@
                         <th scope="col">Id</th>
                         <th scope="col">titre</th>
                         <th scope="col">categories</th>
-
                         <th scope="col">image</th>
-                        <th scope="col">Ecrit-by</th>
-
+                        <th scope="col">Ecrit-par</th>
+                        <th scope="col">Creer le </th>
                         <th scope="col">Actions</th>
 
 
@@ -79,6 +78,7 @@
                         </td>
                         <td>{{post.featuredImage}}</td>
                         <td>{{post.users.nickname}}</td>
+                        <td>{{post.CreatedAt|date("F j,Y")}}</td>
 
                         <td>
                             <a href="{{path('posts_update',{slug:post.slug})}}"><span class="material-symbols-outlined">
@@ -117,26 +117,26 @@
 
 
                         <td>
-                            <a href=""><span class="material-symbols-outlined">
+                            <a href="{{path('admin_categorie_update',{slug:caty.slug })}}"><span class="material-symbols-outlined">
                                     edit
                                 </span></a>
-                            <a href=""><span class="material-symbols-outlined">
+                            <a href="{{path('admin_categorie_delete',{slug:caty.slug })}}"><span class="material-symbols-outlined">
                                     delete
                                 </span></a>
                         </td>
                     </tr>
-                    {% for catiegory in caty.categories %}
+                    {% for category in caty.categories %}
                     <tr>
-                        <td>{{catiegory.id}}</th>
-                        <td> {{catiegory.parent.name}}</td>
-                        <td>{{catiegory.name}}</td>
+                        <td>{{category.id}}</th>
+                        <td> {{category.parent.name}}</td>
+                        <td>{{category.name}}</td>
 
 
                         <td>
-                            <a href=""><span class="material-symbols-outlined">
+                            <a href="{{path('admin_categorie_update',{slug:category.slug })}}"><span class="material-symbols-outlined">
                                     edit
                                 </span></a>
-                            <a href=""><span class="material-symbols-outlined">
+                            <a href="{{path('admin_categorie_delete',{slug:category.slug })}}"><span class="material-symbols-outlined">
                                     delete
                                 </span></a>
                         </td>

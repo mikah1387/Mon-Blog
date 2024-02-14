@@ -38,12 +38,16 @@ class Posts
     #[ORM\OneToMany(mappedBy: 'posts', targetEntity: Comments::class, orphanRemoval: true)]
     private Collection $comments;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $Created_at = null;
+
     
 
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->Created_at = new \DateTimeImmutable();
         
     }
 
@@ -169,6 +173,18 @@ class Posts
                 $comment->setPosts(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->Created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $Created_at): static
+    {
+        $this->Created_at = $Created_at;
 
         return $this;
     }

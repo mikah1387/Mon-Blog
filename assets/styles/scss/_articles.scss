@@ -1,21 +1,13 @@
-.articles{
+.main{
 
-    min-height: 100vh;
-    display: flex;
-    flex-wrap: wrap;
-    gap:40px 10px;
-
-    justify-content: space-around;
-    margin: 50px 10%;
-    .cart{
-         
-        @extend %cart;
-    }
+ 
+    width: 70%;
+    margin: auto;
 }
 
 .button{
 
-    margin: 30px auto;
+    margin: 100px auto;
     .btn{
 
         @extend %btn;

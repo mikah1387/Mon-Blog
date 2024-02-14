@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une categorie {% endblock %}
+{% block title %}{{title}}{% endblock %}
 
 {% block body %}
 <div class="addpost">
 
     {{ form_start(addcatyform) }}
-    <h1>Ajouter une categorie</h1>
+    <h1>{{title}}</h1>
 
     {{ form_row(addcatyform.name) }}
     {{ form_row(addcatyform.parent) }}

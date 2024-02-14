@@ -6,6 +6,7 @@ use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,6 +29,12 @@ class RegistrationFormType extends AbstractType
               'label'=> 'E-mail : '
 
             ])
+            ->add('image', FileType::class,[
+                'multiple'=>false,
+                'mapped'=>false,
+                'required'=>false,
+             
+            ] )
             
             ->add('agreeTerms', CheckboxType::class, [
                                 'mapped' => false,

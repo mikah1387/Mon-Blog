@@ -27,7 +27,7 @@ class PostsRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-        SELECT nickname, count(*) AS nombre_articles from posts join users on posts.users_id = users.id group by users_id ORDER by nombre_articles DESC LIMIT 4 
+        SELECT nickname,image, count(*) AS nombre_articles from posts join users on posts.users_id = users.id group by users_id ORDER by nombre_articles DESC LIMIT 4 
             ';
 
         $resultSet = $conn->executeQuery($sql);

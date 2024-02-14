@@ -316,18 +316,33 @@ template {
 }
 
 body {
-  background: rgb(229, 228, 228);
+  background: white;
   font-family: "Montserrat", sans-serif;
   font-size: 17px;
 }
 
-.profile .main {
+pre {
+  width: 100%;
+  height: 50px;
+}
+pre code {
+  width: 100%;
+  display: block;
+  font-family: Consolas, Monaco, "Andale Mono", monospace;
+  font-size: 14px;
+  background-color: #f4f4f4;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.profile .main, .main .auteurs .cart .circle {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.articles .cart, .main .parentpost .cart, .cart {
+.main .parentpost .cart, .cart {
   display: block;
   text-decoration: none;
   color: black;
@@ -335,25 +350,76 @@ body {
   width: calc(300px + 1vw);
   max-height: 500px;
   overflow: hidden;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 15px;
+}
+.main .parentpost .cart:hover img, .cart:hover img {
+  transform: scale(1.05);
+}
+.cart:hover .body_cart {
+  background: #fff1e6;
 }
 .main .parentpost .cart .img, .cart .img {
-  height: 50%;
+  height: 40%;
   width: 100%;
+  margin-bottom: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .main .parentpost .cart .img img, .cart .img img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  transition: 0.3s;
 }
 .main .parentpost .cart .body_cart, .cart .body_cart {
   padding: 10px 5px;
+  border-radius: 0 0 10px 10px;
+  padding: 10px 12px;
+  transition: 0.3s;
 }
-.main .parentpost .cart .body_cart h3, .main .parentpost .cart .body_cart h2, .main .parentpost .cart .body_cart h4, .main .parentpost .cart .body_cart P, .cart .body_cart h3, .cart .body_cart h2, .cart .body_cart h4, .cart .body_cart P {
-  text-align: center;
-  margin: 5px 0;
+.cart .body_cart .autor {
+  display: flex;
+  margin: 5px 0 10px;
+}
+.cart .body_cart .autor .image {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 5px;
+}
+.cart .body_cart .autor .image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.cart .body_cart .autor h4, .cart .body_cart .autor h5 {
+  margin-top: 3px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.cart .body_cart .autor h5 {
+  margin-left: 80px;
+}
+.cart .body_cart .autor h5 span {
+  font-size: 13px;
+}
+.main .parentpost .cart .body_cart h3, .cart .body_cart h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.main .parentpost .cart .body_cart h3, .main .parentpost .cart .body_cart P, .cart .body_cart h3, .cart .body_cart P {
+  text-align: justify;
+  margin: 10px 0 10px;
+}
+.main .parentpost .cart .body_cart h6, .cart .body_cart h6 {
+  color: red;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 5px auto 10px;
 }
 
 .button .btn, .addpost form button, form button, .btn {
@@ -538,17 +604,24 @@ aside ul li:hover {
   top: 80%;
   width: 30%;
   min-width: 250px;
-  height: 200px;
+  height: auto;
   background: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
 }
 .main .lastuser .image {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  background-color: coral;
+  overflow: hidden;
   margin: 10px auto;
+}
+.main .lastuser .image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .main .lastuser h2 {
   text-align: center;
@@ -558,27 +631,12 @@ aside ul li:hover {
   text-align: center;
   font-size: calc(0.5rem + 1vw);
 }
-.main .articles {
-  margin-top: 100px;
-}
-.main .articles h2 {
-  text-align: center;
-  font-size: calc(2rem + 2vw);
-}
-.main .articles h2::after {
-  content: "";
-  display: block;
-  height: 4px;
-  width: 300px;
-  background: coral;
-  margin: 10px auto;
-}
 .main .parentpost {
-  width: 70%;
-  margin: 40px auto;
+  width: 100%;
+  margin: auto;
   height: auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 40px 20px;
 }
@@ -609,24 +667,71 @@ aside ul li:hover {
 .main .auteurs .cart {
   min-width: 250px;
   width: calc(250px + 1vw);
-  min-height: 400px;
+  min-height: auto;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 15px;
 }
-.main .auteurs .cart .img {
-  height: 70%;
-  width: 100%;
+.main .auteurs .cart .circle {
+  width: 180px;
+  height: 180px;
+  margin: 10px auto 5px;
+  border: 3px solid rgb(192, 191, 191);
+  border-radius: 50%;
 }
-.main .auteurs .cart .img img {
+.main .auteurs .cart .circle .img {
+  height: 150px;
+  width: 150px;
+  margin: auto;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.main .auteurs .cart .circle .img img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.main .auteurs .cart h2, .main .auteurs .cart h3 {
+.main .auteurs .cart .infoauteur h4, .main .auteurs .cart .infoauteur h3 {
   margin: 5px auto;
   text-align: center;
+  font-style: italic;
+}
+.main .auteurs .cart .infoauteur h4 {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.main_articles {
+  margin-top: 100px;
+  display: block;
+  width: 80%;
+  margin: auto;
+}
+.main_articles h2 {
+  text-align: center;
+  font-size: calc(2rem + 2vw);
+  margin: 130px auto 0;
+}
+.main_articles h2::after {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 300px;
+  background: coral;
+  margin: 10px auto;
+}
+.main_articles .all_article {
+  display: block;
+  width: auto;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  margin: 20px auto 100px;
+  transition: 0.3s;
+}
+.main_articles .all_article:hover {
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .addpost {
@@ -638,16 +743,13 @@ aside ul li:hover {
   margin: 5px auto;
   color: #588157;
 }
-.articles {
-  min-height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px 10px;
-  justify-content: space-around;
-  margin: 50px 10%;
+.main {
+  width: 70%;
+  margin: auto;
 }
+
 .button {
-  margin: 30px auto;
+  margin: 100px auto;
 }
 .detail_article {
   min-height: 100vh;

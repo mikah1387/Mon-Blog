@@ -14,8 +14,10 @@
 
     <div class="descrip">
       <h2> {{post.slug}}</h2>
-      
-      <p>{{post.content}}</p>
+      <div>
+        {{post.content|raw}}
+
+      </div>
       {% for category in post.categories %}
       <h5>Categorie : {{category.name}}</h5>
       {% endfor %}
@@ -27,7 +29,7 @@
       <a class="btn" href="{{path('comments_add', {id:post.id})}}">commenter</a>
       <h1> Comentaires </h1>
 
-
+     
 
       {% for comment in allcomments %}
       

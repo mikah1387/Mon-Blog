@@ -29,7 +29,7 @@ class CategoriesController extends AbstractController
               
             $image = $form->get('image')->getData();
             $imageName = $pictureService->add($image,'categories',300,300);
-               $slug= $slugger->slug($caty->getName());
+               $slug = $slugger->slug($caty->getName());
                $caty->setSlug($slug);
                $caty->setImage($imageName);
              
@@ -40,10 +40,52 @@ class CategoriesController extends AbstractController
         }
         
         return $this->render('categories/addcaty.html.twig', ['addcatyform' => $form->createView(),
-        'button_label'=> 'Ajouter'
+        'button_label'=> 'Ajouter','title'=> 'Ajouter la catégorie'
+         
+        ]);
+    }
+
+    #[Route('/categories/update/{slug}', name: 'categorie_update')]
+    public function update(Request $request, Categories $caty ,EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService): Response
+    {
+        
+         
+        $form = $this->createForm(CategoriesFormType::class,$caty);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+              
+            $image = $form->get('image')->getData();
+            $imageName = $pictureService->add($image,'categories',300,300);
+               $slug = $slugger->slug($caty->getName());
+               $caty->setSlug($slug);
+               $caty->setImage($imageName);
+             
+            $em->persist($caty);
+            $em->flush();
+            $this->addFlash('success', 'la categorie '.$caty->getName().' est bien modifier');
+                        return $this->redirectToRoute('admin_index');
+        }
+        
+        return $this->render('categories/addcaty.html.twig', ['addcatyform' => $form->createView(),
+        'button_label'=> 'Modifier',
+        'title'=> 'Modifier la catégorie'
          
         ]);
     }
    
+    #[Route('/categories/delete/{slug}', name: 'categorie_delete')]
+    public function delete(Categories $caty, EntityManagerInterface $em)
+    {
+      
+            $em->remove($caty);
+            $em->flush();
+            $this->addFlash('success', 'la catégorie '. $caty->getName() .' est bien suprimer');
+            return $this->redirectToRoute('profile_index');
+
+        
+        
+
+    }
   
 }

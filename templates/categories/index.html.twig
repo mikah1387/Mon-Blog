@@ -7,12 +7,7 @@
 
     {% for categoryP in allcatygories %}
         {% if categoryP.parent is null %}
-            
-        
-            {# <div class="img">
-             
-            </div> #}
-    
+  
             <div class="cart">
                 <div class="img">
                 <img src="{{asset('images/uploads/categories/min/300x300-' ~ categoryP.image )}}" alt="image_categorie">

@@ -9,11 +9,29 @@
 }
 body{
 
-    background:rgb(229, 228, 228);
+    background:white;
     font-family: 'Montserrat', sans-serif;
     font-size: 17px;
       
 }
+
+pre{
+
+    width: 100%;
+    height: 50px;
+    code {
+        width: 100%;
+       display: block;
+        font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        font-size: 14px;
+        background-color: #f4f4f4;
+        padding: 5px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+      }
+}
+
+
 
 %centeritem{
 
@@ -32,26 +50,88 @@ body{
    
     overflow: hidden;
    
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 15px;
-
+    // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    // border-radius: 15px;
+    &:hover{
+        img{
+        transform: scale(1.05);
+        }
+        .body_cart{
+            background:$beige;
+        }
+    }
+     
     .img{
-       height: 50%;
+       height: 40%;
        width: 100%;
+       margin-bottom: 20px;
+       box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+       border-radius: 10px;
+       overflow: hidden;
        img{
 
            width: 100%;
            height: 100%;
            object-fit: cover;
+           transition: 0.3s;
+
        }
       }
 
      .body_cart{
        padding: 10px 5px;
-      h3,h2,h4,P{
-       text-align: center;
-       margin: 5px 0;
+       border-radius: 0 0 10px 10px;
+       padding: 10px 12px; 
+       transition: 0.3s;
+       .autor{
+           display: flex;
+           margin: 5px 0 10px;
+        .image{
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 5px;
+            img{
+              display: block;
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+           
+        }
+
+        h4,h5{
+            margin-top: 3px;
+            font-size: 14px;  
+            font-weight: 400;
+           
+           }  
+        h5{
+            margin-left: 80px;
+            span{
+                font-size: 13px;
+            }
+        }
+         }
+         h3{
+            font-size: 1rem;  
+            font-weight: 700; 
+
+         }
+      h3,P{
+       text-align: justify;
+       margin: 10px 0 10px;
+
       }
+      h6{
+        color: red;
+        font-weight: 600;
+        font-size: 14px;  
+
+        margin: 5px auto 10px;
+      }
+
      }
 
 
@@ -192,7 +272,6 @@ aside{
     min-height: 100vh;
  }
 @import '_navbar.scss';
-
 @import '_main.scss';
 @import '_form.scss';
 @import '_articles.scss';
