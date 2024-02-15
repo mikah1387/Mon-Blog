@@ -36,6 +36,17 @@ class PostsRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
 
      }
+
+     public function searchTags($tags)
+     {
+        return $this->createQueryBuilder('p')
+                   ->andWhere('MATCH_AGAINST(p.title,p.content) AGAINST (:tags boolean) > 0')
+                   ->setParameter('tags', $tags)
+                   
+                   ->getQuery()
+                   ->getResult();
+
+     }
 //    /**
 //     * @return Posts[] Returns an array of Posts objects
 //     */

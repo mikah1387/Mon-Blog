@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}touts les articles {% endblock %}
+
+{% block body %}
+
+<div>
+    {{ form_start(searchtags) }} 
+    {{ form_row(searchtags.mots) }}
+    {{ form_end(searchtags) }}
+    
+</div>
+
+<div>
+    {{var}}
+    {{ dump(posts) }}
+</div>
+{% endblock %}

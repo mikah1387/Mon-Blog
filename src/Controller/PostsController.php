@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Posts;
 use App\Form\PostsFormType;
+use App\Form\SearchPostType;
 use App\Repository\CommentsRepository;
 use App\Repository\PostsRepository;
 use App\service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,13 +22,48 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class PostsController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index( PostsRepository $postsRepository): Response
+    public function index( PostsRepository $postsRepo,Request $request ): Response
     {
-        return $this->render('posts/index.html.twig', [
-            'articles' => $postsRepository->findAll(),
+        $form = $this->createForm(SearchPostType::class);
+        $form->handleRequest($request); 
+        $posts = $postsRepo->findBy([],['Created_at'=>'DESC']);
+          if ($form->isSubmitted() && $form->isValid()) {
+              
+            $posts = $postsRepo->searchTags($form->get('mots')->getData());
+             
+          }
+        
+        return $this->render('posts/search/search.html.twig',[
+               
+                'searchtags' => $form,
+                'posts' => $posts,
+
         ]);
     }
+   #[Route('/search', name: 'search')]
+   public function search(Request $request, PostsRepository $postsRepo){
+            $posts=[];
+            $var = '';
+           $form = $this->createForm(SearchPostType::class);
+           $form->handleRequest($request);
 
+           if($form->isSubmitted() && $form->isValid())
+           {
+            $mots = $form->get('mots')->getData();
+            // dd($mots);
+            $posts = $postsRepo->searchTags($mots);
+            $var= 'var';
+            }
+        //    dd($posts);
+           return $this->render('posts/search.html.twig',[
+               
+            'searchtags' => $form,
+            'posts' => $posts,
+            'var'=>$var
+
+    ]);
+
+   }
     #[Route('/add', name: 'add')]
     public function add(Request $request, EntityManagerInterface $em,
     SluggerInterface $slugger, UserInterface $user,
@@ -61,6 +98,7 @@ class PostsController extends AbstractController
          return $this->render('posts/addpost.html.twig',['addpostform' => $form->createView(),
         'button_label'=> 'Ajouter l\'article']);
     }
+ 
 
     #[Route('/{slug}', name: 'detail')]
     public function detail(Posts $post, CommentsRepository $comments): Response
