@@ -15,10 +15,10 @@
   {{ form_start(searchtags) }} 
   {{ form_row(searchtags.mots) }}
   {{ form_end(searchtags) }}
+  {{ dump(posts) }}
   
    <div class="parentpost">
 
-    {{ dump(posts) }}
     
     
     {% for post in posts %}  

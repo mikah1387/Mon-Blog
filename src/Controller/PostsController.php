@@ -28,39 +28,28 @@ class PostsController extends AbstractController
         $form->handleRequest($request); 
         $posts = $postsRepo->findBy([],['Created_at'=>'DESC']);
           if ($form->isSubmitted() && $form->isValid()) {
-              
-            $posts = $postsRepo->searchTags($form->get('mots')->getData());
+               $mots=$form->get('mots')->getData();  
+            return $this->redirectToRoute('posts_search',[
+                     'mots' => $mots
+        ]);
              
-          }
+           }
         
-        return $this->render('posts/search/search.html.twig',[
+        return $this->render('posts/index.html.twig',[
                
                 'searchtags' => $form,
-                'posts' => $posts,
+                'articles' => $posts,
 
         ]);
     }
    #[Route('/search', name: 'search')]
    public function search(Request $request, PostsRepository $postsRepo){
-            $posts=[];
-            $var = '';
-           $form = $this->createForm(SearchPostType::class);
-           $form->handleRequest($request);
 
-           if($form->isSubmitted() && $form->isValid())
-           {
-            $mots = $form->get('mots')->getData();
-            // dd($mots);
-            $posts = $postsRepo->searchTags($mots);
-            $var= 'var';
-            }
-        //    dd($posts);
-           return $this->render('posts/search.html.twig',[
+         $mots = $request->query->get('mots');
+        $posts = $postsRepo->searchTags($mots);
+         return $this->render('posts/search.html.twig',[
+            'posts'=>$posts
                
-            'searchtags' => $form,
-            'posts' => $posts,
-            'var'=>$var
-
     ]);
 
    }

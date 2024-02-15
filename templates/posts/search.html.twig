@@ -4,15 +4,51 @@
 
 {% block body %}
 
-<div>
-    {{ form_start(searchtags) }} 
-    {{ form_row(searchtags.mots) }}
-    {{ form_end(searchtags) }}
-    
-</div>
 
-<div>
-    {{var}}
-    {{ dump(posts) }}
-</div>
+<div class="main" style="margin-top: 100px;">
+  
+    <div class="parentpost">
+ 
+     
+     {% for post in posts %}  
+     <a href="{{path('posts_detail',{slug:post.slug})}}" class="cart">
+ 
+       <div class="img">
+         {% if post.featuredImage is  null %}
+         <img src=" " alt="image_article">
+         
+         {% else %}
+         <img src="{{asset('images/uploads/posts/min/300x300-'~ post.featuredImage)}}" alt="image_article">
+         {% endif %}
+        
+       </div>
+ 
+       <div class="body_cart">
+ 
+         <div class="autor">
+            <div class="image">
+             <img src="{{asset('images/uploads/users/min/300x300-'~ post.users.image)}}" alt="">
+            </div>
+            <h4> {{post.users.nickname|capitalize}}</h4>
+            <h5> <span class="material-symbols-outlined">
+             calendar_month
+             </span> {{post.CreatedAt|date("F j,Y")}}</h5>
+             
+         </div>
+         <h3> {{post.slug}}</h3>
+         <p> {{post.content|slice(0, 150)}}... </p>
+         {% for category in post.categories %}
+         <h6> {{category.name|capitalize}} </h6>
+   
+         {% endfor %}
+ 
+ 
+       </div>
+ 
+     </a>
+     
+     {% endfor %}
+ 
+    </div>
+ </div>
 {% endblock %}

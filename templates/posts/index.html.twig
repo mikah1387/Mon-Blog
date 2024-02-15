@@ -3,6 +3,7 @@
 {% block title %}touts les articles {% endblock %}
 
 {% block body %}
+{{form(searchtags)}}
 
 {% if app.user %}
 <div class="button">
@@ -16,32 +17,6 @@
  
    <div class="parentpost">
 
-    {{ dump(tagposts) }}
-     {% if tagposts is not null %}
-      {% for tagpos in tagposts %}
-     <div class="body_cart">
- 
-       <div class="autor">
-          <div class="image">
-           <img src="{{asset('images/uploads/users/min/300x300-'~ tagpos.users.image)}}" alt="">
-          </div>
-          <h4> {{tagpos.users.nickname|capitalize}}</h4>
-          <h5> <span class="material-symbols-outlined">
-           calendar_month
-           </span> {{tagpos.CreatedAt|date("F j,Y")}}</h5>
-           
-       </div>
-       <h3> {{tagpos.slug}}</h3>
-       <p> {{tagpos.content|slice(0, 150)}}... </p>
-       {% for category in tagpos.categories %}
-       <h6> {{category.name|capitalize}} </h6>
- 
-       {% endfor %}
- 
- 
-     </div>
-     {% endfor %}
-     {% endif %}
     
     {% for post in articles %}  
     <a href="{{path('posts_detail',{slug:post.slug})}}" class="cart">
