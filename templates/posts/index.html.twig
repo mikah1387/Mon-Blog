@@ -3,7 +3,10 @@
 {% block title %}touts les articles {% endblock %}
 
 {% block body %}
-{{form(searchtags)}}
+
+{% set globalForm = render_global_form('App\\Form\\SearchPostType') %}
+{{form(globalForm )}}
+{# {{form(searchtags)}} #}
 
 {% if app.user %}
 <div class="button">
@@ -12,52 +15,52 @@
 {% endif %}
 
 <div class="main">
-  
 
- 
-   <div class="parentpost">
 
-    
-    {% for post in articles %}  
+
+  <div class="parentpost">
+
+
+    {% for post in articles %}
     <a href="{{path('posts_detail',{slug:post.slug})}}" class="cart">
 
       <div class="img">
-        {% if post.featuredImage is  null %}
+        {% if post.featuredImage is null %}
         <img src=" " alt="image_article">
-        
+
         {% else %}
         <img src="{{asset('images/uploads/posts/min/300x300-'~ post.featuredImage)}}" alt="image_article">
         {% endif %}
-       
+
       </div>
 
       <div class="body_cart">
 
         <div class="autor">
-           <div class="image">
+          <div class="image">
             <img src="{{asset('images/uploads/users/min/300x300-'~ post.users.image)}}" alt="">
-           </div>
-           <h4> {{post.users.nickname|capitalize}}</h4>
-           <h5> <span class="material-symbols-outlined">
-            calendar_month
+          </div>
+          <h4> {{post.users.nickname|capitalize}}</h4>
+          <h5> <span class="material-symbols-outlined">
+              calendar_month
             </span> {{post.CreatedAt|date("F j,Y")}}</h5>
-            
+
         </div>
         <h3> {{post.slug}}</h3>
         <p> {{post.content|slice(0, 150)}}... </p>
         {% for category in post.categories %}
         <h6> {{category.name|capitalize}} </h6>
-  
+
         {% endfor %}
 
 
       </div>
 
     </a>
-    
+
     {% endfor %}
 
-   </div>
+  </div>
 </div>
 
 

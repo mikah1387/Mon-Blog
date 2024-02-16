@@ -489,6 +489,33 @@ form div input:focus, form div textarea:focus, form div select:focus {
   border: none;
 }
 
+form[name=search_post] {
+  padding: 0;
+  margin: 0;
+  margin-top: -26px;
+  width: 150px;
+  height: 20px;
+  border: none;
+  background: transparent;
+}
+form[name=search_post] #search_post {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+form[name=search_post] #search_post button {
+  width: 30px;
+  height: 33px;
+  border-radius: 5px;
+  margin-left: -43px;
+  background: transparent;
+}
+form[name=search_post] #search_post #search_post_mots {
+  width: 150px;
+}
+
 aside {
   width: 300px;
   background: #588157;

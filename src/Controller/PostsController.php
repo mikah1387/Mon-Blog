@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -24,20 +25,25 @@ class PostsController extends AbstractController
     #[Route('/', name: 'index')]
     public function index( PostsRepository $postsRepo,Request $request ): Response
     {
-        $form = $this->createForm(SearchPostType::class);
-        $form->handleRequest($request); 
         $posts = $postsRepo->findBy([],['Created_at'=>'DESC']);
-          if ($form->isSubmitted() && $form->isValid()) {
-               $mots=$form->get('mots')->getData();  
+ 
+        
+        $mots= $request->request->all();
+         
+         
+        // dd($mots);
+          if ($request->isMethod('POST')){
+              
             return $this->redirectToRoute('posts_search',[
-                     'mots' => $mots
+                     'mots' => $mots["search_post"]['mots'],
+
         ]);
              
            }
         
         return $this->render('posts/index.html.twig',[
                
-                'searchtags' => $form,
+                // 'searchtags' => $form,
                 'articles' => $posts,
 
         ]);

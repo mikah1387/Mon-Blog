@@ -16,12 +16,13 @@ class SearchPostType extends AbstractType
     {
         $builder
             ->add('mots', SearchType::class,[
-                'label'=> 'mots clés',
+                'label'=> false,
                 'attr'=>[
-                    'placeholder'=>'Entrez vos mots recherchés'
+                    'class'=>'formsearch',
+                    'placeholder'=>'Recherche'
                 ]
             ])
-            ->add('Rechercher', SubmitType::class,[
+            ->add('R', SubmitType::class,[
 
             ] )
         ;
