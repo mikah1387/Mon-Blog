@@ -7,8 +7,26 @@
 
         <li> <a href="{{path('main')}}">Accueil</a> </li>
         <li><a href="{{path('posts_index')}}">Articles</a> </li>
-        <li> <a href="{{path('categories_index')}}">Catégories</a> </li>
-        {# <li> <a href="">Auteurs</a> </li> #}
+        <li class="li_cats"> 
+            <a href="#"> Catégories </a> 
+            <div class="cats">
+  
+   
+                {% for cat in cats.getCategories %}
+                      {% if cat.parent is null  %}
+                         <h4> {{cat.slug|capitalize}}</h4>
+                         <ul class="ul_cats">
+                         {% for caty in cat.categories %}
+                         <li><a href="{{path('categories_postsbycaty',{slug:caty.slug})}}">{{caty.slug}}</a></li>
+                          
+                         {% endfor %}
+                        </ul>
+                      {% endif %}  
+                {% endfor %}
+                
+              </div>  
+        </li>
+        
         <li> <a href="">Contact</a> </li>
         {% if app.user %}
         {% if is_granted('ROLE_ADMIN')  %}
@@ -25,7 +43,8 @@
        
         <li> 
             {% set globalForm = render_global_form('App\\Form\\SearchPostType') %}
-            {{form(globalForm )}}
+            {{form(globalForm)}}
+   
         </li>
     </ul>
 

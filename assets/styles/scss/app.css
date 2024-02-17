@@ -6,6 +6,7 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Icons");
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
@@ -490,30 +491,46 @@ form div input:focus, form div textarea:focus, form div select:focus {
 }
 
 form[name=search_post] {
+  height: 100%;
+  width: 200px;
+  height: 34px;
   padding: 0;
   margin: 0;
-  margin-top: -26px;
-  width: 150px;
-  height: 20px;
+  padding: 0;
   border: none;
+  background: transparent;
   background: transparent;
 }
 form[name=search_post] #search_post {
-  margin: 0;
   display: flex;
-  justify-content: space-between;
   width: 100%;
-  height: 100%;
+  margin: 0;
+  justify-content: space-around;
 }
-form[name=search_post] #search_post button {
-  width: 30px;
-  height: 33px;
+form[name=search_post] #search_post div {
+  margin: 0 5px;
+}
+form[name=search_post] #search_post div input {
+  padding: 3px 8px;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+form[name=search_post] button {
+  width: 40px;
+  height: 34px;
   border-radius: 5px;
-  margin-left: -43px;
-  background: transparent;
+  margin: 0;
+  border: none;
+  background: #588157;
+  color: #588157;
 }
-form[name=search_post] #search_post #search_post_mots {
-  width: 150px;
+form[name=search_post] button::before {
+  font-family: "Material Icons";
+  content: "\e8b6";
+  display: block;
+  margin-left: 5px;
+  font-size: 27px;
+  color: white;
 }
 
 aside {
@@ -603,6 +620,40 @@ aside ul li:hover {
 .navbar ul li a:hover {
   color: #020202;
   background-color: white;
+}
+.navbar ul li.li_cats {
+  position: relative;
+  padding: 10px 0;
+}
+.navbar ul li.li_cats .cats {
+  display: none;
+  width: 300px;
+  height: auto;
+  padding: 10px;
+  background: coral;
+  position: absolute;
+  top: 40px;
+  border-radius: 10px;
+  z-index: 100;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.navbar ul li.li_cats .cats .ul_cats {
+  display: block;
+  margin: 10px 0;
+  text-decoration: none;
+}
+.navbar ul li.li_cats .cats .ul_cats li {
+  padding: 4px 0;
+}
+.navbar ul li.li_cats .cats .ul_cats a {
+  text-decoration: none;
+  padding: 5px 0;
+}
+.navbar ul li.li_cats .cats .ul_cats a:hover {
+  background: none;
+}
+.navbar ul li.li_cats:hover .cats {
+  display: block;
 }
 
 .main {

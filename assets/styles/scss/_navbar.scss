@@ -49,6 +49,50 @@
               }
 
             }
+           &.li_cats{
+            position: relative;
+            padding: 10px 0;
+            .cats{
+
+              display: none;
+              width: 300px;
+              height: auto;
+              padding: 10px;
+              background: coral;
+              position: absolute;
+              top: 40px;
+              border-radius: 10px;
+              z-index: 100;
+              box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+              .ul_cats{
+                display: block;
+                margin: 10px 0;
+                text-decoration: none;
+                li{
+                  padding: 4px 0;
+                }
+                a{
+                  text-decoration: none;
+                  padding: 5px 0;
+                  &:hover{
+                   background: none;
+                   
+                  }
+
+                }
+              }
+
+            }
+           &:hover{
+              
+            .cats{
+
+              display: block;
+            }
+
+           }
+
+           }
         }
     }
     }

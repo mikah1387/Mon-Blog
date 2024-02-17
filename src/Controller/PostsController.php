@@ -26,11 +26,8 @@ class PostsController extends AbstractController
     public function index( PostsRepository $postsRepo,Request $request ): Response
     {
         $posts = $postsRepo->findBy([],['Created_at'=>'DESC']);
- 
-        
-        $mots= $request->request->all();
-         
-         
+    
+        $mots= $request->request->all();     
         // dd($mots);
           if ($request->isMethod('POST')){
               
