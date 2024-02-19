@@ -878,6 +878,21 @@ aside ul li:hover {
   margin: 20px auto;
 }
 
+.image_caty_p {
+  margin: 20px auto 50px;
+  width: 70%;
+  height: 50vh;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.image_caty_p img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .categories {
   min-height: 100vh;
   display: flex;

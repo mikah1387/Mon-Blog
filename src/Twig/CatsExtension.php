@@ -4,7 +4,9 @@ namespace App\Twig;
 use App\Entity\Categories;
 use App\Repository\CategoriesRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -26,7 +28,10 @@ class CatsExtension extends AbstractExtension
 
     public function getCategories ()
     {
-        $categorie = $this->em->getRepository(Categories::class)->findBy([],['name'=>'ASC']);
-        return $categorie;
+       
+         $categories = $this->em->getRepository(Categories::class)->findBy([],['name'=>'ASC']);
+             
+        
+        return $categories;
     }
 }

@@ -12,14 +12,16 @@
 </div>
 {% endif %}
 
-<div class="main">
+<div class="main" style="margin-top: 100px;">
 
 
+  {# {{ dump(articles.user) }} #}
 
   <div class="parentpost">
 
-
     {% for post in articles %}
+  
+    {# {{ dump(post.users) }} #}
     <a href="{{path('posts_detail',{slug:post.slug})}}" class="cart">
 
       <div class="img">

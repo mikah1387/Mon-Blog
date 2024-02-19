@@ -7,9 +7,12 @@ use App\Form\PostsFormType;
 use App\Form\SearchPostType;
 use App\Repository\CommentsRepository;
 use App\Repository\PostsRepository;
+use App\Repository\UsersRepository;
 use App\service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -17,26 +20,46 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 
 #[Route('/articles', name: 'posts_')]
 
 class PostsController extends AbstractController
 {
+ 
     #[Route('/', name: 'index')]
-    public function index( PostsRepository $postsRepo,Request $request ): Response
+    public function index( PostsRepository $postsRepo,Request $request , UsersRepository $userRepository ): Response
     {
-        $posts = $postsRepo->findBy([],['Created_at'=>'DESC']);
     
-        $mots= $request->request->all();     
-        // dd($mots);
-          if ($request->isMethod('POST')){
+       $cache = new FilesystemAdapter();
+        $posts = $cache->get('my_articles', function (ItemInterface $item) use ($postsRepo,$userRepository) {
+            $item->expiresAfter(60); 
+            $datas = $postsRepo->findBy([],['Created_at'=>'DESC']);
+            foreach ($datas as $post) {
+               
+                $user = $userRepository->find($post->getUsers());        
+                $post->setUsers($user);
+            }
+      
+               
+            return $datas;
+        });
+       
+        $data = $cache->getItem('my_articles');
+     
+        // $posts = $postsRepo->findBy([],['Created_at'=>'DESC']);
+           $posts= $data->get();
+        // $mots= $request->request->all();     
+      
+        //   if ($request->isMethod('POST')){
               
-            return $this->redirectToRoute('posts_search',[
-                     'mots' => $mots["search_post"]['mots'],
+        //     return $this->redirectToRoute('posts_search',[
+        //              'mots' => $mots["search_post"]['mots'],
 
-        ]);
+        // ]);
              
-           }
+        //    }
         
         return $this->render('posts/index.html.twig',[
                
