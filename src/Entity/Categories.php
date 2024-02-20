@@ -21,13 +21,13 @@ class Categories
     #[ORM\Column(length: 100)]
     private ?string $slug = null;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories', fetch :"EAGER")]
     private ?self $parent = null;
 
-    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class, fetch :"EAGER")]
     private Collection $categories;
 
-    #[ORM\ManyToMany(targetEntity: Posts::class, inversedBy: 'categories')]
+    #[ORM\ManyToMany(targetEntity: Posts::class, inversedBy: 'categories', fetch :"EAGER")]
     private Collection $posts;
 
     #[ORM\Column(length: 255, nullable: true)]

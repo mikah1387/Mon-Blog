@@ -11,11 +11,9 @@ use App\Repository\UsersRepository;
 use App\service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Cache\Adapter\AdapterInterface;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Symfony\Component\Form\Extension\Core\Type\SearchType;
+
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -29,37 +27,28 @@ class PostsController extends AbstractController
 {
  
     #[Route('/', name: 'index')]
-    public function index( PostsRepository $postsRepo,Request $request , UsersRepository $userRepository ): Response
+    public function index( PostsRepository $postsRepo,Request $request, CacheInterface $cache ): Response
     {
     
-       $cache = new FilesystemAdapter();
-        $posts = $cache->get('my_articles', function (ItemInterface $item) use ($postsRepo,$userRepository) {
-            $item->expiresAfter(60); 
+    
+        $posts = $cache->get('my_articles', function (ItemInterface $item) use ($postsRepo) {
+            $item->expiresAfter(3600); 
+            // $datas = $postsRepo->findCachePosts();
             $datas = $postsRepo->findBy([],['Created_at'=>'DESC']);
-            foreach ($datas as $post) {
-               
-                $user = $userRepository->find($post->getUsers());        
-                $post->setUsers($user);
-            }
-      
-               
+     
             return $datas;
         });
-       
-        $data = $cache->getItem('my_articles');
-     
-        // $posts = $postsRepo->findBy([],['Created_at'=>'DESC']);
-           $posts= $data->get();
-        // $mots= $request->request->all();     
+    
+        $mots= $request->request->all();     
       
-        //   if ($request->isMethod('POST')){
+          if ($request->isMethod('POST')){
               
-        //     return $this->redirectToRoute('posts_search',[
-        //              'mots' => $mots["search_post"]['mots'],
+            return $this->redirectToRoute('posts_search',[
+                     'mots' => $mots["search_post"]['mots'],
 
-        // ]);
+        ]);
              
-        //    }
+           }
         
         return $this->render('posts/index.html.twig',[
                
@@ -82,7 +71,7 @@ class PostsController extends AbstractController
     #[Route('/add', name: 'add')]
     public function add(Request $request, EntityManagerInterface $em,
     SluggerInterface $slugger, UserInterface $user,
-    PictureService $pictureService ): Response
+    PictureService $pictureService, CacheInterface $cache ): Response
     {
 
 
@@ -106,6 +95,8 @@ class PostsController extends AbstractController
               
              $em->persist($post);
              $em->flush();
+             $cache->delete('my_articles');
+             $cache->delete('user_'.$user->getNickname());
              $this->addFlash('success', 'votre article '.$post->getTitle().' est bien ajouté');
                          return $this->redirectToRoute('posts_index');
          }
@@ -116,16 +107,20 @@ class PostsController extends AbstractController
  
 
     #[Route('/{slug}', name: 'detail')]
-    public function detail(Posts $post, CommentsRepository $comments): Response
+    public function detail(Posts $post, CommentsRepository $comments, CacheInterface $cache): Response
     {
+          $article= $cache->get('post_'.$post->getSlug(), function(ItemInterface $item) use ($post){
+            $item->expiresAfter(3600);
+            return $post;
+          });
         return $this->render('posts/detail.html.twig', [
             'post' => $post,
-            'allcomments'=>$comments->findBy(['posts'=>$post],['id'=>'DESC'])
+            // 'allcomments'=>$comments->findBy(['posts'=>$post],['id'=>'DESC'])
         ]);
     }
     #[Route('/update/{slug}', name: 'update')]
     public function update(Posts $post, Request $request, EntityManagerInterface $em,
-    SluggerInterface $slugger, UserInterface $user ): Response
+    SluggerInterface $slugger, UserInterface $user, CacheInterface $cache,PictureService $pictureService ): Response
     {
         
           if($user === $post->getUsers() || in_array("ROLE_ADMIN", $user->getRoles())) {
@@ -134,17 +129,24 @@ class PostsController extends AbstractController
             
             if ($form->isSubmitted() && $form->isValid()) {
                    $categories = $form->get('categories')->getData();
-                
+                   $image = $form->get('image')->getData();
+                   $imageName = $pictureService->add($image,'posts',300,300);
+                   
                    $slug= $slugger->slug($post->getTitle());
                    $post->setSlug($slug);
                    $post->setUsers($user);
+
                    foreach ($categories as  $categorie) {
                    $post->addCategory($categorie);
                    }
-                   $post->setFeaturedImage('url');
+                   $post->setFeaturedImage( $imageName );
                  
                 $em->persist($post);
                 $em->flush();
+                $cache->delete('my_articles');
+                $cache->delete('user_'.$user->getNickname());
+
+
                 $this->addFlash('success', 'votre article '.$post->getTitle().' est bien modifier');
                             return $this->redirectToRoute('profile_index');
             }

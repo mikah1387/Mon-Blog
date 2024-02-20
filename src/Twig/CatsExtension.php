@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Contracts\Cache\ItemInterface;
+use Twig\Cache\FilesystemCache;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -28,10 +29,12 @@ class CatsExtension extends AbstractExtension
 
     public function getCategories ()
     {
-       
-         $categories = $this->em->getRepository(Categories::class)->findBy([],['name'=>'ASC']);
-             
-        
+         $cache = new FilesystemAdapter();
+         $categories = $cache->get('categorie', function(){
+
+            return $this->em->getRepository(Categories::class)->findBy([],['name'=>'ASC']);
+         });
+        // $categories =  $this->em->getRepository(Categories::class)->findBy([],['name'=>'ASC']); 
         return $categories;
     }
 }

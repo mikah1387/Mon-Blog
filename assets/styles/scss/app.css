@@ -461,7 +461,7 @@ form button:hover, .btn:hover {
     width: 60%;
     padding: 50px 10px;
     padding: 50px 50px;
-    max-width: 500px;
+    max-width: 700px;
   }
 }
 .addpost form div, form div {
@@ -473,7 +473,7 @@ form button:hover, .btn:hover {
   font-weight: 600;
   margin: 10px auto 5px;
 }
-.addpost form div input, .addpost form div textarea, .addpost form div select, form div input, form div textarea, form div select {
+.addpost form div input, .addpost form div textarea, .addpost form div select, form div input, form div textarea, form div #editor, form div select {
   background: #ECF3F2;
   width: 100%;
   outline: none;
@@ -483,7 +483,7 @@ form button:hover, .btn:hover {
   font-weight: 600;
   transition: 0.3 all;
 }
-form div input:focus, form div textarea:focus, form div select:focus {
+form div input:focus, form div textarea:focus, form div #editor:focus, form div select:focus {
   box-shadow: #94d3ca 0px 3px 8px;
 }
 .addpost form button, form button {

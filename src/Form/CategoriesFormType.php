@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Categories;
-use App\Entity\Posts;
+
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;

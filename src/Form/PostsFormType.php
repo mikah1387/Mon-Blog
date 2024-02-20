@@ -4,12 +4,14 @@ namespace App\Form;
 
 use App\Entity\Categories;
 use App\Entity\Posts;
-use App\Entity\Users;
+
 use App\Repository\CategoriesRepository;
+
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,9 +24,10 @@ class PostsFormType extends AbstractType
             ->add('title',TextType::class,[
                 'label'=>'Titre de l\'article'
             ])
-            ->add('content', TextareaType::class,[
+            ->add('content', HiddenType::class,[
 
-                'label'=>'Contenu'
+                'label'=>'Contenu',
+                
             ])
             
             ->add('categories', EntityType::class, [
@@ -33,7 +36,7 @@ class PostsFormType extends AbstractType
                  'multiple' => true,
                  'mapped'=>false,
                  'group_by'=>'parent.name',
-                 'query_builder'=>function     (CategoriesRepository $cr){
+                 'query_builder'=>function(CategoriesRepository $cr){
 
                  return $cr->createQueryBuilder('c')
                            -> where('c.parent IS NOT NULL')

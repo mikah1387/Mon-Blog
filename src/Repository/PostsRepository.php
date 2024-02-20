@@ -50,17 +50,20 @@ class PostsRepository extends ServiceEntityRepository
 //    /**
 //     * @return Posts[] Returns an array of Posts objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   public function findCachePosts(): array
+   {
+       return $this->createQueryBuilder('p')
+           
+      
+           ->leftJoin('p.users', 'u')
+           ->addSelect('u')   
+           ->leftJoin('p.categories', 'c')
+           ->addSelect('c')
+           ->orderBy('p.Created_at', 'ASC')
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Posts
 //    {

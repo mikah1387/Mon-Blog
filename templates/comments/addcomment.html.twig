@@ -9,7 +9,12 @@
     {# {{form(addpostform)}} #}
     {{ form_start(addcommentform) }}
     <h1>{{title}}</h1>   
-    {{ form_row(addcommentform.content) }} 
+     <p>Contenu</p>
+     <div>
+        <div id="editor">
+    
+        </div>
+    </div>
     <button type="submit" class="button">{{button_label|default('Ajouter')}}</button>
     {{ form_end(addcommentform) }}
 
@@ -17,4 +22,8 @@
 
 
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{asset('ckeditor5/ckeditor.js')}}"></script>
 {% endblock %}

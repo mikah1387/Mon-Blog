@@ -9,20 +9,16 @@
         <li><a href="{{path('posts_index')}}">Articles</a> </li>
         <li class="li_cats"> 
             <a href="#"> Catégories </a> 
-            <div class="cats">
+              <div class="cats">
   
-   
-                {% for cat in cats.getCategories %}
-                      {% if cat.parent is null  %}
-                         <h4> {{cat.slug|capitalize}}</h4>
+                  {% for cat in cats.getCategories %}
+                      {% if cat.parent is not null  %}
+                         {# <h4> {{cat.slug|capitalize}}</h4> #}
                          <ul class="ul_cats">
-                         {% for caty in cat.categories %}
-                         <li><a href="{{path('categories_postsbycaty',{slug:caty.slug})}}">{{caty.slug}}</a></li>
-                          
-                         {% endfor %}
-                        </ul>
+                         <li><a href="{{path('categories_postsbycaty',{slug:cat.slug})}}">{{cat.slug}}</a></li>       
+                          </ul>
                       {% endif %}  
-                {% endfor %}
+                  {% endfor %}
                 
               </div>  
         </li>

@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Contracts\Cache\CacheInterface;
+use Twig\Cache\CacheInterface as CacheCacheInterface;
 
 #[Route('/comments', name: 'comments_')]
 
@@ -27,7 +29,7 @@ class CommentsController extends AbstractController
 
     #[Route('/ajouter/{id}', name: 'add')]
     public function add( Request $request, EntityManagerInterface $em,
-    UserInterface $user,Posts $post): Response
+    UserInterface $user,Posts $post, CacheInterface $cache): Response
     {
          
          $comment = new Comments;
@@ -44,6 +46,8 @@ class CommentsController extends AbstractController
               
              $em->persist($comment);
              $em->flush();
+             $cache->delete('user_'.$user->getNickname());
+
              $this->addFlash('success', 'votre conmmentaire est bien ajouté ');
                          return $this->redirectToRoute('posts_detail',['slug'=>$post->getSlug()]);
          }
@@ -56,7 +60,7 @@ class CommentsController extends AbstractController
 
     #[Route('/reponse/{id}', name: 'add_response')]
     public function addResponse( Request $request, EntityManagerInterface $em,
-    UserInterface $user,Comments $comment): Response
+    UserInterface $user,Comments $comment, CacheInterface $cache): Response
     {
          $post=$comment->getPosts();
          $response = new Comments;
@@ -73,6 +77,8 @@ class CommentsController extends AbstractController
               
              $em->persist($response);
              $em->flush();
+             $cache->delete('user_'.$user->getNickname());
+
              $this->addFlash('success', 'votre réponse est bien ajouté ');
                          return $this->redirectToRoute('posts_detail',['slug'=>$post->getSlug()]);
          }
@@ -85,7 +91,7 @@ class CommentsController extends AbstractController
 
     #[Route('/update/{id}', name: 'update')]
     public function updateComment( Request $request, EntityManagerInterface $em,
-    UserInterface $user,Comments $comment): Response
+    UserInterface $user,Comments $comment,CacheInterface $cache): Response
     {
         //  $post=$comment->getPosts();
          
@@ -97,6 +103,8 @@ class CommentsController extends AbstractController
               
              $em->persist($comment);
              $em->flush();
+             $cache->delete('user_'.$user->getNickname());
+
              $this->addFlash('success', 'votre commentaire est bien modifié ');
                          return $this->redirectToRoute('profile_index');
          }

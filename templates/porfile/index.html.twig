@@ -15,15 +15,16 @@
         </ul>
     </aside>
     <main class="main">
+        {# {{ dump(user) }} #}
         <div class="container_profil">
-            <h1> bienvenu dans votre espace profile Mr {{app.user.nickname}} </h1>
+            <h1> bienvenu dans votre espace profile Mr {{user.nickname}} </h1>
             <h2>Mes informations</h2>
-            <h3>{{app.user.nickname}} </h3>
-            <h3>{{app.user.email}} </h3>
+            <h3>{{user.nickname}} </h3>
+            <h3>{{user.email}} </h3>
 
             <h2> Mes articles publiés </h2>
             <div class="carts">
-                {% for post in app.user.posts %}
+                {% for post in user.posts %}
 
                 <a href="{{path('posts_detail',{slug:post.slug})}}">
                     <div class="cart">
@@ -47,10 +48,11 @@
             </div>
             <h2>Mes commentaires </h2>
             <div class="comments">
-                {% for comment in app.user.comments %}
-                <div class="comment">
+               
 
-                {% if comment.parent is null %}
+                {% for comment in user.comments %}
+                <div class="comment">
+                {% if comment.parent is  null %}
                 <p class="title"> votre commentaire sur l'article <span>{{comment.posts.title}} </span>
                 {% else %}
                 <p class="title"> votre reponse sur l'article <span>{{comment.posts.title}} </span>

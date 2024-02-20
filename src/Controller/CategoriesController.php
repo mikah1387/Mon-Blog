@@ -29,18 +29,10 @@ class CategoriesController extends AbstractController
 
     
     #[Route('/{slug}', name: 'postsbycaty')]
-    public function postsbycaty( Categories $category, CacheInterface $cache, UsersRepository $userRepository ): Response
+    public function postsbycaty( Categories $category, CacheInterface $cache ): Response
     {
-          $categorie = $cache->get('category_'.$category->getSlug(), function(ItemInterface $item) use($category, $userRepository){
+          $categorie = $cache->get('category_'.$category->getSlug(), function(ItemInterface $item) use($category){
             $item->expiresAfter(3600);
-             $posts = $category->getPosts();
-             foreach ($posts as $post) {
-                $user = $userRepository->find($post->getUsers());           
-            
-                $post->setUsers($user);
-                $post->addCategory($category);
-
-             }
               return $category;
           });
         return $this->render('categories/postsbycaty.html.twig', [

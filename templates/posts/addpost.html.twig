@@ -11,7 +11,14 @@
     <h1>Ajouter un article</h1>
 
     {{ form_row(addpostform.title) }}
-    {{ form_row(addpostform.content) }}
+    {# {{ form_row(addpostform.content) }} #}
+    {# {{ ckeditor_assets() }} #}
+    <P>Contenu</P>
+    <div>
+    <div id="editor">
+
+    </div>
+    </div>
     {{ form_row(addpostform.categories) }}
     {{ form_row(addpostform.image) }}
 
@@ -23,6 +30,8 @@
 
 </div>
 
+{% endblock %}
 
-
+{% block javascripts %}
+    <script src="{{asset('ckeditor5/ckeditor.js')}}"></script>
 {% endblock %}

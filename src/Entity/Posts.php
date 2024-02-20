@@ -29,14 +29,14 @@ class Posts
     #[ORM\Column(length: 255)]
     private ?string $featured_image = null;
 
-    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\ManyToOne(inversedBy: 'posts', fetch :"EAGER")]
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $users = null;
 
-    #[ORM\ManyToMany(targetEntity: Categories::class, mappedBy: 'posts')]
+    #[ORM\ManyToMany(targetEntity: Categories::class, mappedBy: 'posts', fetch :"EAGER")]
     private Collection $categories;
 
-    #[ORM\OneToMany(mappedBy: 'posts', targetEntity: Comments::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'posts', targetEntity: Comments::class, orphanRemoval: true,fetch :"EAGER")]
     private Collection $comments;
 
     #[ORM\Column]

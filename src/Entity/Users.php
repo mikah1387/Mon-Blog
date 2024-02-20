@@ -34,10 +34,10 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100)]
     private ?string $nickname = null;
 
-    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Posts::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Posts::class, orphanRemoval: true, fetch :"EAGER" )]
     private Collection $posts;
 
-    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Comments::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Comments::class, orphanRemoval: true , fetch :"EAGER")]
     private Collection $comments;
 
     #[ORM\Column(length: 255, nullable: true)]
