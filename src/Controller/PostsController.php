@@ -10,6 +10,7 @@ use App\Repository\PostsRepository;
 use App\Repository\UsersRepository;
 use App\service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -27,17 +28,17 @@ class PostsController extends AbstractController
 {
  
     #[Route('/', name: 'index')]
-    public function index( PostsRepository $postsRepo,Request $request, CacheInterface $cache ): Response
+    public function index( PostsRepository $postsRepo,Request $request, CacheInterface $cache ,PaginatorInterface $paginator ): Response
     {
-    
-    
-        $posts = $cache->get('my_articles', function (ItemInterface $item) use ($postsRepo) {
-            $item->expiresAfter(3600); 
-            // $datas = $postsRepo->findCachePosts();
-            $datas = $postsRepo->findBy([],['Created_at'=>'DESC']);
-     
-            return $datas;
-        });
+      $posts = $cache->get('my_articles', function (ItemInterface $item) use ($postsRepo) {
+        $item->expiresAfter(3600); 
+        // $datas = $postsRepo->findCachePosts();
+        $datas = $postsRepo->findBy([],['Created_at'=>'DESC']);
+ 
+        return $datas;
+    });
+         $paginations = $paginator->paginate($posts,$request->query->get('page', 1),4);
+       
     
         $mots= $request->request->all();     
       
@@ -53,10 +54,12 @@ class PostsController extends AbstractController
         return $this->render('posts/index.html.twig',[
                
                 // 'searchtags' => $form,
-                'articles' => $posts,
+                'paginations' => $paginations,
 
         ]);
     }
+
+
    #[Route('/search', name: 'search')]
    public function search(Request $request, PostsRepository $postsRepo){
 
@@ -97,6 +100,8 @@ class PostsController extends AbstractController
              $em->flush();
              $cache->delete('my_articles');
              $cache->delete('user_'.$user->getNickname());
+             $cache->delete('lastposts');
+
              $this->addFlash('success', 'votre article '.$post->getTitle().' est bien ajouté');
                          return $this->redirectToRoute('posts_index');
          }

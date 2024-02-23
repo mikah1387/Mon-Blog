@@ -180,7 +180,11 @@ pre{
         max-width:700px ;
 
     }
-
+     p{
+        color: #588157;
+        font-weight: 600;
+        margin: 10px auto 5px;
+     }
     div{
 
         margin: 10px auto;
@@ -218,7 +222,7 @@ pre{
 }
 
 
-    form[name='search_post']{
+form[name='search_post']{
 
       height: 100%;
       width: 200px;
@@ -272,8 +276,91 @@ pre{
            } 
     
     
-    }
+}
+.pagination{
+    margin: 20px auto 50px;
+    text-align: center;
+    // display: flex;
+    
+    // justify-content: space-around;
+    .page,.current{
 
+        display: none;
+    }
+    .next,.previous{
+
+        display: inline-block;
+        padding: 5px 0 3px;
+        margin: 0 20px;
+        background: rgba(255, 127, 80, 0.765);
+        border-radius: 30px;
+        border: none;
+       
+        transition:  0.3s;
+        &:hover{
+            background:coral;
+      
+        }
+
+        a{
+            display: flex;
+            
+            text-decoration: none;
+            color: transparent;
+            padding:3px 30px 3px 35px;
+            &::before{
+                font-family: 'Material Icons';
+                content: "\e5e1";
+                color: white;
+                font-weight: 300;
+                font-size: 1.2rem;
+            }
+        }
+    }
+    .last,.first{
+
+        display: inline-block;
+        padding: 5px 0 3px;
+        margin: 0 20px;
+
+        background: rgba(255, 127, 80, 0.765);
+        border-radius: 30px;
+        border: none;
+        color: coral;
+        transition:  0.3s;
+        &:hover{
+            background:coral;
+      
+        }
+        
+
+        a{
+            text-decoration: none;
+            color: transparent;
+
+            padding:3px 22px 3px 35px;
+            &::before{
+                font-family: 'Material Icons';
+                content: "\e5dd";
+                color: white;
+                font-weight: 500;
+                font-size: 1.5rem;
+
+            }
+        }
+       
+    }
+    .previous a::before{
+        content: "\e5e0";
+
+    }
+    .first a::before{
+        
+        content: "\e5dc";
+
+    }
+}
+    
 
 aside{
 
@@ -325,10 +412,29 @@ aside{
     }
 
   }
-  
+
+
  .login{
     min-height: 100vh;
  }
+
+ pre{
+
+    width: 90%;
+    height: auto;
+    margin: 10px auto;
+    code {
+        width: 100%;
+       display: block;
+        font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        font-size: 14px;
+        background-color: #f4f4f4;
+        padding: 10px 20px;
+
+        border-radius: 3px;
+        border: 1px solid #ccc;
+      }
+}
 
 @import '_navbar.scss';
 @import '_main.scss';

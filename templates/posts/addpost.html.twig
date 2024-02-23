@@ -5,7 +5,7 @@
 {% block body %}
 <div class="addpost">
 
-
+ 
     {# {{form(addpostform)}} #}
     {{ form_start(addpostform) }}
     <h1>Ajouter un article</h1>
@@ -13,25 +13,21 @@
     {{ form_row(addpostform.title) }}
     {# {{ form_row(addpostform.content) }} #}
     {# {{ ckeditor_assets() }} #}
-    <P>Contenu</P>
-    <div>
+    <p>Contenu</p>
+   
     <div id="editor">
 
-    </div>
-    </div>
+   </div>
+   
     {{ form_row(addpostform.categories) }}
     {{ form_row(addpostform.image) }}
-
-
-
-
     <button type="submit" class="button">{{button_label|default('Ajouter')}}</button>
     {{ form_end(addpostform) }}
 
-</div>
+   </div>
 
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{asset('ckeditor5/ckeditor.js')}}"></script>
+    <script src="{{asset('ckeditor/build/ckeditor.js')}}"></script>
 {% endblock %}

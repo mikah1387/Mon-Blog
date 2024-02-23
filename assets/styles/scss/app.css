@@ -464,6 +464,11 @@ form button:hover, .btn:hover {
     max-width: 700px;
   }
 }
+.addpost form p, form p {
+  color: #588157;
+  font-weight: 600;
+  margin: 10px auto 5px;
+}
 .addpost form div, form div {
   margin: 10px auto;
 }
@@ -533,6 +538,70 @@ form[name=search_post] button::before {
   color: white;
 }
 
+.pagination {
+  margin: 20px auto 50px;
+  text-align: center;
+}
+.pagination .page, .pagination .current {
+  display: none;
+}
+.pagination .next, .pagination .previous {
+  display: inline-block;
+  padding: 5px 0 3px;
+  margin: 0 20px;
+  background: rgba(255, 127, 80, 0.765);
+  border-radius: 30px;
+  border: none;
+  transition: 0.3s;
+}
+.pagination .next:hover, .pagination .previous:hover {
+  background: coral;
+}
+.pagination .next a, .pagination .previous a {
+  display: flex;
+  text-decoration: none;
+  color: transparent;
+  padding: 3px 30px 3px 35px;
+}
+.pagination .next a::before, .pagination .previous a::before {
+  font-family: "Material Icons";
+  content: "\e5e1";
+  color: white;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+.pagination .last, .pagination .first {
+  display: inline-block;
+  padding: 5px 0 3px;
+  margin: 0 20px;
+  background: rgba(255, 127, 80, 0.765);
+  border-radius: 30px;
+  border: none;
+  color: coral;
+  transition: 0.3s;
+}
+.pagination .last:hover, .pagination .first:hover {
+  background: coral;
+}
+.pagination .last a, .pagination .first a {
+  text-decoration: none;
+  color: transparent;
+  padding: 3px 22px 3px 35px;
+}
+.pagination .last a::before, .pagination .first a::before {
+  font-family: "Material Icons";
+  content: "\e5dd";
+  color: white;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.pagination .previous a::before {
+  content: "\e5e0";
+}
+.pagination .first a::before {
+  content: "\e5dc";
+}
+
 aside {
   width: 300px;
   background: #588157;
@@ -580,6 +649,22 @@ aside ul li:hover {
 
 .login {
   min-height: 100vh;
+}
+
+pre {
+  width: 90%;
+  height: auto;
+  margin: 10px auto;
+}
+pre code {
+  width: 100%;
+  display: block;
+  font-family: Consolas, Monaco, "Andale Mono", monospace;
+  font-size: 14px;
+  background-color: #f4f4f4;
+  padding: 10px 20px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
 }
 
 .navbar {
@@ -663,7 +748,7 @@ aside ul li:hover {
   position: relative;
   width: 90%;
   height: 70vh;
-  background: center center/cover url(../images/baniere.jpg);
+  background: center center/cover url(../images/baniere1.jpg);
   margin: 40px auto;
   border-radius: 20px;
 }

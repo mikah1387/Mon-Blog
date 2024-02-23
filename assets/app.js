@@ -6,8 +6,9 @@
  * which should already be in your base.html.twig.
  */
 
-import './ckeditor.js';
 
+// import './ckeditor/build/ckeditor.js';
+import './ckeditor.js';
 import './styles/scss/app.css'
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉')

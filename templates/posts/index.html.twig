@@ -19,7 +19,7 @@
 
   <div class="parentpost">
 
-    {% for post in articles %}
+    {% for post in paginations %}
   
     {# {{ dump(post.users) }} #}
     <a href="{{path('posts_detail',{slug:post.slug})}}" class="cart">
@@ -58,9 +58,17 @@
 
     </a>
 
-    {% endfor %}
+    
 
+    {% endfor %}
+    
+   
+    
   </div>
+  
+    {{ knp_pagination_render(paginations) }}
+
+  
 </div>
 
 

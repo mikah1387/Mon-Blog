@@ -37,7 +37,7 @@
       <div class="commentaire">
       <h2> {{comment.users.nickname}}</h2>
       
-      <p>{{comment.content}} </p>
+      <p>{{comment.content|raw}} </p>
       <a href=" {{path('comments_add_response',{id:comment.id})}}" class="btn">répondre</a>
         {% for response in comment.comments %}
        
