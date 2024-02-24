@@ -36,7 +36,7 @@ class PostsController extends AbstractController
         $datas = $postsRepo->findBy([],['Created_at'=>'DESC']);
  
         return $datas;
-    });
+         });
          $paginations = $paginator->paginate($posts,$request->query->get('page', 1),4);
        
     
@@ -61,7 +61,8 @@ class PostsController extends AbstractController
 
 
    #[Route('/search', name: 'search')]
-   public function search(Request $request, PostsRepository $postsRepo){
+   public function search(Request $request, PostsRepository $postsRepo)
+   {
 
          $mots = $request->query->get('mots');
         $posts = $postsRepo->searchTags($mots);
@@ -71,12 +72,16 @@ class PostsController extends AbstractController
     ]);
 
    }
+
+
     #[Route('/add', name: 'add')]
     public function add(Request $request, EntityManagerInterface $em,
     SluggerInterface $slugger, UserInterface $user,
     PictureService $pictureService, CacheInterface $cache ): Response
     {
 
+          $this->denyAccessUnlessGranted('ROLE_USER');
+       
 
          $post = new Posts;
          
@@ -107,6 +112,7 @@ class PostsController extends AbstractController
          }
  
          return $this->render('posts/addpost.html.twig',['addpostform' => $form->createView(),
+         'titre_form'=> 'Ajouter un article',
         'button_label'=> 'Ajouter l\'article']);
     }
  
@@ -127,8 +133,9 @@ class PostsController extends AbstractController
     public function update(Posts $post, Request $request, EntityManagerInterface $em,
     SluggerInterface $slugger, UserInterface $user, CacheInterface $cache,PictureService $pictureService ): Response
     {
-        
-          if($user === $post->getUsers() || in_array("ROLE_ADMIN", $user->getRoles())) {
+      $this->denyAccessUnlessGranted('POST_UPDATE',$post);
+          
+          if($user === $post->getUsers()){
             $form = $this->createForm(PostsFormType::class,$post);
             $form->handleRequest($request);
             
@@ -154,9 +161,10 @@ class PostsController extends AbstractController
 
                 $this->addFlash('success', 'votre article '.$post->getTitle().' est bien modifier');
                             return $this->redirectToRoute('profile_index');
+                     
             }
     
-            return $this->render('posts/updatepost.html.twig',['updateform' => $form->createView(),
+            return $this->render('posts/addpost.html.twig',['addpostform' => $form->createView(),
            'button_label'=> 'Modifier l\'article',
            'titre_form'=> 'Modifier l\'article' ]);
           }else{
@@ -168,19 +176,27 @@ class PostsController extends AbstractController
     }
    
     #[Route('/delete/{slug}', name: 'delete')]
-    public function delete(Posts $post, EntityManagerInterface $em, UserInterface $user)
+    public function delete(Posts $post, EntityManagerInterface $em, UserInterface $user, CacheInterface $cache)
     {
-        if($user === $post->getUsers() || in_array("ROLE_ADMIN", $user->getRoles())) {
-            $em->remove($post);
-            $em->flush();
-            $this->addFlash('success', 'l\'article '. $post->getTitle() .' est bien suprimer');
-            return $this->redirectToRoute('profile_index');
+            $this->denyAccessUnlessGranted('POST_DELETE', $post);
+            if($user === $post->getUsers()){
 
-        }else{
-            $this->addFlash('alert', 'vous n\'avez pas le droit d\'acceder ici');
-            return $this->redirectToRoute('profile_index');
+              $em->remove($post);
+              $em->flush();
+              $cache->delete('user_'.$user->getNickname());
+              $this->addFlash('success', 'l\'article '. $post->getTitle() .' est bien suprimer');
+              return $this->redirectToRoute('profile_index');
+            }else{
 
-          }
+              $this->addFlash('alert', 'vous n\'avez pas le droit d\'acceder ici');
+              return $this->redirectToRoute('profile_index');
+  
+            }
+         
+
+      
+
+          
         
 
     }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter un article {% endblock %}
+{% block title %}{{titre_form}}{% endblock %}
 
 {% block body %}
 <div class="addpost">
@@ -8,7 +8,7 @@
  
     {# {{form(addpostform)}} #}
     {{ form_start(addpostform) }}
-    <h1>Ajouter un article</h1>
+    <h1>{{titre_form}}</h1>
 
     {{ form_row(addpostform.title) }}
     {# {{ form_row(addpostform.content) }} #}

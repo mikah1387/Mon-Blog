@@ -434,7 +434,7 @@ pre code {
   color: white;
   font-size: calc(0.5rem + 0.4vw);
   font-weight: 600;
-  margin: auto;
+  margin: 50px auto 0;
   width: calc(8rem + 3.5vw);
   transition: 0.3 all;
 }
@@ -493,6 +493,16 @@ form div input:focus, form div textarea:focus, form div #editor:focus, form div 
 }
 .addpost form button, form button {
   border: none;
+}
+form .login_forgot {
+  color: inherit;
+  display: inline-block;
+  margin: 10px auto 5px;
+  transition: all 0.3s;
+}
+form .login_forgot:hover {
+  text-decoration: none;
+  color: #588157;
 }
 
 form[name=search_post] {

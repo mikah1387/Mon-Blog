@@ -20,6 +20,7 @@ class CategoriesController extends AbstractController
     #[Route('/categories/add', name: 'categorie_add')]
     public function add(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $caty = new Categories;
          
         $form = $this->createForm(CategoriesFormType::class,$caty);
@@ -49,6 +50,7 @@ class CategoriesController extends AbstractController
     public function update(Request $request, Categories $caty ,EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService): Response
     {
         
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
          
         $form = $this->createForm(CategoriesFormType::class,$caty);
         $form->handleRequest($request);
@@ -77,6 +79,7 @@ class CategoriesController extends AbstractController
     #[Route('/categories/delete/{slug}', name: 'categorie_delete')]
     public function delete(Categories $caty, EntityManagerInterface $em)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
       
             $em->remove($caty);
             $em->flush();

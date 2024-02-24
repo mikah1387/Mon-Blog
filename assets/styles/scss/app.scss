@@ -151,7 +151,7 @@ pre{
        color: white;  
        font-size:calc(0.5rem + 0.4vw) ;
        font-weight: 600;
-       margin: auto;
+       margin: 50px auto 0;
        width: calc(8rem + 3.5vw);
        transition: 0.3 all;
         &:hover{
@@ -218,6 +218,19 @@ pre{
 
         @extend %btn;
         border: none;
+        
+       }
+       .login_forgot{
+
+        color: inherit;
+        display: inline-block;
+        margin: 10px auto 5px;
+        transition:all 0.3s;
+        &:hover{
+
+            text-decoration: none;
+            color: $greenhigh;
+        }
        }
 }
 
