@@ -657,6 +657,10 @@ aside ul li:hover {
   font-size: calc(0.8rem + 0.5vw);
 }
 
+.restpass {
+  height: 100vh;
+}
+
 .login {
   min-height: 100vh;
 }

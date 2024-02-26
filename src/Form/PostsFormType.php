@@ -26,7 +26,9 @@ class PostsFormType extends AbstractType
             ])
             ->add('content', HiddenType::class,[
 
-                'label'=>'Contenu',
+                'attr'=>[
+                    'class'=>'input_hidden'
+                ]
                 
             ])
             

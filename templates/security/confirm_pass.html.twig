@@ -5,14 +5,12 @@
 {% block body %}
 
 <section class="restpass">
-
-
 {{form_start(resetPassword)}}
 <h1>Rénitialisation de MDP</h1>
-{{form_row(resetPassword.email)}}
+{{form_row(resetPassword.password)}}
 <button type="submit" class="button">Envoyer</button>
 {{form_end(resetPassword)}}
 
-</section>
 
+</section>
 {% endblock %}

@@ -1,0 +1,28 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+<section class="addpost">
+{{form_start(contactform)}}
+<h1>Contact</h1>
+{{form_row(contactform.name)}}
+{{form_row(contactform.email)}}
+{{form_row(contactform.subject)}}
+<p>Contenu</p>
+   
+<div id="editor">
+
+</div>
+<button type="submit" class="button">Envoyer</button>
+{{form_end(contactform)}}
+
+
+</section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{asset('ckeditor/build/ckeditor.js')}}"></script>
+{% endblock %}

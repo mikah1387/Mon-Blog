@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\ConfirmResetPassFormType;
 use App\Form\ResetPasswordFormType;
 use App\Repository\UsersRepository;
 use App\service\SendMailService;
@@ -10,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\HttpFoundation\Request; 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
@@ -55,14 +57,14 @@ class SecurityController extends AbstractController
 
               $em->flush();
             //   on envoie un mail de réinitialisation
-                $url = $this->generateUrl('app_verifyreset',['token'=>$token],
+                $url = $this->generateUrl('verifyreset',['token'=>$token],
                  UrlGeneratorInterface::ABSOLUTE_URL);
                 $context = [
                 'user'=>$user,
                 'url'=>$url
                    ];
                  $mail->send(
-                'mikah@gmail.com',
+                'ShareArticle@gmail.com',
                 $user->getEmail(),
                 'Réinitialisation de mot de passe',
                 'resetpass',$context
@@ -72,7 +74,7 @@ class SecurityController extends AbstractController
                 $this->addFlash('success', 'Email envoyé avec succés');
                 return $this->redirectToRoute('login');
             }
-            $this->addFlash('','un probleme est survenu');
+            $this->addFlash('alert','un probleme est survenu');
             return $this->redirectToRoute('login');
             
        
@@ -85,7 +87,49 @@ class SecurityController extends AbstractController
     }
 
 
+    #[Route('/verifyreset/{token}', name: 'verifyreset')]
+    public function verify($token,
+     Request $request,
+     UsersRepository $usersRepository,
+     EntityManagerInterface $em,
+     UserPasswordHasherInterface $passwordHasher )
+    
+    {
+         $user= $usersRepository->findOneByresetToken($token);
+   
+         if($user){
 
+                 $form = $this->createForm(ConfirmResetPassFormType::class);
+                 $form->handleRequest($request);
+
+              if($form->isSubmitted() && $form->isValid()){
+               
+                $user->setResetToken('');
+                $user->setPassword(
+                    $passwordHasher->hashPassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                    );
+                    $em->persist($user);
+                    $em->flush();
+
+                    $this->addFlash('success','mot de passe modifier');
+                    return  $this->redirectToRoute('login');
+              }
+                   
+
+                 return $this->render('security/confirm_pass.html.twig',[
+                            'resetPassword' => $form->createView()
+                        ]);
+         }else {
+            $this->addFlash('alert','token invalide');
+            return  $this->redirectToRoute('login');
+          }
+       
+        
+    
+    }
 
 
 

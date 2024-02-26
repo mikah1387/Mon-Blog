@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Form\ContactFormType;
 use App\Repository\PostsRepository;
 use App\Repository\UsersRepository;
+use App\service\SendMailService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestMatcherInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -48,6 +51,46 @@ class MainController extends AbstractController
             'usersactif'=> $usersMoreActif
         ]);
     }
+
+    #[Route('/contact', name: 'contact')]
+    public function contact(Request $request, SendMailService $mail)
+    {
+
+      $form = $this->createForm(ContactFormType::class);
+      $form->handleRequest($request);
+
+      if ($form->isSubmitted() && $form->isValid())
+        {
+
+        
+        $name = $form->get('name')->getData();
+        $subject = $form->get('subject')->getData();
+        $content = $form->get('content')->getData();
+        
+        $email =  $form->get('email')->getData();
+        $context =[
+          'name'=>$name,
+          'content'=>$content
+        ];
+        $mail->send(
+          $email,
+          'ShareArticle@gmail.com',
+          $subject,
+          'contact',$context
+          );
+
+          $this->addFlash('success', 'Email envoyé avec succés');
+                return $this->redirectToRoute('main');
+        }
+        // else{
+        //   $this->addFlash('alert','un probleme est survenu');
+        //   return $this->redirectToRoute('main');
+        // }
+          
+     return $this->render('contact/contact.html.twig',[
+              'contactform' => $form->createView()
+          ]);     
+    }   
   
    
 }

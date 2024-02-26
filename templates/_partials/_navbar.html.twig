@@ -23,7 +23,7 @@
               </div>  
         </li>
         
-        <li> <a href="">Contact</a> </li>
+        <li> <a href="{{path('contact')}}">Contact</a> </li>
         {% if app.user %}
         {% if is_granted('ROLE_ADMIN')  %}
         <li> <a href="{{path('admin_index')}}">Administration</a> </li>
