@@ -10,15 +10,15 @@
         <li class="li_cats"> 
             <a href="#"> Catégories </a> 
               <div class="cats">
-  
+                <ul class="ul_cats">
+                  
                   {% for cat in cats.getCategories %}
                       {% if cat.parent is not null  %}
                          {# <h4> {{cat.slug|capitalize}}</h4> #}
-                         <ul class="ul_cats">
                          <li><a href="{{path('categories_postsbycaty',{slug:cat.slug})}}">{{cat.slug}}</a></li>       
-                          </ul>
                       {% endif %}  
                   {% endfor %}
+                </ul>
                 
               </div>  
         </li>

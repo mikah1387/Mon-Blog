@@ -8,17 +8,19 @@ use App\Repository\CategoriesRepository;
 use App\service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Cache\CacheItem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Contracts\Cache\CacheInterface;
 
 #[Route('/admin', name: 'admin_')]
 class CategoriesController extends AbstractController
 {
     #[Route('/categories/add', name: 'categorie_add')]
-    public function add(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService): Response
+    public function add(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService, CacheInterface $cache): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $caty = new Categories;
@@ -36,6 +38,7 @@ class CategoriesController extends AbstractController
              
             $em->persist($caty);
             $em->flush();
+            
             $this->addFlash('success', 'la categorie '.$caty->getName().' est bien ajouté');
                         return $this->redirectToRoute('admin_index');
         }
@@ -47,7 +50,7 @@ class CategoriesController extends AbstractController
     }
 
     #[Route('/categories/update/{slug}', name: 'categorie_update')]
-    public function update(Request $request, Categories $caty ,EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService): Response
+    public function update(Request $request, Categories $caty ,EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService, CacheInterface $cache): Response
     {
         
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -65,6 +68,7 @@ class CategoriesController extends AbstractController
              
             $em->persist($caty);
             $em->flush();
+           
             $this->addFlash('success', 'la categorie '.$caty->getName().' est bien modifier');
                         return $this->redirectToRoute('admin_index');
         }
@@ -77,12 +81,14 @@ class CategoriesController extends AbstractController
     }
    
     #[Route('/categories/delete/{slug}', name: 'categorie_delete')]
-    public function delete(Categories $caty, EntityManagerInterface $em)
+    public function delete(Categories $caty, EntityManagerInterface $em, CacheInterface $cache)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
       
             $em->remove($caty);
             $em->flush();
+            
+
             $this->addFlash('success', 'la catégorie '. $caty->getName() .' est bien suprimer');
             return $this->redirectToRoute('profile_index');
 

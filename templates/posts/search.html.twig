@@ -32,7 +32,7 @@
             <h4> {{post.users.nickname|capitalize}}</h4>
             <h5> <span class="material-symbols-outlined">
              calendar_month
-             </span> {{post.CreatedAt|date("F j,Y")}}</h5>
+             </span> {{post.CreatedAt|format_datetime('medium','none',locale='fr') }}</h5>
              
          </div>
          <h3> {{post.slug}}</h3>

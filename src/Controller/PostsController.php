@@ -12,7 +12,7 @@ use App\service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -37,7 +37,10 @@ class PostsController extends AbstractController
  
         return $datas;
          });
-         $paginations = $paginator->paginate($posts,$request->query->get('page', 1),4);
+         
+      
+
+         $paginations = $paginator->paginate($posts,$request->query->get('page', 1),6);
        
     
         $mots= $request->request->all();     
@@ -106,6 +109,9 @@ class PostsController extends AbstractController
              $cache->delete('my_articles');
              $cache->delete('user_'.$user->getNickname());
              $cache->delete('lastposts');
+             $cache->delete('usersMoreActif');
+             
+
 
              $this->addFlash('success', 'votre article '.$post->getTitle().' est bien ajouté');
                          return $this->redirectToRoute('posts_index');
@@ -125,7 +131,7 @@ class PostsController extends AbstractController
             return $post;
           });
         return $this->render('posts/detail.html.twig', [
-            'post' => $post,
+            'post' => $article,
             // 'allcomments'=>$comments->findBy(['posts'=>$post],['id'=>'DESC'])
         ]);
     }
@@ -157,6 +163,8 @@ class PostsController extends AbstractController
                 $em->flush();
                 $cache->delete('my_articles');
                 $cache->delete('user_'.$user->getNickname());
+                $cache->delete('lastposts');
+                $cache->delete('usersMoreActif');
 
 
                 $this->addFlash('success', 'votre article '.$post->getTitle().' est bien modifier');
@@ -183,7 +191,10 @@ class PostsController extends AbstractController
 
               $em->remove($post);
               $em->flush();
+              $cache->delete('my_articles');
               $cache->delete('user_'.$user->getNickname());
+              $cache->delete('lastposts');
+              $cache->delete('usersMoreActif');
               $this->addFlash('success', 'l\'article '. $post->getTitle() .' est bien suprimer');
               return $this->redirectToRoute('profile_index');
             }else{
