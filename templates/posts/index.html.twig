@@ -13,63 +13,30 @@
 {% endif %}
 
 <div class="main" style="margin-top: 100px;">
+   <form class="div_select">
+    <label for="caty">Filtrer : </label>
+    <select name="categorie" id="categorie" class="select">
+      <option value=""></option>     
+     
+      {% for caty in categories %}
+      {% if caty.parent is not null %}
+      <option value="{{caty.id}}">{{caty.name}}</option>     
+      {% endif %}
+      {% endfor %}
+      <input type="hidden" name="page" value="{{page}}">
+        
+    </select>
+  </form>
 
-
-  {# {{ dump(articles.user) }} #}
-
-  <div class="parentpost">
-
-    {% for post in paginations %}
-  
-    {# {{ dump(post.users) }} #}
-    <a href="{{path('posts_detail',{slug:post.slug})}}" class="cart">
-
-      <div class="img">
-        {% if post.featuredImage is null %}
-        <img src=" " alt="image_article">
-
-        {% else %}
-        <img src="{{asset('images/uploads/posts/min/300x300-'~ post.featuredImage)}}" alt="image_article">
-        {% endif %}
-
-      </div>
-
-      <div class="body_cart">
-
-        <div class="autor">
-          <div class="image">
-            <img src="{{asset('images/uploads/users/min/300x300-'~ post.users.image)}}" alt="">
-          </div>
-          <h4> {{post.users.nickname|capitalize}}</h4>
-          <h5> <span class="material-symbols-outlined">
-              calendar_month
-            </span> {{post.CreatedAt|format_datetime('medium','none',locale='fr') }}</h5>
-
-        </div>
-        <h3> {{post.slug}}</h3>
-        <p> {{post.content|striptags|slice(0, 150)}}... </p>
-        {% for category in post.categories %}
-        <h6> {{category.name|capitalize}} </h6>
-
-        {% endfor %}
-
-
-      </div>
-
-    </a>
-
-    
-
-    {% endfor %}
-    
-   
-    
-  </div>
-  
-    {{ knp_pagination_render(paginations) }}
+   {% include "posts/_content.html.twig" %}
 
   
 </div>
 
 
 {% endblock %}
+
+ {% block javascripts %}
+<script src="{{asset('js/filters.js')}}"></script>
+{% endblock %} 
+     

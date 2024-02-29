@@ -65,13 +65,16 @@ class PostsRepository extends ServiceEntityRepository
        ;
    }
 
-//    public function findOneBySomeField($value): ?Posts
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+   public function findPostsBycaty($idcat)
+   {
+       return $this->createQueryBuilder('p')
+                   ->leftJoin('p.categories', 'c')
+                   ->addSelect('c')
+                   ->andWhere('c.id = :val')
+                   ->setParameter('val', $idcat)
+                   ->orderBy('p.Created_at', 'ASC')
+                   ->getQuery()
+                   ->getResult()
+       ;
+   }
 }

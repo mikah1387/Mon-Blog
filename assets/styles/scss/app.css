@@ -681,6 +681,30 @@ pre code {
   border: 1px solid #ccc;
 }
 
+.div_select {
+  position: relative;
+  width: 300px;
+  margin: 0px auto 30px;
+}
+.div_select label {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+  display: inline;
+}
+.div_select .select {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+.div_select .select:focus-visible {
+  box-shadow: #5dbe91 0px 3px 8px;
+  border-color: #94d3ca !important;
+  outline: none !important;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;

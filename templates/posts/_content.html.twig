@@ -1,0 +1,60 @@
+<div class="parentpost" id="content">
+
+    {% for post in paginations %}
+  
+    {# {{ dump(post.users) }} #}
+    <a href="{{path('posts_detail',{slug:post.slug})}}" class="cart">
+
+      <div class="img">
+        {% if post.featuredImage is null %}
+        <img src=" " alt="image_article">
+
+        {% else %}
+        <img src="{{asset('images/uploads/posts/min/300x300-'~ post.featuredImage)}}" alt="image_article">
+        {% endif %}
+
+      </div>
+
+      <div class="body_cart">
+
+        <div class="autor">
+          <div class="image">
+            <img src="{{asset('images/uploads/users/min/300x300-'~ post.users.image)}}" alt="">
+          </div>
+          <h4> {{post.users.nickname|capitalize}}</h4>
+          <h5> <span class="material-symbols-outlined">
+              calendar_month
+            </span> {{post.CreatedAt|format_datetime('medium','none',locale='fr') }}</h5>
+
+        </div>
+        <h3> {{post.slug}}</h3>
+        <p> {{post.content|striptags|slice(0, 150)}}... </p>
+        {% for category in post.categories %}
+        <h6> {{category.name|capitalize}} </h6>
+
+        {% endfor %}
+
+
+      </div>
+
+    </a>
+
+    
+
+    {% endfor %}
+    {{ dump(app.request.query.all) }}
+    {{ dump(paginations) }}
+    
+  {{ knp_pagination_render(paginations) }}
+   
+    
+  </div>
+
+
+    {# {% if categorieId is defined%}
+  
+    {{ knp_pagination_render(paginations ,  {'pageParameterName': 'categorie=' ~ categorieId}) }}
+    {% else %} #}
+    {# {% endif %} #}
+  
+    

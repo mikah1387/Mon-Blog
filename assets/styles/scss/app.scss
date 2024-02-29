@@ -451,6 +451,40 @@ aside{
         border: 1px solid #ccc;
       }
 }
+.div_select{
+
+    position: relative;
+    width: 300px;
+    margin: 0px auto 30px;
+   
+
+    label{
+
+        font-size: 1rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+        display: inline;
+
+        
+    }
+    .select{
+        
+        background-color: $white;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 1rem;
+        // width: 100%;
+        &:focus-visible{
+            box-shadow: #5dbe91 0px 3px 8px;
+            border-color: #94d3ca !important;
+             outline: none !important; 
+
+        }
+
+    
+    }
+}
 
 @import '_navbar.scss';
 @import '_main.scss';
@@ -461,3 +495,4 @@ aside{
 @import '_profile.scss';
 @import '_admin.scss';
 @import '_footer.scss';
+

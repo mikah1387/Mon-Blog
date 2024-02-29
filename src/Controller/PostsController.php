@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Posts;
 use App\Form\PostsFormType;
 use App\Form\SearchPostType;
+use App\Repository\CategoriesRepository;
 use App\Repository\CommentsRepository;
 use App\Repository\PostsRepository;
 use App\Repository\UsersRepository;
@@ -13,6 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -28,36 +30,60 @@ class PostsController extends AbstractController
 {
  
     #[Route('/', name: 'index')]
-    public function index( PostsRepository $postsRepo,Request $request, CacheInterface $cache ,PaginatorInterface $paginator ): Response
+    public function index( PostsRepository $postsRepo,Request $request, CacheInterface $cache ,PaginatorInterface $paginator,CategoriesRepository $categories ): Response
     {
-      $posts = $cache->get('my_articles', function (ItemInterface $item) use ($postsRepo) {
-        $item->expiresAfter(3600); 
-        // $datas = $postsRepo->findCachePosts();
-        $datas = $postsRepo->findBy([],['Created_at'=>'DESC']);
+      // $posts = $cache->get('my_articles', function (ItemInterface $item) use ($postsRepo) {
+      //   $item->expiresAfter(3600); 
+        
  
-        return $datas;
-         });
-         
-      
+      //   return $datas;
+      //    });
+         $posts = $postsRepo->findBy([],['Created_at'=>'DESC']);
 
-         $paginations = $paginator->paginate($posts,$request->query->get('page', 1),6);
-       
-    
-        $mots= $request->request->all();     
+         $categorie = $request->get('categorie');
+         $page= $request->query->get('page',1);
+         
+         $postscat = $postsRepo->findPostsBycaty( $categorie);
+          // dd($postscat, $paginations);
+         $paginations = $paginator->paginate($posts,$page,4);
+        //  if ($categorie!==null) {
       
-          if ($request->isMethod('POST')){
+        //   $pagination= $paginator->paginate($postscat,$page,1);
+        //   // dd($pagination);
+        //   // $pag= $request->query->get('page',1);
+         
+        //  }
+
+         if($request->get('categorie')){
+
+          $pag= $request->query->get('page',1);
+         
+          return new JsonResponse([
+              
+              'content'=> $this->renderView('posts/_content.html.twig',[
+                             
+            'paginations' =>$paginator->paginate($postscat,$pag,1
+          ),
+               
+                ])
+            ]);
+            }
+        
+         $mots= $request->request->all();   
+
+          if ($request->isMethod('POST'))
+          {
               
             return $this->redirectToRoute('posts_search',[
-                     'mots' => $mots["search_post"]['mots'],
-
-        ]);
-             
-           }
+                     'mots' => $mots["search_post"]['mots']]);  
+          }
         
         return $this->render('posts/index.html.twig',[
-               
-                // 'searchtags' => $form,
+                             
                 'paginations' => $paginations,
+                'page'=>$page= $request->query->get('page',1),
+                'categories'=>$categories->findby([],['name'=>'ASC']),
+                // 'categorieId'=> null
 
         ]);
     }
