@@ -13,23 +13,37 @@
 {% endif %}
 
 <div class="main" style="margin-top: 100px;">
-   <form class="div_select">
-    <label for="caty">Filtrer : </label>
-    <select name="categorie" id="categorie" class="select">
-      <option value=""></option>     
-     
-      {% for caty in categories %}
-      {% if caty.parent is not null %}
-      <option value="{{caty.id}}">{{caty.name}}</option>     
-      {% endif %}
-      {% endfor %}
-      <input type="hidden" name="page" value="{{page}}">
-        
-    </select>
-  </form>
+  <div class="filters">
+    <form class="div_select">
+      <label for="caty">Filtrer : </label>
+      <select name="categorie" id="categorie" class="selectcaty">
+        <option value=""></option>     
+       
+        {% for caty in categories %}
+        {% if caty.parent is not null %}
+        <option value="{{caty.id}}">{{caty.name}}</option>     
+        {% endif %}
+        {% endfor %}
 
-   {% include "posts/_content.html.twig" %}
+       {# <input type="hidden" name="page" value="{{page}}"> #}
+        </select>
+ 
+    </form>
+    <form class="div_select">
+      <label for="trie">Trier : </label>
+      <select name="trie" id="trie"  class="selecttrie">
+        <option value="DESC">Récent</option>     
+        <option value="ASC">Ancien</option>     
+       
+      {# <input type="hidden" name="page" value="{{page}}"> #}
+      
+      </select>
+    </form>
+  </div>
 
+    <div id="content">
+      {% include "posts/_content.html.twig" %}
+    </div>
   
 </div>
 
@@ -37,6 +51,9 @@
 {% endblock %}
 
  {% block javascripts %}
+
 <script src="{{asset('js/filters.js')}}"></script>
+<script></script>
+
 {% endblock %} 
      

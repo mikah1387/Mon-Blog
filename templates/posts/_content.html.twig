@@ -1,4 +1,4 @@
-<div class="parentpost" id="content">
+<div class="parentpost">
 
     {% for post in paginations %}
   
@@ -19,7 +19,7 @@
 
         <div class="autor">
           <div class="image">
-            <img src="{{asset('images/uploads/users/min/300x300-'~ post.users.image)}}" alt="">
+            <img src="{{asset('images/uploads/users/min/300x300-' ~ post.users.image)}}" alt="">
           </div>
           <h4> {{post.users.nickname|capitalize}}</h4>
           <h5> <span class="material-symbols-outlined">
@@ -42,19 +42,19 @@
     
 
     {% endfor %}
-    {{ dump(app.request.query.all) }}
-    {{ dump(paginations) }}
+
     
-  {{ knp_pagination_render(paginations) }}
+  {# {{ knp_pagination_render(paginations) }} #}
+
    
-    
+     
   </div>
 
+  {% set pagination = knp_pagination_render(paginations) %}
+   
+   {# {{ dump(paginations ) }} #}
+  {% set paginationWithoutAjax = pagination|replace({'ajax=1': ''}) %}
 
-    {# {% if categorieId is defined%}
-  
-    {{ knp_pagination_render(paginations ,  {'pageParameterName': 'categorie=' ~ categorieId}) }}
-    {% else %} #}
-    {# {% endif %} #}
-  
+  {{ paginationWithoutAjax|raw }}
+
     

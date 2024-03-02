@@ -65,16 +65,21 @@ class PostsRepository extends ServiceEntityRepository
        ;
    }
 
-   public function findPostsBycaty($idcat)
+   public function findPostsBycaty($idcat =null, $trie='DESC')
    {
-       return $this->createQueryBuilder('p')
+        $query= $this->createQueryBuilder('p')
                    ->leftJoin('p.categories', 'c')
-                   ->addSelect('c')
-                   ->andWhere('c.id = :val')
-                   ->setParameter('val', $idcat)
-                   ->orderBy('p.Created_at', 'ASC')
-                   ->getQuery()
-                   ->getResult()
-       ;
+                   ->addSelect('c');
+                   if($idcat !== null){
+                    $query->andWhere('c.id = :val')
+                    ->setParameter('val', $idcat);
+                   }
+                   
+                   $query->orderBy('p.Created_at', $trie);
+                //    ->setParameter('value', $trie)
+                    
+                 return $query->getQuery()->getResult();
+       
+                 
    }
 }

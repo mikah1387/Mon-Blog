@@ -948,6 +948,9 @@ pre code {
   width: 70%;
   margin: auto;
 }
+.main .filters {
+  display: flex;
+}
 
 .button {
   margin: 100px auto;

@@ -32,38 +32,37 @@ class PostsController extends AbstractController
     #[Route('/', name: 'index')]
     public function index( PostsRepository $postsRepo,Request $request, CacheInterface $cache ,PaginatorInterface $paginator,CategoriesRepository $categories ): Response
     {
-      // $posts = $cache->get('my_articles', function (ItemInterface $item) use ($postsRepo) {
-      //   $item->expiresAfter(3600); 
+      $posts = $cache->get('my_articles', function (ItemInterface $item) use ($postsRepo) {
+        $item->expiresAfter(3600); 
         
+          $datas = $postsRepo->findBy([],['Created_at'=>'DESC']);
  
-      //   return $datas;
-      //    });
-         $posts = $postsRepo->findBy([],['Created_at'=>'DESC']);
-
-         $categorie = $request->get('categorie');
+        return $datas;
+         });
          $page= $request->query->get('page',1);
-         
-         $postscat = $postsRepo->findPostsBycaty( $categorie);
-          // dd($postscat, $paginations);
-         $paginations = $paginator->paginate($posts,$page,4);
-        //  if ($categorie!==null) {
+        
+         $paginations = $paginator->paginate($posts,$page,6);
+         $categorie = $request->get('categorie');
+         $trie =  $request->get('trie');
+         if ($trie) {
+          $postscat = $postsRepo->findPostsBycaty( $categorie,$trie);
+          $paginations= $paginator->paginate($postscat,$page,6);     
+         }
+         if ($categorie) {
+          $trie =  $request->get('trie');
+          $postscat = $postsRepo->findPostsBycaty( $categorie,$trie);
+          $paginations= $paginator->paginate($postscat,$page,2);     
+         }
       
-        //   $pagination= $paginator->paginate($postscat,$page,1);
-        //   // dd($pagination);
-        //   // $pag= $request->query->get('page',1);
-         
-        //  }
+         if($request->get('ajax')){
 
-         if($request->get('categorie')){
-
-          $pag= $request->query->get('page',1);
+          // $pag= $request->query->get('page',1);
          
           return new JsonResponse([
               
               'content'=> $this->renderView('posts/_content.html.twig',[
                              
-            'paginations' =>$paginator->paginate($postscat,$pag,1
-          ),
+            'paginations' =>$paginations,
                
                 ])
             ]);
