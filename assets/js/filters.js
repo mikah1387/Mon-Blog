@@ -15,7 +15,7 @@ window.onload = ()=>{
                             
                 });
 
-               console.log( params.toString());
+            //    console.log( params.toString());
              const url = new URL(window.location.href) 
              
      fetch(url.pathname + "?" + params.toString() + "&ajax=1",{
@@ -48,10 +48,12 @@ window.onload = ()=>{
                                
                    });
    
-                  console.log( params.toString());
+                  
                 const url = new URL(window.location.href) 
-                
-        fetch(url.pathname + "?" + params.toString() + "&ajax=1",{
+                //    console.log(url.search);
+             
+                 let parameters = (url.search.includes('categorie='))?url.search+'&'+params.toString():'?'+params.toString();
+        fetch(url.pathname + parameters + "&ajax=1",{
             
              headers: {
                 "X-Requested-with": "XMLHttpRequest"
@@ -62,9 +64,13 @@ window.onload = ()=>{
             ).then(data =>{
           
            const content = document.querySelector('#content');
-           content.innerHTML = data.content;
-           history.pushState({},null,url.pathname + "?" +params.toString() )
-   
+           content.innerHTML = data.content;  
+            
+           newUrl = url.search.includes('categorie=')?url.search.replace(/&trie=[^&]*/g, " "):parameters;
+           console.log(newUrl);
+        //   newUrl =url.search.replace(/&trie=[^&]*/g, "")
+           history.pushState({},null,url.pathname + newUrl );
+
            }).catch(e=>alert(e));
                   })
         

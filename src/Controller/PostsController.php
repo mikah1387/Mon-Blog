@@ -46,6 +46,7 @@ class PostsController extends AbstractController
          $trie =  $request->get('trie');
          if ($trie) {
           $postscat = $postsRepo->findPostsBycaty( $categorie,$trie);
+          // dd($postscat);
           $paginations= $paginator->paginate($postscat,$page,6);     
          }
          if ($categorie) {
