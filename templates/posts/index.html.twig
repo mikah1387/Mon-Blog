@@ -32,6 +32,7 @@
     <form class="div_select">
       <label for="trie">Trier : </label>
       <select name="trie" id="trie"  class="selecttrie">
+        <option value=""></option>     
         <option value="DESC">Récent</option>     
         <option value="ASC">Ancien</option>     
        
@@ -53,7 +54,7 @@
  {% block javascripts %}
 
 <script src="{{asset('js/filters.js')}}"></script>
-<script></script>
+
 
 {% endblock %} 
      

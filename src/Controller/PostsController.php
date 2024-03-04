@@ -30,7 +30,7 @@ class PostsController extends AbstractController
 {
  
     #[Route('/', name: 'index')]
-    public function index( PostsRepository $postsRepo,Request $request, CacheInterface $cache ,PaginatorInterface $paginator,CategoriesRepository $categories ): Response
+    public function index( PostsRepository $postsRepo,Request $request, CacheInterface $cache ,PaginatorInterface $paginator,CategoriesRepository $categories, UsersRepository $autors ): Response
     {
       $posts = $cache->get('my_articles', function (ItemInterface $item) use ($postsRepo) {
         $item->expiresAfter(3600); 
@@ -83,6 +83,7 @@ class PostsController extends AbstractController
                 'paginations' => $paginations,
                 'page'=>$page= $request->query->get('page',1),
                 'categories'=>$categories->findby([],['name'=>'ASC']),
+                'autors'=>$autors->findAll()
                 // 'categorieId'=> null
 
         ]);
