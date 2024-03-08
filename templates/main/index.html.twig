@@ -32,7 +32,7 @@
     <div class="parentpost">
          
       {% for post in lastposts %}
-      <a href="{{path('posts_detail',{slug:post.slug})}}" class="cart">
+      <a href="{{path('posts_detail',{slug:post.slug, id:post.id})}}" class="cart">
 
         <div class="img">
           {% if post.featuredImage is  null %}

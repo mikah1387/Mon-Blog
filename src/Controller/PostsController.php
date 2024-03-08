@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -150,7 +151,7 @@ class PostsController extends AbstractController
     }
  
 
-    #[Route('/{slug}', name: 'detail')]
+    #[Route('/{slug}_{id}', name: 'detail', requirements:['id'=>Requirement::DIGITS])]
     public function detail(Posts $post, CommentsRepository $comments, CacheInterface $cache): Response
     {
           $article= $cache->get('post_'.$post->getSlug(), function(ItemInterface $item) use ($post){
@@ -162,7 +163,7 @@ class PostsController extends AbstractController
             // 'allcomments'=>$comments->findBy(['posts'=>$post],['id'=>'DESC'])
         ]);
     }
-    #[Route('/update/{slug}', name: 'update')]
+    #[Route('/update/{slug}_{id}', name: 'update',requirements:['id'=>Requirement::DIGITS])]
     public function update(Posts $post, Request $request, EntityManagerInterface $em,
     SluggerInterface $slugger, UserInterface $user, CacheInterface $cache,PictureService $pictureService ): Response
     {
@@ -210,7 +211,7 @@ class PostsController extends AbstractController
         
     }
    
-    #[Route('/delete/{slug}', name: 'delete')]
+    #[Route('/delete/{slug}_{id}', name: 'delete',requirements:['id'=>Requirement::DIGITS])]
     public function delete(Posts $post, EntityManagerInterface $em, UserInterface $user, CacheInterface $cache)
     {
             $this->denyAccessUnlessGranted('POST_DELETE', $post);

@@ -26,17 +26,17 @@
             <div class="carts">
                 {% for post in user.posts %}
 
-                <a href="{{path('posts_detail',{slug:post.slug})}}">
+                <a href="{{path('posts_detail',{slug:post.slug, id:post.id})}}">
                     <div class="cart">
                         <h3> {{post.slug}}</h3>
                         {% for category in post.categories %}
                         <h4>Categorie : {{category.name}}</h4>
                         {% endfor %}
                         <div class="links">
-                           <a href="{{path('posts_delete',{slug:post.slug})}}"><span class="material-symbols-outlined">
+                           <a href="{{path('posts_delete',{slug:post.slug, id:post.id})}}"><span class="material-symbols-outlined">
                                     delete
                                 </span></a>
-                            <a href="{{path('posts_update',{slug:post.slug})}}"><span class="material-symbols-outlined">
+                            <a href="{{path('posts_update',{slug:post.slug, id:post.id})}}"><span class="material-symbols-outlined">
                                     edit
                                 </span></a>
                         </div>
