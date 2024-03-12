@@ -22,8 +22,8 @@ class SearchPostType extends AbstractType
                     'placeholder'=>'Recherche'
                 ]
             ])
-            ->add('R', SubmitType::class,[
-
+            ->add('search', SubmitType::class,[
+                  'label'=> 'r'
             ] )
         ;
     }
