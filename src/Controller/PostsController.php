@@ -92,13 +92,24 @@ class PostsController extends AbstractController
 
 
    #[Route('/search', name: 'search')]
-   public function search(Request $request, PostsRepository $postsRepo)
+   public function search(Request $request, PostsRepository $postsRepo,PaginatorInterface $paginator)
    {
+    $mots= $request->request->all();   
 
-         $mots = $request->query->get('mots');
+    if ($request->isMethod('POST'))
+    {
+        
+      return $this->redirectToRoute('posts_search',[
+               'mots' => $mots["search_post"]['mots']]);  
+    }
+
+        $mots = $request->query->get('mots');
         $posts = $postsRepo->searchTags($mots);
+        $page= $request->query->get('page',1);
+
+        $paginations= $paginator->paginate($posts,$page,4);
          return $this->render('posts/search.html.twig',[
-            'posts'=>$posts
+          'paginations' => $paginations,
                
     ]);
 

@@ -681,25 +681,31 @@ pre code {
   border: 1px solid #ccc;
 }
 
-.div_select {
+.filters {
+  display: flex;
+  justify-content: center;
+}
+.filters .div_select {
   position: relative;
   width: 300px;
-  margin: 0px auto 30px;
+  margin: 0px 0px 30px;
+  box-shadow: none;
+  padding: 0;
 }
-.div_select label {
+.filters .div_select label {
   font-size: 1rem;
   margin-bottom: 8px;
   font-weight: 600;
   display: inline;
 }
-.div_select .select {
+.filters .div_select select {
   background-color: #ffffff;
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
   font-size: 1rem;
 }
-.div_select .select:focus-visible {
+.filters .div_select select:focus-visible {
   box-shadow: #5dbe91 0px 3px 8px;
   border-color: #94d3ca !important;
   outline: none !important;
@@ -740,7 +746,7 @@ pre code {
   transition: 0.3s all;
   padding: 21px 27px;
 }
-.navbar ul li a:hover {
+.navbar ul li a:hover, .navbar ul li a.active {
   color: #020202;
   background-color: white;
 }
@@ -947,9 +953,6 @@ pre code {
 .main {
   width: 70%;
   margin: auto;
-}
-.main .filters {
-  display: flex;
 }
 
 .button {

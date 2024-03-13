@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}les articles de {{category.slug}}{% endblock %}
+{% block title %}les articles de {% endblock %}
 
 {% block body %}
- <div class="image_caty_p">      
+ {# <div class="image_caty_p">      
   <img src="{{asset('images/uploads/categories/'~ category.image)}}" alt="image_categories">
- </div>
+ </div> #}
 <section class="categories">
        
-
-        {% for post in category.posts %}
+       
+        {% for post in paginations %}
             
         <a href="{{path('posts_detail',{slug:post.slug, id:post.id})}}" class="cart">
 
@@ -49,5 +49,5 @@
         {% endfor %}
        
 </section>    
-    
+{{knp_pagination_render(paginations)}} 
 {% endblock %}

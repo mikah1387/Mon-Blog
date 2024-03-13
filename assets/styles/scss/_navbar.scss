@@ -42,7 +42,7 @@
               color: white;
               transition: 0.3s all;
               padding: 21px 27px ;
-              &:hover{
+              &:hover,&.active{
                
                 color: $black;
                 background-color: white;
