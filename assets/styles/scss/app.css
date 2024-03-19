@@ -507,45 +507,47 @@ form .login_forgot:hover {
 
 form[name=search_post] {
   height: 100%;
-  width: 200px;
-  height: 34px;
+  width: 180px;
+  height: 25px;
   padding: 0;
   margin: 0;
   padding: 0;
   border: none;
-  background: transparent;
-  background: transparent;
+  box-shadow: none;
+  background: rgba(243, 242, 242, 0.694);
 }
 form[name=search_post] #search_post {
   display: flex;
   width: 100%;
   margin: 0;
-  justify-content: space-around;
+  align-items: center;
 }
 form[name=search_post] #search_post div {
-  margin: 0 5px;
+  margin: 0 1px;
 }
 form[name=search_post] #search_post div input {
   padding: 3px 8px;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 300;
+  background: rgba(243, 242, 242, 0.694);
 }
 form[name=search_post] button {
   width: 40px;
-  height: 34px;
+  height: 28px;
   border-radius: 5px;
   margin: 0;
   border: none;
-  background: #588157;
-  color: #588157;
+  background: rgba(243, 242, 242, 0.694);
+  color: rgba(243, 242, 242, 0.694);
 }
 form[name=search_post] button::before {
   font-family: "Material Icons";
   content: "\e8b6";
   display: block;
   margin-left: 5px;
-  font-size: 27px;
-  color: white;
+  font-size: 20px;
+  font-weight: 300;
+  color: rgb(124, 122, 122);
 }
 
 .pagination {
@@ -713,76 +715,64 @@ pre code {
 
 .navbar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  background-color: #020202;
+  background-color: rgba(243, 242, 242, 0.694);
   color: white;
-  padding: 10px;
-  height: 40px;
+  padding: 10px 150px;
   width: 100%;
-}
-.navbar .logo {
-  width: 40px;
-  height: 40px;
+  box-shadow: 0 -20px 10px -20px rgba(177, 177, 177, 0.628) inset;
 }
 .navbar .logo a {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-.navbar .logo a img {
-  width: 100%;
-  height: 100%;
+  text-decoration: none;
+  color: #020202;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.5rem;
 }
 .navbar ul {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 60%;
   list-style: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
 }
-.navbar ul li a {
-  text-decoration: none;
-  color: white;
-  transition: 0.3s all;
-  padding: 21px 27px;
+.navbar ul .li_search {
+  margin-right: 20px;
+  border-right: 1px solid gray;
 }
-.navbar ul li a:hover, .navbar ul li a.active {
-  color: #020202;
-  background-color: white;
-}
-.navbar ul li.li_cats {
+.navbar ul a {
   position: relative;
-  padding: 10px 0;
+  text-decoration: none;
+  color: #020202;
+  padding: 10px 20px;
+  font-size: 0.9rem;
 }
-.navbar ul li.li_cats .cats {
-  display: none;
-  width: 300px;
-  height: auto;
-  padding: 10px;
-  background: coral;
+.navbar ul a.active {
+  font-weight: 700;
+  text-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  color: #899D78;
+}
+.navbar ul a span {
+  font-size: 1.1rem;
+  display: inline-block;
   position: absolute;
-  top: 40px;
-  border-radius: 10px;
-  z-index: 100;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  top: 11px;
+  left: -3px;
 }
-.navbar ul li.li_cats .cats .ul_cats {
-  display: block;
-  margin: 10px 0;
-  text-decoration: none;
+.navbar .ul2 {
+  min-width: 450px;
 }
-.navbar ul li.li_cats .cats .ul_cats li {
-  padding: 4px 0;
+.navbar .ul1 li {
+  padding: 0 10px;
 }
-.navbar ul li.li_cats .cats .ul_cats a {
-  text-decoration: none;
-  padding: 5px 0;
+.navbar .cats {
+  display: none;
 }
-.navbar ul li.li_cats .cats .ul_cats a:hover {
-  background: none;
-}
-.navbar ul li.li_cats:hover .cats {
-  display: block;
+.navbar .burg {
+  width: 20px;
+  height: 20px;
+  background: #020202;
+  display: none;
 }
 
 .main {

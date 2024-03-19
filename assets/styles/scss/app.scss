@@ -238,27 +238,30 @@ pre{
 form[name='search_post']{
 
       height: 100%;
-      width: 200px;
-      height: 34px;
+      width: 180px;
+      height: 25px;
       padding: 0;
       margin: 0;
       padding: 0;
         border: none;
-        background: transparent;
-        background: transparent;
+      box-shadow: none;
+        background: rgba(243, 242, 242, 0.694);
    
         #search_post{
            display: flex;
+
            width: 100%;
            margin: 0;
-           justify-content: space-around;
+          align-items: center;
            div{
 
-            margin: 0 5px;
+            margin: 0 1px;
             input{
                 padding: 3px 8px;
-                font-size: 0.8rem;
+                font-size: 0.7rem;
                 font-weight: 300;
+               background: rgba(243, 242, 242, 0.694);
+
             }
            }
         }
@@ -266,12 +269,12 @@ form[name='search_post']{
         button{
         
             width: 40px;
-            height: 34px;
+            height: 28px;
             border-radius: 5px;
             margin: 0;
             border: none;
-            background: $greenhigh;
-            color: $greenhigh;
+            background: rgba(243, 242, 242, 0.694);
+            color: rgba(243, 242, 242, 0.694);
             &::before{
                 font-family: 'Material Icons';
 
@@ -279,9 +282,9 @@ form[name='search_post']{
                 display: block;
                 margin-left: 5px;
 
-                font-size: 27px;
-              
-                color: white;
+                font-size: 20px;
+                font-weight: 300;
+                color: rgb(124, 122, 122);
 
             }
            

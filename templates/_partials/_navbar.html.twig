@@ -1,47 +1,71 @@
 <nav class="navbar" {% if is_granted('ROLE_ADMIN') %} style="background:#588157" {% endif %}>
   
     <div class="logo">
-      <a href="{{path('main')}}"><img src="{{asset('images/image_style/logo2.png')}}" alt=" image_logo_the-blog"> </a>  
+      <a href="{{path('main')}}"> ShareArticle </a>  
     </div>
-    <ul>
+    <ul class="ul1">
 
-        <li> <a href="{{path('main')}}" class={{ app.current_route == 'main'? 'active':''}}>Accueil</a> </li>
-        <li><a href="{{path('posts_index')}}" class={{ app.current_route starts with 'posts_'? 'active':''}}>Articles</a> </li>
+        <li> <a href="{{path('main')}}" class={{ app.current_route == 'main'? 'active':''}}> <span class="material-symbols-outlined">
+          home
+          </span>Accueil</a> </li>
+        <li><a href="{{path('posts_index')}}" class={{ app.current_route starts with 'posts_'? 'active':''}}> <span class="material-symbols-outlined">
+          newsstand
+          </span> Articles</a> </li>
         <li class="li_cats"> 
-            <a href="#" class={{ app.current_route starts with 'categories_'? 'active':''}}> Catégories </a> 
-              <div class="cats">
+            <a href="#" class={{ app.current_route starts with 'categories_'? 'active':''}}> <span class="material-symbols-outlined">
+              category
+              </span> Catégories </a> 
+               <div class="cats">
                 <ul class="ul_cats">
                   
                   {% for cat in cats.getCategories %}
                       {% if cat.parent is not null  %}
-                         {# <h4> {{cat.slug|capitalize}}</h4> #}
+                          <h4> {{cat.slug|capitalize}}</h4>
                          <li><a href="{{path('categories_postsbycaty',{slug:cat.slug})}}">{{cat.slug}}</a></li>       
                       {% endif %}  
                   {% endfor %}
-                </ul>
+                </ul> 
                 
-              </div>  
+              </div> 
         </li>
         
-        <li> <a href="{{path('contact')}}" class={{ app.current_route == 'contact'? 'active':''}}>Contact</a> </li>
-        {% if app.user %}
-        {% if is_granted('ROLE_ADMIN')  %}
-        <li> <a href="{{path('admin_index')}}" class={{ app.current_route starts with 'admin_'? 'active':''}}>Administration</a> </li>
-            
-        {% endif %}
-        <li> <a href="{{path('profile_index')}}">Profile</a> </li>
+        <li> <a href="{{path('contact')}}" class={{ app.current_route == 'contact'? 'active':''}}> <span class="material-symbols-outlined">
+          contact_support
+          </span> Contact</a> </li>
+    </ul>
 
-        <li> <a href="{{path('app_logout')}}">Se deconnecter</a> </li>
-            {% else %}
-        <li> <a href="{{path('login')}}" class={{ app.current_route == 'login'? 'active':''}}>Se connecter</a> </li>
-        <li> <a href="{{path('register')}}" class={{ app.current_route == 'register'? 'active':''}}>S'inscrire </a> </li>    
-        {% endif %}
-       
-        <li> 
+    <ul class="ul2">
+          <li class="li_search"> 
             {% set globalForm = render_global_form('App\\Form\\SearchPostType') %}
             {{form(globalForm)}}
-   
-        </li>
+         </li>
+         {% if app.user %}
+         {% if is_granted('ROLE_ADMIN')  %}
+         <li> <a href="{{path('admin_index')}}" class={{ app.current_route starts with 'admin_'? 'active':''}}>Administration</a> </li>
+             
+         {% endif %}
+         <li> <a href="{{path('profile_index')}}"> <span class="material-symbols-outlined">
+          settings_accessibility
+          </span> Profile</a> </li>
+ 
+         <li>  <a href="{{path('app_logout')}}"> <span class="material-symbols-outlined">
+          power_settings_new
+          </span>  Se deconnecter</a> </li>
+             {% else %}
+         <li>  <a href="{{path('login')}}" class={{ app.current_route == 'login'? 'active':''}}>  <span class="material-symbols-outlined">
+          person
+          </span> Se connecter</a> </li>
+         <li> <a href="{{path('register')}}" class={{ app.current_route == 'register'? 'active':''}}> <span class="material-symbols-outlined">
+          app_registration
+          </span> S'inscrire </a> </li>    
+         {% endif %}
     </ul>
+    <div class="burg">
+
+    </div>
+      
+       
+        
+    
 
 </nav>
