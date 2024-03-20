@@ -474,7 +474,7 @@ form button:hover, .btn:hover {
 }
 .addpost form div label, form div label {
   display: block;
-  color: #588157;
+  color: #899D78;
   font-weight: 600;
   margin: 10px auto 5px;
 }
@@ -502,7 +502,7 @@ form .login_forgot {
 }
 form .login_forgot:hover {
   text-decoration: none;
-  color: #588157;
+  color: #899D78;
 }
 
 form[name=search_post] {
@@ -616,7 +616,7 @@ form[name=search_post] button::before {
 
 aside {
   width: 300px;
-  background: #588157;
+  background: #899D78;
   color: white;
 }
 aside ul li {
@@ -643,8 +643,8 @@ aside ul li:hover {
 
 .success {
   background: #ECF3F2;
-  border: 1px solid #588157;
-  color: #588157;
+  border: 1px solid #899D78;
+  color: #899D78;
 }
 .success p {
   font-size: calc(0.8rem + 0.5vw);
@@ -719,9 +719,32 @@ pre code {
   justify-content: space-between;
   background-color: rgba(243, 242, 242, 0.694);
   color: white;
-  padding: 10px 150px;
+  padding: 10px calc(20px + 7vw);
   width: 100%;
   box-shadow: 0 -20px 10px -20px rgba(177, 177, 177, 0.628) inset;
+}
+@media screen and (max-width: 1380px) {
+  .navbar #contact {
+    visibility: hidden;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .navbar .ul2, .navbar .ul1 {
+    display: none;
+  }
+  .navbar .burg {
+    display: block !important;
+    padding-top: 5px;
+  }
+  .navbar .burg.open {
+    transform: rotate(360deg);
+  }
+  .navbar .burg.open .span1 {
+    transform: rotate(45deg) translateY(5px);
+  }
+  .navbar .burg.open .span2 {
+    transform: rotate(-45deg) translateY(-5px);
+  }
 }
 .navbar .logo a {
   text-decoration: none;
@@ -746,10 +769,10 @@ pre code {
   color: #020202;
   padding: 10px 20px;
   font-size: 0.9rem;
+  transition: 0.3s;
 }
-.navbar ul a.active {
-  font-weight: 700;
-  text-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+.navbar ul a:hover, .navbar ul a.active {
+  text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   color: #899D78;
 }
 .navbar ul a span {
@@ -761,18 +784,60 @@ pre code {
 }
 .navbar .ul2 {
   min-width: 450px;
+  z-index: 10;
+}
+.navbar .ul1 {
+  position: relative;
+  z-index: 9;
+  max-height: 20px;
 }
 .navbar .ul1 li {
   padding: 0 10px;
+  min-width: 123px;
 }
-.navbar .cats {
+.navbar .ul1 .li_cats {
+  min-width: 145px;
+}
+.navbar .ul1 .li_cats .cats {
   display: none;
+  position: absolute;
+  top: 30px;
+  width: 142px;
+  height: auto;
+  border-radius: 15px;
+  background: #899D78;
+}
+.navbar .ul1 .li_cats .cats .ul_cats {
+  display: block;
+  padding: 20px 0;
+}
+.navbar .ul1 .li_cats .cats .ul_cats li {
+  margin: 8px auto;
+}
+.navbar .ul1 .li_cats .cats .ul_cats li a {
+  transition: 0.3s;
+}
+.navbar .ul1 .li_cats .cats .ul_cats li a:hover {
+  color: #ffffff;
+}
+.navbar .ul1 .li_cats:hover .cats {
+  display: block;
+  overflow: auto;
 }
 .navbar .burg {
-  width: 20px;
-  height: 20px;
-  background: #020202;
+  width: 40px;
+  height: 30px;
   display: none;
+  transition: 0.3s;
+}
+.navbar .burg span {
+  display: block;
+  width: 35px;
+  height: 2px;
+  border-radius: 10px;
+  margin: 5px auto;
+  background: gray;
+  transition: 0.3s;
 }
 
 .main {
@@ -938,7 +1003,7 @@ pre code {
   font-size: 2rem;
   text-align: center;
   margin: 5px auto;
-  color: #588157;
+  color: #899D78;
 }
 .main {
   width: 70%;
@@ -1047,7 +1112,7 @@ pre code {
 }
 .profile aside {
   width: 300px;
-  background: #588157;
+  background: #899D78;
   color: white;
 }
 .profile aside ul li {

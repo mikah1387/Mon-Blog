@@ -5,11 +5,44 @@
     justify-content: space-between;
     background-color: rgba(243, 242, 242, 0.694);
     color: white;
-    padding: 10px 150px;
+    padding: 10px calc(20px + 7vw);
     width: 100%;
     box-shadow: 0 -20px 10px -20px rgba(177, 177, 177, 0.628) inset;
-   
+    
+    @media screen and (max-width:1380px){
+       #contact{
 
+        visibility: hidden;
+       }
+    }
+    @media screen and (max-width:1200px) {
+      
+      .ul2,.ul1{
+        display:none;
+      }
+      
+      .burg{
+        display: block !important;
+        padding-top: 5px;
+        &.open{
+        transform: rotate(360deg) ;
+
+          .span1{
+            
+            transform: rotate(45deg) translateY(5px);
+    
+           }
+           .span2{
+            
+            transform: rotate(-45deg) translateY(-5px);
+    
+           }
+    
+         }
+      } 
+    }
+   
+  
 
     .logo{
 
@@ -42,13 +75,13 @@
     color: $black;
     padding: 10px  20px ;
     font-size: 0.9rem;
-    &.active{
+    transition: 0.3s;
 
-      font-weight: 700;
-      text-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    &:hover,&.active{
+      text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       color:#899D78;
       
-    }
+     }
     span{
 
       font-size: 1.1rem;
@@ -56,9 +89,8 @@
       position: absolute;
       top: 11px;
       left: -3px; 
-      
-     
-    }
+
+      }
 
 
 
@@ -68,21 +100,91 @@
     
     .ul2{
       min-width: 450px;
+      z-index: 10;
+      
     }
     .ul1{
+      position: relative;
+
+      z-index: 9;
+      max-height: 20px;
      li{
       padding: 0 10px;
+      min-width: 123px;
+     }
+     .li_cats{
+      min-width: 145px;
+
+   
+      .cats{
+      
+        display: none;
+        position: absolute;
+        top: 30px;
+        width: 142px;
+        height: auto;
+        border-radius: 15px;
+
+        background: $greenhigh;
+       
+        .ul_cats{
+        display: block;
+        padding: 20px 0;
+
+        li{
+          
+          margin: 8px auto;
+          a{
+            
+             transition: 0.3s;
+
+            &:hover{
+
+            color: $white;
+
+            }
+          }
+        }
+
+        }
+  
+        }
+       &:hover{
+        
+
+        .cats{
+          display: block;
+          overflow:auto; 
+
+        }
+       } 
+
+     }
+    }
+ 
+
+    .burg{
+      width: 40px;
+      height: 30px;    
+      
+      display: none;
+
+    
+      transition: 0.3s;
+      span{
+        display: block;
+        width: 35px;
+        height: 2px;
+        border-radius: 10px;
+        margin: 5px auto;
+        background: gray;
+        transition: 0.3s;
+      }
+      
+   
+
+
      }
 
-    }
-    .cats{
-      display: none;
-    }
-    .burg{
-      width: 20px;
-      height: 20px;
-      background: $black;
-      display: none;
-    }
-
+   
     }

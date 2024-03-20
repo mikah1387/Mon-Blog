@@ -11,8 +11,8 @@
         <li><a href="{{path('posts_index')}}" class={{ app.current_route starts with 'posts_'? 'active':''}}> <span class="material-symbols-outlined">
           newsstand
           </span> Articles</a> </li>
-        <li class="li_cats"> 
-            <a href="#" class={{ app.current_route starts with 'categories_'? 'active':''}}> <span class="material-symbols-outlined">
+        <li class="li_cats" > 
+            <a href="#"  class={{ app.current_route starts with 'categories_'? 'active':''}}> <span class="material-symbols-outlined">
               category
               </span> Catégories </a> 
                <div class="cats">
@@ -20,8 +20,8 @@
                   
                   {% for cat in cats.getCategories %}
                       {% if cat.parent is not null  %}
-                          <h4> {{cat.slug|capitalize}}</h4>
-                         <li><a href="{{path('categories_postsbycaty',{slug:cat.slug})}}">{{cat.slug}}</a></li>       
+                          {# <h4> {{cat.slug}}</h4> #}
+                         <li><a href="{{path('categories_postsbycaty',{slug:cat.slug})}}">{{cat.slug|capitalize}}</a></li>       
                       {% endif %}  
                   {% endfor %}
                 </ul> 
@@ -29,7 +29,7 @@
               </div> 
         </li>
         
-        <li> <a href="{{path('contact')}}" class={{ app.current_route == 'contact'? 'active':''}}> <span class="material-symbols-outlined">
+        <li id="contact"> <a href="{{path('contact')}}" class={{ app.current_route == 'contact'? 'active':''}}> <span class="material-symbols-outlined">
           contact_support
           </span> Contact</a> </li>
     </ul>
@@ -61,7 +61,8 @@
          {% endif %}
     </ul>
     <div class="burg">
-
+      <span class="span1"></span>
+      <span class="span2"></span>
     </div>
       
        
