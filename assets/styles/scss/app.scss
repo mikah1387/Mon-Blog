@@ -311,13 +311,13 @@ form[name='search_post']{
         display: inline-block;
         padding: 5px 0 3px;
         margin: 0 20px;
-        background: rgba(255, 127, 80, 0.765);
+        background: $greenhigh;
         border-radius: 30px;
         border: none;
        
         transition:  0.3s;
         &:hover{
-            background:coral;
+            background:$greenlight;
       
         }
 
@@ -342,13 +342,13 @@ form[name='search_post']{
         padding: 5px 0 3px;
         margin: 0 20px;
 
-        background: rgba(255, 127, 80, 0.765);
+        background: $greenhigh;
         border-radius: 30px;
         border: none;
-        color: coral;
+        color: $greenhigh;
         transition:  0.3s;
         &:hover{
-            background:coral;
+            background:$greenlight;
       
         }
         
