@@ -81,10 +81,10 @@
                         <td>{{post.CreatedAt|date("F j,Y")}}</td>
 
                         <td>
-                            <a href="{{path('posts_update',{slug:post.slug})}}"><span class="material-symbols-outlined">
+                            <a href="{{path('posts_update',{slug:post.slug,id:post.id})}}"><span class="material-symbols-outlined">
                                     edit
                                 </span></a>
-                            <a href="{{path('posts_delete',{slug:post.slug})}}"><span class="material-symbols-outlined">
+                            <a href="{{path('posts_delete',{slug:post.slug,id:post.id})}}"><span class="material-symbols-outlined">
                                     delete
                                 </span></a>
                         </td>

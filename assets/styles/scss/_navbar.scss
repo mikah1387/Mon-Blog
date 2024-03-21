@@ -1,3 +1,6 @@
+header{
+
+
 .navbar{
 
     display: flex;
@@ -25,7 +28,7 @@
         display: block !important;
         padding-top: 5px;
         &.open{
-        transform: rotate(360deg) ;
+        transform: rotate(-180deg) ;
 
           .span1{
             
@@ -104,15 +107,16 @@
       
     }
     .ul1{
-      position: relative;
+
 
       z-index: 9;
-      max-height: 20px;
+ 
      li{
       padding: 0 10px;
       min-width: 123px;
      }
      .li_cats{
+      position: relative;
       min-width: 145px;
 
    
@@ -162,7 +166,6 @@
      }
     }
  
-
     .burg{
       width: 40px;
       height: 30px;    
@@ -170,7 +173,7 @@
       display: none;
 
     
-      transition: 0.3s;
+      transition: 0.4s;
       span{
         display: block;
         width: 35px;
@@ -185,6 +188,66 @@
 
 
      }
+    &.open{
+     
+     position: fixed;
+     top: 0;
+     left: 0; 
+    background: rgba(227, 227, 227, 0.75) ;
+    backdrop-filter: blur(20px);
+    z-index: 100;
+     min-height: 100vh;
+     flex-direction: column;
+     justify-content: center;
+     overflow: hidden;
+     .logo{
+      display: none;
+     }
+     .ul1,.ul2{
 
+      display: block;
+      min-width: 200px;
+      
+       li{
+        padding-top: 20px;
+       }
+     }
+     .ul1{
+      
+      margin-left: -14px;
+      #contact{
+
+        visibility: visible;
+      }
+      .li_cats{
+
+        .cats{
+          top:-162px;
+          left: 94px;
+          li{
+
+            padding-top:0 ;
+          }
+        }
+      }
+     }
+     .ul2{
+      
+      margin-top: 0px;
+      .li_search{
+
+        display: none;
+      }
+     }
+
+     .burg{
+
+      position: absolute;
+      top: 8px ;
+      right: calc(28px + 7vw);
+
+     }
+    }
    
     }
+  }
