@@ -769,7 +769,7 @@ header .navbar {
     transform: rotate(-45deg) translateY(-5px);
   }
 }
-header .navbar .logo a {
+header .navbar .logo #a_logo {
   text-decoration: none;
   color: #020202;
   font-weight: bold;
@@ -946,19 +946,34 @@ header .navbar.open .burg {
 }
 .main {
   min-height: 100vh;
+  width: 90%;
+  margin: 0 auto;
 }
 .main .baniere {
   position: relative;
   width: 90%;
-  height: 70vh;
+  height: 75vh;
   background: center center/cover url(../images/baniere1.jpg);
   margin: 40px auto;
   border-radius: 20px;
 }
+.main .baniere::before {
+  content: "";
+  display: block;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  background: rgba(137, 157, 120, 0.37);
+}
 .main .baniere h1 {
-  font-size: calc(1.2rem + 2vw);
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  font-size: calc(1rem + 2vw);
   font-style: italic;
-  color: white;
+  color: #ffffff;
   text-align: center;
   padding-top: 15px;
 }
@@ -968,10 +983,10 @@ header .navbar.open .burg {
   left: 50%;
   transform: translateX(-50%);
   top: 80%;
-  width: 40%;
+  width: 30%;
   min-width: 250px;
   height: auto;
-  background: white;
+  background: #ffffff;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
 }
@@ -991,11 +1006,11 @@ header .navbar.open .burg {
 }
 .main .lastuser h2 {
   text-align: center;
-  font-size: calc(0.7rem + 1vw);
+  font-size: calc(0.3rem + 1vw);
 }
 .main .lastuser h3 {
   text-align: center;
-  font-size: calc(0.5rem + 1vw);
+  font-size: calc(0.3rem + 1vw);
 }
 .main .parentpost {
   width: 100%;
@@ -1109,11 +1124,6 @@ header .navbar.open .burg {
   margin: 5px auto;
   color: #899D78;
 }
-.main {
-  width: 70%;
-  margin: auto;
-}
-
 .button {
   margin: 100px auto;
 }
@@ -1337,27 +1347,55 @@ header .navbar.open .burg {
   margin: 20px auto;
 }
 
-.footer {
+footer .navbar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  background-color: #020202;
-  color: white;
-  padding: 10px;
-  height: 40px;
-}
-.footer .logo {
-  width: 200px;
-  display: flex;
-}
-.footer .logo a {
-  display: inline-block;
-  width: 40%;
-  margin: 0 5px;
-  color: white;
-  font-weight: 700;
-  text-decoration: none;
-}
-.footer .logo a img {
+  flex-wrap: wrap;
+  row-gap: 20px;
+  background-color: rgba(243, 242, 242, 0.694);
+  min-height: 100px;
+  padding: 10px calc(20px + 7vw);
   width: 100%;
-  height: 100%;
+}
+footer .navbar .logo {
+  margin: 0 auto;
+}
+footer .navbar .logo a {
+  text-decoration: none;
+  color: #020202;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.5rem;
+}
+footer .navbar .ul1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  row-gap: 20px;
+}
+footer .navbar .ul1 li {
+  margin: 0 10px;
+}
+footer .navbar .ul1 li a {
+  position: relative;
+  text-decoration: none;
+  color: #020202;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+footer .navbar .ul1 li a:hover, footer .navbar .ul1 li a.active {
+  text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: #899D78;
+}
+footer .navbar .ul1 li a span {
+  font-size: 1.1rem;
+  display: inline-block;
+  position: absolute;
+  top: 11px;
+  left: -3px;
 }/*# sourceMappingURL=app.css.map */

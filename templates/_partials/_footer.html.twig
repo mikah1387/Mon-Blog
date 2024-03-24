@@ -1,11 +1,32 @@
-<nav class="footer">
+<footer>
+    <nav class="navbar">
 
-    <div class="logo">
-        <a href="{{path('main')}}"><img src="{{asset('images/image_style/logo2.png')}}" alt=" image_logo_the-blog"> </a>  
-        <a href="{{path('main')}}">The-blog </a>
-      </div>
-    <div class="mentions">
+        <div class="logo">
+            <a href="{{path('main')}}"> ShareArticle </a>
+        </div>
+        <ul class="ul1">
 
-        <p>Mentions légales</p>
-    </div>
-</nav>
+            <li> <a href="#" class={{ app.current_route=='main' ? 'active' :''}}>
+                 <span
+                  class="material-symbols-outlined">
+                        home </span>Mentions légale</a> 
+            </li>
+            <li><a href="#" class={{ app.current_route starts with 'posts_' ? 'active' :''}}>
+                    <span class="material-symbols-outlined">
+                        newsstand
+                    </span> Vie privée </a> 
+             </li>
+            <li><a href="#" class={{ app.current_route starts with 'posts_' ? 'active' :''}}>
+                    <span class="material-symbols-outlined">
+                        newsstand
+                    </span> CGU</a> 
+            </li>
+
+            <li id="contact"> <a href="{{path('contact')}}" class={{ app.current_route=='contact' ? 'active' :''}}>
+                    <span class="material-symbols-outlined">
+                        contact_support
+                    </span> Contact</a>
+             </li>
+        </ul>
+    </nav>
+</footer>
