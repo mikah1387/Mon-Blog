@@ -86,112 +86,95 @@
      }
      
 
-     .parentpost{
-       
-        width: 100%;
-        margin:  auto;
-        height: auto;
-        // background: coral ;
-        display: flex;
-        justify-content:center;
-        flex-wrap: wrap;
-        gap: 40px 20px;
-
-        .cart{
-          @extend %cart;
-       
+   .auteurs{
+      margin-top: 100px;
+      h2{
+          text-align: center;
+          font-size: calc(2rem + 2vw);
+          &::after{
+  
+              content: "";
+              display: block;
+              
+              height: 4px;
+              width: 300px;
+              background: coral;
+              margin: 10px auto;
+          }
+      }
+      .parentauteur{
+          width: 80%;
+          margin: 40px auto;
+          height: auto;
+          // background: coral ;
+          display: flex;
+          justify-content: space-around;
+          flex-wrap: wrap;
+          gap: 20px 20px;
+  
+      }
+     .cart{
+  
+      min-width:250px;
+      width: calc(250px + 1vw);
+      min-height: auto;
+     
+      overflow: hidden;
+     
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      border-radius: 15px;
+      .circle{
+        width: 180px;
+        height: 180px;
+        @extend %centeritem;
+        margin: 10px auto 5px ;
         
-        }
-
-       }
-     .auteurs{
-        margin-top: 100px;
-        h2{
-            text-align: center;
-            font-size: calc(2rem + 2vw);
-            &::after{
-
-                content: "";
-                display: block;
-                
-                height: 4px;
-                width: 300px;
-                background: coral;
-                margin: 10px auto;
-            }
-        }
-        .parentauteur{
-            width: 80%;
-            margin: 40px auto;
-            height: auto;
-            // background: coral ;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px 20px;
-
-        }
-       .cart{
-
-        min-width:250px;
-        width: calc(250px + 1vw);
-        min-height: auto;
-       
-        overflow: hidden;
-       
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        border-radius: 15px;
-        .circle{
-          width: 180px;
-          height: 180px;
-          @extend %centeritem;
-          margin: 10px auto 5px ;
-          
-          border: 3px solid rgb(192, 191, 191);
+        border: 3px solid rgb(192, 191, 191);
+        border-radius: 50%;
+        .img{
+          height: 150px;
+          width: 150px;
+          margin: auto;
           border-radius: 50%;
-          .img{
-            height: 150px;
-            width: 150px;
-            margin: auto;
-            border-radius: 50%;
-            overflow: hidden;
-            img{
-
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-           }
-        }
-       
-        .infoauteur{
-
-         
-          h4,h3{
-
-            margin: 5px auto;
-            text-align: center;
-           font-style: italic;
-
-            
-         }  
-         h4{
-          font-size: 0.8rem;
-          font-weight: 400;
+          overflow: hidden;
+          img{
+  
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+          }
          }
-        }
+      }
+     
+      .infoauteur{
+  
        
-      
-       } 
+        h4,h3{
+  
+          margin: 5px auto;
+          text-align: center;
+         font-style: italic;
+  
+          
+       }  
+       h4{
+        font-size: 0.8rem;
+        font-weight: 400;
+       }
+      }
+     
+    
+     } 
+  
+   }
 
-     }
   
   
 }
 .main_articles{
   margin-top: 100px;
   display: block;
-  width: 80%;
+  width: 100%;
   margin: auto;
   h2{
       text-align: center;
@@ -204,8 +187,8 @@
           display: block;
           
           height: 4px;
-          width: 300px;
-          background: coral;
+          width: calc(45% + 2vw);
+          background: $greenhigh;
           margin: 10px auto;
       }
    }
@@ -219,7 +202,28 @@
     transition: 0.3s;
     &:hover{
     
-      color: rgba(0, 0, 0, 0.5);
+      text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      color:#899D78;
     }
    }
+
+   .parentpost{
+       
+    width: 100%;
+    margin:  auto;
+    height: auto;
+    // background: coral ;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    gap: 40px 20px;
+
+    .cart{
+      @extend %cart;
+   
+    
+    }
+
+   }
+
 }

@@ -57,7 +57,7 @@
               
           </div>
           <h3> {{post.slug}}</h3>
-          <p> {{post.content|striptags|slice(0, 150)}}... </p>
+          <p> {{post.content|striptags|slice(0, 400)}}... </p>
 
           {% for category in post.categories %}
           

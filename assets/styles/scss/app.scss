@@ -50,9 +50,9 @@ pre{
     text-decoration: none;
     color: black;
     min-width:300px;
-    width: calc(300px + 1vw);
+    width: calc(400px + 1vw);
    
-    max-height: 500px;
+    max-height: 600px;
    
     overflow: hidden;
    
@@ -63,7 +63,7 @@ pre{
         transform: scale(1.05);
         }
         .body_cart{
-            background:$beige;
+            background:$greenlight;
         }
     }
      
@@ -78,7 +78,7 @@ pre{
 
            width: 100%;
            height: 100%;
-           object-fit: cover;
+           
            transition: 0.3s;
 
        }
@@ -86,15 +86,21 @@ pre{
 
      .body_cart{
        padding: 10px 5px;
-       border-radius: 0 0 10px 10px;
        padding: 10px 12px; 
+       height: 55%;
+       border-radius: 0 0 10px 10px;
+       overflow: hidden;
        transition: 0.3s;
        .autor{
            display: flex;
            margin: 5px 0 10px;
+           align-items: center;
+       
         .image{
-            width: 25px;
-            height: 25px;
+            width: 35px;
+            height: 35px;
+            min-width: 35px;
+            min-height: 35px;
             border-radius: 50%;
             overflow: hidden;
             margin-right: 5px;
@@ -107,14 +113,22 @@ pre{
            
         }
 
-        h4,h5{
-            margin-top: 3px;
+        h4{
+            
             font-size: 14px;  
-            font-weight: 400;
+            font-weight: 600;
+            flex-grow: 1;
+            // margin-left: -20px;
+            
+            
            
            }  
         h5{
-            margin-left: 115px;
+            // margin-left: calc(80px + 6vw);
+            min-width: 110px;
+            flex: flex-end;
+            // flex-shrink: 3;
+            color: $greenhigh;
             span{
                 font-size: 13px;
             }
@@ -131,10 +145,13 @@ pre{
 
       }
       h6{
-        color: red;
+        color: $greenhigh;
         font-weight: 600;
         font-size: 14px;  
-
+        display: inline-block;
+        padding: 5px 8px;
+        border-radius: 5px;
+        background: rgb(220 237 220);  
         margin: 5px auto 10px;
       }
 
