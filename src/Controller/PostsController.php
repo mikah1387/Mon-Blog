@@ -42,13 +42,13 @@ class PostsController extends AbstractController
          });
          $page= $request->query->get('page',1);
         
-         $paginations = $paginator->paginate($posts,$page,6);
+         $paginations = $paginator->paginate($posts,$page,9);
          $categorie = $request->get('categorie');
          $trie =  $request->get('trie');
          if ($trie) {
           $postscat = $postsRepo->findPostsBycaty( $categorie,$trie);
           // dd($postscat);
-          $paginations= $paginator->paginate($postscat,$page,6);     
+          $paginations= $paginator->paginate($postscat,$page,9);     
          }
          if ($categorie) {
           $trie =  $request->get('trie');

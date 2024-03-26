@@ -429,6 +429,8 @@ pre code {
   flex-grow: 1;
 }
 .cart .body_cart .autor h5 {
+  font-size: 14px;
+  font-weight: 600;
   min-width: 110px;
   flex: flex-end;
   color: #899D78;
@@ -443,6 +445,7 @@ pre code {
 .main_articles .parentpost .cart .body_cart h3, .main_articles .parentpost .cart .body_cart P, .cart .body_cart h3, .cart .body_cart P {
   text-align: justify;
   margin: 10px 0 10px;
+  line-height: 30px;
 }
 .main_articles .parentpost .cart .body_cart h6, .cart .body_cart h6 {
   color: #899D78;
@@ -459,7 +462,7 @@ pre code {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #588157;
+  background: #899D78;
   text-decoration: none;
   border-radius: 25px;
   padding: calc(10px + 0.3vw) calc(8px + 0.6vw);
@@ -468,10 +471,10 @@ pre code {
   font-weight: 600;
   margin: 50px auto 0;
   width: calc(8rem + 3.5vw);
-  transition: 0.3 all;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 form button:hover, .btn:hover {
-  background: #a3b18a;
+  background: #bdd2a6;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -497,7 +500,7 @@ form button:hover, .btn:hover {
   }
 }
 .addpost form p, form p {
-  color: #588157;
+  color: #899D78;
   font-weight: 600;
   margin: 10px auto 5px;
 }
@@ -511,7 +514,7 @@ form button:hover, .btn:hover {
   margin: 10px auto 5px;
 }
 .addpost form div input, .addpost form div textarea, .addpost form div select, form div input, form div textarea, form div #editor, form div select {
-  background: #ECF3F2;
+  background: #dceddc;
   width: 100%;
   outline: none;
   line-height: 2;
@@ -521,7 +524,7 @@ form button:hover, .btn:hover {
   transition: 0.3 all;
 }
 form div input:focus, form div textarea:focus, form div #editor:focus, form div select:focus {
-  box-shadow: #94d3ca 0px 3px 8px;
+  box-shadow: #bdd2a6 0px 3px 8px;
 }
 .addpost form button, form button {
   border: none;
@@ -1126,6 +1129,9 @@ header .navbar.open .burg {
 }
 .addpost {
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .addpost h1 {
   font-size: 2rem;
@@ -1136,6 +1142,11 @@ header .navbar.open .burg {
 .button {
   margin: 100px auto;
 }
+#content {
+  width: 90%;
+  margin: auto;
+}
+
 .detail_article {
   min-height: 100vh;
   width: 80vw;
@@ -1187,9 +1198,9 @@ header .navbar.open .burg {
 
 .image_caty_p {
   margin: 20px auto 50px;
-  width: 70%;
-  height: 50vh;
-  border-radius: 10px;
+  width: 90%;
+  height: 60vh;
+  border-radius: 20px;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
@@ -1201,9 +1212,12 @@ header .navbar.open .burg {
 }
 
 .categories {
-  min-height: 100vh;
+  min-height: auto;
+  width: 90%;
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 40px 10px;
   justify-content: space-around;
   margin: 50px 10%;

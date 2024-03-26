@@ -1,11 +1,3 @@
-.main{
-
- 
-    
-
-
-
-}
 
 .button{
 
@@ -15,4 +7,10 @@
         @extend %btn;
   
     }
+}
+
+#content{
+
+    width: 90%;
+    margin: auto;
 }
