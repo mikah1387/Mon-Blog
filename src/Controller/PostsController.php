@@ -107,7 +107,7 @@ class PostsController extends AbstractController
         $posts = $postsRepo->searchTags($mots);
         $page= $request->query->get('page',1);
 
-        $paginations= $paginator->paginate($posts,$page,4);
+        $paginations= $paginator->paginate($posts,$page,1);
          return $this->render('posts/search.html.twig',[
           'paginations' => $paginations,
                

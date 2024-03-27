@@ -722,9 +722,16 @@ pre code {
   display: flex;
   justify-content: center;
 }
+@media screen and (max-width: 450px) {
+  .filters {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+  }
+}
 .filters .div_select {
   position: relative;
-  width: 300px;
+  width: 200px;
   margin: 0px 0px 30px;
   box-shadow: none;
   padding: 0;
@@ -743,8 +750,7 @@ pre code {
   font-size: 1rem;
 }
 .filters .div_select select:focus-visible {
-  box-shadow: #5dbe91 0px 3px 8px;
-  border-color: #94d3ca !important;
+  box-shadow: #899D78 0px 3px 8px;
   outline: none !important;
 }
 
@@ -1220,7 +1226,6 @@ header .navbar.open .burg {
   justify-content: center;
   gap: 40px 10px;
   justify-content: space-around;
-  margin: 50px 10%;
 }
 .categories .cart h2 {
   margin-top: 10px;
