@@ -24,9 +24,9 @@
         {{post.content|raw}}
     </div>
 
-    <div class="descrip" >
+    <div class="descrip comts" >
       <a class="btn" href="{{path('comments_add', {id:post.id})}}">commenter</a>
-      <h1> Comentaires </h1>
+      <h2> {{post.comments|length}} Comentaires </h2>
 
      
 
@@ -42,14 +42,22 @@
 
         </div>
       
-      <p>{{comment.content|raw}} </p>
+        <p>{{comment.content|raw}} </p>
       <a href=" {{path('comments_add_response',{id:comment.id})}}" class="btn">répondre</a>
         {% for response in comment.comments %}
        
       <div class="response">
+
+        <div class="user">
+          <div class="image">
+            <img src="{{asset('images/uploads/users/min/300x300-' ~ response.users.image)}}" width="30px" alt="">
+          </div>
+           <span> {{response.users.nickname}}</spanspan>
+
+        </div>
         
-        <h2> réponse de {{response.users.nickname}}</h2>
-        <p>{{response.content}} </p>
+        
+        <p>{{response.content|raw}} </p>
     
       </div>
 

@@ -15,7 +15,13 @@ class CommentsFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('content', HiddenType::class);
+            ->add('content', HiddenType::class,[
+
+                'attr'=>[
+                    'class'=>'input_hidden'
+                ]
+                
+            ]);
             
     
     }

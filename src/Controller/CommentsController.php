@@ -47,9 +47,11 @@ class CommentsController extends AbstractController
              $em->persist($comment);
              $em->flush();
              $cache->delete('user_'.$user->getNickname());
+             $cache->delete('post_'.$post->getSlug());
 
              $this->addFlash('success', 'votre conmmentaire est bien ajouté ');
-                         return $this->redirectToRoute('posts_detail',['slug'=>$post->getSlug()]);
+                         return $this->redirectToRoute('posts_detail',['slug'=>$post->getSlug(),
+                        'id'=>$post->getId()]);
          }
  
          return $this->render('comments/addcomment.html.twig',['addcommentform' => $form->createView(),
@@ -78,9 +80,12 @@ class CommentsController extends AbstractController
              $em->persist($response);
              $em->flush();
              $cache->delete('user_'.$user->getNickname());
+             $cache->delete('post_'.$post->getSlug());
 
              $this->addFlash('success', 'votre réponse est bien ajouté ');
-                         return $this->redirectToRoute('posts_detail',['slug'=>$post->getSlug()]);
+                         return $this->redirectToRoute('posts_detail',['slug'=>$post->getSlug(),
+                         'id'=>$post->getId()]
+                        );
          }
  
          return $this->render('comments/addcomment.html.twig',['addcommentform' => $form->createView(),
@@ -93,7 +98,7 @@ class CommentsController extends AbstractController
     public function updateComment( Request $request, EntityManagerInterface $em,
     UserInterface $user,Comments $comment,CacheInterface $cache): Response
     {
-        //  $post=$comment->getPosts();
+         $post=$comment->getPosts();
          
          $form = $this->createForm(CommentsFormType::class, $comment);
          $form->handleRequest($request);
@@ -104,6 +109,8 @@ class CommentsController extends AbstractController
              $em->persist($comment);
              $em->flush();
              $cache->delete('user_'.$user->getNickname());
+             $cache->delete('post_'.$post->getSlug());
+
 
              $this->addFlash('success', 'votre commentaire est bien modifié ');
                          return $this->redirectToRoute('profile_index');
@@ -115,11 +122,14 @@ class CommentsController extends AbstractController
       
     }
     #[Route('/delete/{id}', name: 'delete')]
-    public function delete( Comments $comment,EntityManagerInterface $em )
+    public function delete( Comments $comment,EntityManagerInterface $em, UserInterface $user,CacheInterface $cache )
     {
-
+        $post= $comment->getPosts();
+        //  dd($post);
         $em->remove($comment);
         $em->flush();
+        $cache->delete('user_'.$user->getNickname());
+        $cache->delete('post_'.$post->getSlug());
         $this->addFlash('success', 'votre commentaire est bien suprimé ');
                     return $this->redirectToRoute('profile_index'); 
     }
