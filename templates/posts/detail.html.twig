@@ -6,26 +6,25 @@
 <div class="detail_article">
 
   <div class="detail">
-
-
+     
+     <div class="intro">
+      {% for category in post.categories %}
+     
+      <p class="p_caty">{{category.name}}</p>
+      {% endfor %}
+     <h1> {{post.slug}}</h1>
+     <p> Posté le {{post.CreatedAt|format_datetime('long','none',locale='fr') }} - par l'auteur {{post.users.nickname}} </p>
+     
+    </div>
     <div class="img">
       <img src="{{asset('images/uploads/posts/'~ post.featuredImage)}}" alt="image_article">
     </div>
 
-    <div class="descrip">
-      <h2> {{post.slug}}</h2>
-      <div>
+    <div class="descrip">  
         {{post.content|raw}}
-
-      </div>
-      {% for category in post.categories %}
-      <h5>Categorie : {{category.name}}</h5>
-      {% endfor %}
-
-      <h4> Auteur : {{post.users.nickname}}</h4>
     </div>
 
-    <div class="descrip">
+    <div class="descrip" >
       <a class="btn" href="{{path('comments_add', {id:post.id})}}">commenter</a>
       <h1> Comentaires </h1>
 
@@ -35,14 +34,20 @@
       
       {% if comment.parent is null %}
       <div class="commentaire">
-      <h2> {{comment.users.nickname}}</h2>
+        <div class="user">
+          <div class="image">
+            <img src="{{asset('images/uploads/users/min/300x300-' ~ comment.users.image)}}" width="30px" alt="">
+          </div>
+           <span> {{comment.users.nickname}}</spanspan>
+
+        </div>
       
       <p>{{comment.content|raw}} </p>
       <a href=" {{path('comments_add_response',{id:comment.id})}}" class="btn">répondre</a>
         {% for response in comment.comments %}
        
       <div class="response">
-
+        
         <h2> réponse de {{response.users.nickname}}</h2>
         <p>{{response.content}} </p>
     
