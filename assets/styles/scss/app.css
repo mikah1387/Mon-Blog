@@ -1224,7 +1224,7 @@ header .navbar.open .burg {
   line-height: 1.7;
   font-size: calc(0.4rem + 0.5vw);
 }
-.detail .descrip h1, .detail .descrip h2, .detail .descrip h3, .detail .descrip h4 {
+.detail .descrip h1, .detail .descrip h2, .detail .descrip h4 {
   margin-bottom: 20px;
 }
 .detail .comts h2 {
@@ -1242,9 +1242,15 @@ header .navbar.open .burg {
   display: flex;
   align-items: center;
 }
-.detail .comts .commentaire .user span {
+.detail .comts .commentaire .user h3 {
   font-size: 0.8rem;
   font-weight: 700;
+  margin-top: 5px;
+}
+.detail .comts .commentaire .user h3 span {
+  display: block;
+  font-weight: 300;
+  font-size: 0.7rem;
 }
 .detail .comts .commentaire .user .image {
   width: 35px;

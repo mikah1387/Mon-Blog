@@ -38,7 +38,10 @@
           <div class="image">
             <img src="{{asset('images/uploads/users/min/300x300-' ~ comment.users.image)}}" width="30px" alt="">
           </div>
-           <span> {{comment.users.nickname}}</spanspan>
+           <h3> {{comment.users.nickname}}
+            <span>{{comment.CreatedAt|format_datetime('relative_medium','none',locale='fr')}} </span>
+           </h3>
+           
 
         </div>
       
@@ -52,7 +55,9 @@
           <div class="image">
             <img src="{{asset('images/uploads/users/min/300x300-' ~ response.users.image)}}" width="30px" alt="">
           </div>
-           <span> {{response.users.nickname}}</spanspan>
+          <h3> {{response.users.nickname}}
+            <span>{{response.CreatedAt|format_datetime('relative_long','none',locale='fr')}} </span>
+           </h3>
 
         </div>
         

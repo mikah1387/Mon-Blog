@@ -83,7 +83,7 @@
     font-size: calc(0.4rem + 0.5vw);
   }
  
-  h1,h2,h3,h4{
+  h1,h2,h4{
 
     
     margin-bottom:20px ;
@@ -109,10 +109,16 @@
         .user{
             display: flex;
             align-items: center;
-            span{
+            h3{
                 font-size: 0.8rem;
                 font-weight: 700;
+                margin-top: 5px;
+              span{
+                display: block;
+                font-weight: 300;
+                font-size: 0.7rem;
 
+              }
             }
             .image{
                 width: 35px;

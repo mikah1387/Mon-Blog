@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommentsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommentsRepository::class)]
@@ -15,7 +16,7 @@ class Comments
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
     #[ORM\Column]
@@ -35,9 +36,17 @@ class Comments
     #[ORM\JoinColumn(nullable: false)]
     private ?Posts $posts = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $Created_date = null;
+
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->Created_date = new \DateTimeImmutable();
+
+        
+
     }
 
     public function getId(): ?int
@@ -134,4 +143,18 @@ class Comments
 
         return $this;
     }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->Created_date;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $Created_date): static
+    {
+        $this->Created_date = $Created_date;
+
+        return $this;
+    }
+
+ 
 }
