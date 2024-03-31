@@ -1233,7 +1233,7 @@ header .navbar.open .burg {
   border-bottom: 2px solid #899D78;
 }
 .detail .comts .commentaire {
-  padding: 10px;
+  padding: 10px 20px;
   margin: 20px auto;
   border-radius: 10px;
   box-shadow: 0px 50px 100px -20px rgba(50, 50, 93, 0.25), 0px 30px 60px -30px rgba(0, 0, 0, 0.3), inset 0px -2px 6px 0px rgba(10, 37, 64, 0.35);
@@ -1277,7 +1277,7 @@ header .navbar.open .burg {
 }
 .detail .comts .response {
   background: #dceddc;
-  padding: 10px 8px;
+  padding: 10px 20px;
   margin: 8px auto;
   margin-left: 20px;
   border-radius: 10px;
