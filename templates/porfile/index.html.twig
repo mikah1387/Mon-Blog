@@ -3,23 +3,43 @@
 {% block title %} votre profile Mr {{app.user.nickname}}{% endblock %}
 
 {% block body %}
-<section class="profile">
+<section class="profil">
+  
+     <div class="myprof">
 
-    <aside>
+        <div class="image">
 
-        <ul>
-            <li>Mes information</li>
-            <li> Mes articles</li>
-            <li> Mes commentaires</li>
-            <li> Modifier mot de passe</li>
-        </ul>
-    </aside>
+            {% if user.image is  null %}
+           <img src="" alt="image_profile">
+            
+            {% else %}
+            <img src="{{asset('images/uploads/users/min/300x300-'~ user.image)}}" alt="">
+            {% endif %}
+
+           
+          </div>
+          <h2>Mon Profil  <span>{{user.nickname}}</span></h2>
+
+     </div>
+    <nav class="navprofil">
+
+        <li> <a href=""><span class="material-symbols-outlined">
+            settings_accessibility
+            </span> Profil </a> </li>
+        <li> <a href=""> <span class="material-symbols-outlined">
+            newsstand
+            </span> Mes articles </a> </li>
+        <li><a href=""> <span class="material-symbols-outlined">
+            comment
+            </span>  Mes commentaires </a></li>
+
+    </nav>
+
     <main class="main">
         {# {{ dump(user) }} #}
         <div class="container_profil">
-            <h1> bienvenu dans votre espace profile Mr {{user.nickname}} </h1>
+            <h1> bienvenu dans votre espace profile Mr  </h1>
             <h2>Mes informations</h2>
-            <h3>{{user.nickname}} </h3>
             <h3>{{user.email}} </h3>
 
             <h2> Mes articles publiés </h2>

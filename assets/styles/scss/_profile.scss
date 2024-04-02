@@ -1,29 +1,79 @@
-.profile {
+.profil {
 
+width: 80%;
+margin: 100px auto ;
+.myprof{
+
+    width: 80%;
     display: flex;
-    min-height: 100vh;
-    height: auto;
-    aside{
+    margin: 0 auto 80px;
+    align-items: center;
+   
+    h2{
 
-        width:300px;
-        background: $greenhigh;
-        color:white;
-        ul{
-
-        li{
-            display: block;
-            text-align: center;
-            padding: 20px 0;
-            transition: 0.3 all;
-            &:hover{
-
-                background: $greenlight;
-                color: $black;
-            }
-
-        }
-        }
+        font-size: 3rem;
+        margin-left: 20px;
+       span{
+        display: block;
+        font-size: 2rem;
+        font-style: italic;
+        font-weight: 500;
+       }
     }
+ .image{
+      height: 150px;
+      width: 150px;
+      min-width: 150px;
+
+      border-radius: 50%;
+      overflow: hidden;
+  img{
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+   }
+   }
+
+   .navprofil{
+    width: 80%;
+    // background: $greenlight2;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 0 30px;
+    justify-content:center;
+    list-style: none;
+
+    li{
+      
+        padding: 5px 10px;
+
+        a{
+            text-decoration: none;
+         padding: 5px 10px;
+         color: inherit;
+         margin-top: 2px;
+         transition: all 0.3s;
+         span{
+            display: inline-block;
+            vertical-align:middle;
+            margin-right: 5px;
+         }
+         &:hover{
+
+            color: $greenhigh;
+            text-decoration: underline;
+         }
+
+        }
+
+    }
+
+
+
+   }
 
 .main{
  

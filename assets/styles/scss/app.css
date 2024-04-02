@@ -359,7 +359,7 @@ pre code {
   border: 1px solid #ccc;
 }
 
-.profile .main, .main .auteurs .cart .circle {
+.profil .main, .main .auteurs .cart .circle {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1328,58 +1328,99 @@ header .navbar.open .burg {
   transform: scale(1.05);
 }
 
-.profile {
+.profil {
+  width: 80%;
+  margin: 100px auto;
+}
+.profil .myprof {
+  width: 80%;
   display: flex;
-  min-height: 100vh;
-  height: auto;
+  margin: 0 auto 80px;
+  align-items: center;
 }
-.profile aside {
-  width: 300px;
-  background: #899D78;
-  color: white;
+.profil .myprof h2 {
+  font-size: 3rem;
+  margin-left: 20px;
 }
-.profile aside ul li {
+.profil .myprof h2 span {
   display: block;
-  text-align: center;
-  padding: 20px 0;
-  transition: 0.3 all;
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 500;
 }
-.profile aside ul li:hover {
-  background: #bdd2a6;
-  color: #020202;
+.profil .myprof .image {
+  height: 150px;
+  width: 150px;
+  min-width: 150px;
+  border-radius: 50%;
+  overflow: hidden;
 }
-.profile .main {
+.profil .myprof .image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.profil .navprofil {
+  width: 80%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 0 30px;
+  justify-content: center;
+  list-style: none;
+}
+.profil .navprofil li {
+  padding: 5px 10px;
+}
+.profil .navprofil li a {
+  text-decoration: none;
+  padding: 5px 10px;
+  color: inherit;
+  margin-top: 2px;
+  transition: all 0.3s;
+}
+.profil .navprofil li a span {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.profil .navprofil li a:hover {
+  color: #899D78;
+  text-decoration: underline;
+}
+.profil .main {
   flex-grow: 1;
   height: 100%;
 }
-.profile .main .container_profil {
+.profil .main .container_profil {
   height: 70%;
   width: 70%;
 }
-.profile .main .container_profil h1, .profile .main .container_profil h2, .profile .main .container_profil h3, .profile .main .container_profil h4 {
+.profil .main .container_profil h1, .profil .main .container_profil h2, .profil .main .container_profil h3, .profil .main .container_profil h4 {
   text-align: center;
   margin: 10px auto;
 }
-.profile .main .container_profil .carts {
+.profil .main .container_profil .carts {
   margin: 50px auto;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
-.profile .main .container_profil .carts a {
+.profil .main .container_profil .carts a {
   text-decoration: none;
   color: inherit;
 }
-.profile .main .container_profil .carts .links {
+.profil .main .container_profil .carts .links {
   margin: 20px auto;
   text-align: center;
 }
-.profile .main .container_profil .comments {
+.profil .main .container_profil .comments {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.profile .main .container_profil .comments .comment {
+.profil .main .container_profil .comments .comment {
   min-width: 300px;
   max-width: 400px;
   margin: 5px;
@@ -1389,22 +1430,22 @@ header .navbar.open .burg {
   padding: 5px;
   background: rgb(223, 221, 221);
 }
-.profile .main .container_profil .comments .comment p {
+.profil .main .container_profil .comments .comment p {
   margin: 10px auto;
   text-align: center;
   font-size: 0.7rem;
   color: rgb(110, 109, 109);
 }
-.profile .main .container_profil .comments .comment p span {
+.profil .main .container_profil .comments .comment p span {
   font-weight: bold;
   color: black;
 }
-.profile .main .container_profil .comments .comment .links {
+.profil .main .container_profil .comments .comment .links {
   margin: 5px auto;
   text-align: center;
   color: inherit;
 }
-.profile .main .container_profil .comments .comment .links a {
+.profil .main .container_profil .comments .comment .links a {
   text-decoration: none;
   color: inherit;
 }
