@@ -359,7 +359,7 @@ pre code {
   border: 1px solid #ccc;
 }
 
-.profil .main, .main .auteurs .cart .circle {
+.profil .main_profil, .main .auteurs .cart .circle {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1385,42 +1385,57 @@ header .navbar.open .burg {
   vertical-align: middle;
   margin-right: 5px;
 }
-.profil .navprofil li a:hover {
+.profil .navprofil li a:hover, .profil .navprofil li a.active {
   color: #899D78;
   text-decoration: underline;
 }
-.profil .main {
-  flex-grow: 1;
-  height: 100%;
+.profil .main_profil {
+  min-height: auto;
+  margin-top: 100px;
 }
-.profil .main .container_profil {
-  height: 70%;
-  width: 70%;
+.profil .main_profil .information, .profil .main_profil .carts, .profil .main_profil .comments {
+  display: none;
 }
-.profil .main .container_profil h1, .profil .main .container_profil h2, .profil .main .container_profil h3, .profil .main .container_profil h4 {
-  text-align: center;
-  margin: 10px auto;
-}
-.profil .main .container_profil .carts {
-  margin: 50px auto;
+.profil .main_profil .information.display, .profil .main_profil .carts.display, .profil .main_profil .comments.display {
   display: flex;
+  animation: visib 0.3s;
+}
+.profil .main_profil .information {
+  flex-direction: column;
+  width: 80%;
+  border: 1px solid #899D78;
+  padding: 20px 30px;
+}
+.profil .main_profil .information h3, .profil .main_profil .information h2 {
+  margin: 10px 0;
+  font-weight: 500;
+}
+.profil .main_profil .information span {
+  display: block;
+  border: 1px solid #899D78;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background: #dceddc;
+}
+.profil .main_profil .carts {
+  margin: 50px auto;
   justify-content: space-around;
   flex-wrap: wrap;
 }
-.profil .main .container_profil .carts a {
+.profil .main_profil .carts a {
   text-decoration: none;
   color: inherit;
+  display: block;
 }
-.profil .main .container_profil .carts .links {
+.profil .main_profil .carts .links {
   margin: 20px auto;
   text-align: center;
 }
-.profil .main .container_profil .comments {
-  display: flex;
+.profil .main_profil .comments {
   flex-wrap: wrap;
   justify-content: center;
 }
-.profil .main .container_profil .comments .comment {
+.profil .main_profil .comments .comment {
   min-width: 300px;
   max-width: 400px;
   margin: 5px;
@@ -1430,26 +1445,36 @@ header .navbar.open .burg {
   padding: 5px;
   background: rgb(223, 221, 221);
 }
-.profil .main .container_profil .comments .comment p {
+.profil .main_profil .comments .comment p {
   margin: 10px auto;
   text-align: center;
   font-size: 0.7rem;
   color: rgb(110, 109, 109);
 }
-.profil .main .container_profil .comments .comment p span {
+.profil .main_profil .comments .comment p span {
   font-weight: bold;
   color: black;
 }
-.profil .main .container_profil .comments .comment .links {
+.profil .main_profil .comments .comment .links {
   margin: 5px auto;
   text-align: center;
   color: inherit;
 }
-.profil .main .container_profil .comments .comment .links a {
+.profil .main_profil .comments .comment .links a {
   text-decoration: none;
   color: inherit;
 }
 
+@keyframes visib {
+  0% {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .admin {
   min-height: 100vh;
   display: flex;

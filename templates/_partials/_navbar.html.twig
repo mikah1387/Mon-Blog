@@ -47,7 +47,7 @@
          {% endif %}
          <li> <a href="{{path('profile_index')}}"> <span class="material-symbols-outlined">
           settings_accessibility
-          </span> Profile</a> </li>
+          </span> {{app.user.nickname}}</a> </li>
  
          <li>  <a href="{{path('app_logout')}}"> <span class="material-symbols-outlined">
           power_settings_new

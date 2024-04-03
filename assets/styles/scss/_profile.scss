@@ -61,7 +61,7 @@ margin: 100px auto ;
             vertical-align:middle;
             margin-right: 5px;
          }
-         &:hover{
+         &:hover,&.active{
 
             color: $greenhigh;
             text-decoration: underline;
@@ -75,27 +75,50 @@ margin: 100px auto ;
 
    }
 
-.main{
+.main_profil{
  
-    flex-grow: 1;
+    min-height: auto;
+    margin-top: 100px;
     @extend %centeritem;
-    height: 100%;
-   .container_profil{
+   .information,.carts,.comments{
+     display: none;
+     &.display{
 
-    height: 70%;
-    width: 70%;
-    h1,h2,h3,h4{
-        text-align: center;
-        margin: 10px auto;
+    display: flex;
+    animation: visib 0.3s;
+   }
+   } 
+   .information{
 
+    flex-direction: column;
+    width: 80%;
+    border: 1px solid $greenhigh;
+    padding: 20px 30px;
+
+    h3,h2{
+       margin: 10px 0;
+       font-weight: 500;
     }
+    span{
+       
+
+        display: block;
+        border: 1px solid $greenhigh;
+        border-radius: 5px;
+        padding: 10px 20px;
+        background: $greenlight2;
+    }
+
+   }
     .carts{
         a{
             text-decoration: none;
             color: inherit;
+            display: block;
+
            }
         margin: 50px auto;
-        display: flex;
+        
         justify-content: space-around;
         flex-wrap: wrap;
         .links{
@@ -106,7 +129,7 @@ margin: 100px auto ;
       
     }
    .comments {
-    display: flex;
+    
     flex-wrap: wrap;
     justify-content: center;
    .comment {
@@ -143,7 +166,19 @@ margin: 100px auto ;
 
 
    }
-   }
+   
+  }
+
 }
 
+@keyframes visib {
+    
+    0%{
+        opacity: 0;
+        transform: translateY(2px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
