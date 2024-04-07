@@ -42,6 +42,15 @@
             <h2> Mes informations</h2>
             <h3>Email </h3>
             <span>{{user.email}}</span> 
+
+            {{ form_start(editprofil) }}
+           
+            {{ form_row(editprofil.email) }}
+            {{ form_row(editprofil.nickname) }}
+          
+            <button type="submit" class="button">{{button_label|default('Modifier')}}</button>
+            {{ form_end(editprofil) }}
+
         </div>
 
         <div class="carts" id="articles">

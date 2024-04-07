@@ -29,7 +29,7 @@ class Posts
     #[ORM\Column(length: 255)]
     private ?string $featured_image = null;
 
-    #[ORM\ManyToOne(inversedBy: 'posts', fetch :"EAGER")]
+    #[ORM\ManyToOne(inversedBy: 'posts', fetch :"EAGER",cascade:['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $users = null;
 

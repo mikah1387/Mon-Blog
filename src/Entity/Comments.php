@@ -28,7 +28,7 @@ class Comments
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class,fetch :"EAGER")]
     private Collection $comments;
 
-    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\ManyToOne(inversedBy: 'comments',cascade:['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $users = null;
 
