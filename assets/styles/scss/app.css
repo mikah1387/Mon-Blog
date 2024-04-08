@@ -1406,17 +1406,6 @@ header .navbar.open .burg {
   border: 1px solid #899D78;
   padding: 20px 30px;
 }
-.profil .main_profil .information h3, .profil .main_profil .information h2 {
-  margin: 10px 0;
-  font-weight: 500;
-}
-.profil .main_profil .information span {
-  display: block;
-  border: 1px solid #899D78;
-  border-radius: 5px;
-  padding: 10px 20px;
-  background: #dceddc;
-}
 .profil .main_profil .carts {
   margin: 50px auto;
   justify-content: space-around;

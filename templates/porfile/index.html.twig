@@ -38,18 +38,21 @@
     <main class="main_profil">
        
         <div id="information" class="information display">
-    
-            <h2> Mes informations</h2>
-            <h3>Email </h3>
-            <span>{{user.email}}</span> 
-
+{# 
             {{ form_start(editprofil) }}
            
             {{ form_row(editprofil.email) }}
-            {{ form_row(editprofil.nickname) }}
-          
+            {{ form_row(editprofil.nickname) }}       
             <button type="submit" class="button">{{button_label|default('Modifier')}}</button>
-            {{ form_end(editprofil) }}
+
+            {{ form_end(editprofil) }} #}
+            
+            {{ form_start(editpassword) }}
+           
+            {{ form_row(editpassword.password) }}
+            {{ form_row(editpassword.password_confirm) }}       
+            <button type="submit" class="button">{{button_label|default('Modifier')}}</button>
+            {{ form_end(editpassword) }}
 
         </div>
 

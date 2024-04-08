@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\EditPassWordFormType;
 use App\Form\EditUsersFormType;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,22 +25,40 @@ class PorfileController extends AbstractController
                return  $userInter;
            });  
             
-           $form = $this->createForm(EditUsersFormType::class,$user);
-           $form->handleRequest($request);
-           if ($form->isSubmitted() && $form->isValid()) {
+        //    $form = $this->createForm(EditUsersFormType::class,$user);
+        //    $form->handleRequest($request);
+        //    if ($form->isSubmitted() && $form->isValid()) {
            
-            $em->persist($user);
+        //     dd($user);
+        //     $em->persist($user);
+        //     $em->flush();
+        //     $this->addFlash('success', 'votre profil  est mis a jour');
+        //     return $this->redirectToRoute('profile_index');
 
-            $em->flush();
-            $this->addFlash('success', 'votre profil  est mis a jour');
-            return $this->redirectToRoute('profile_index');
+        //    }
+           $formpass = $this->createForm(EditPassWordFormType::class);
+           $formpass->handleRequest($request);
+           if ($formpass->isSubmitted() && $formpass->isValid()) {
+            
+          
+          $password = $formpass->get('password')->getData();
+        //    $password_conf = $formpass->get('password_confirm')->getData();
+         
+           dd($password);
+        //     $em->persist($user);
+        //     $em->flush();
+        //     $this->addFlash('success', 'votre profil  est mis a jour');
+            // return $this->redirectToRoute('profile_index');
 
-           }
+            }
+  
   
         //    dd($user);
         return $this->render('porfile/index.html.twig', [
             'user' => $user,
-            'editprofil'=> $form->createView()
+            // 'editprofil'=> $form,
+            'editpassword'=> $formpass,
+            
         ]);
     }
 
