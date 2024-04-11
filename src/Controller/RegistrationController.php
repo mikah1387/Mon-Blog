@@ -26,6 +26,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $image = $form->get('image')->getData();
             $imageName = $pictureService->add($image,'users',300,300);
             $user->setPassword(

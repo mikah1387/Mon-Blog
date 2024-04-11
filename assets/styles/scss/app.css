@@ -1406,6 +1406,12 @@ header .navbar.open .burg {
   border: 1px solid #899D78;
   padding: 20px 30px;
 }
+@media screen and (max-width: 550px) {
+  .profil .main_profil .information {
+    padding: 20px 10px;
+    width: 100%;
+  }
+}
 .profil .main_profil .carts {
   margin: 50px auto;
   justify-content: space-around;
