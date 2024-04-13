@@ -81,7 +81,7 @@ margin: 100px auto ;
     margin-top: 100px;
     @extend %centeritem;
  
-   .information,.carts,.comments{
+   .information,.posts,.comments{
      display: none;
      &.display{
 
@@ -101,27 +101,32 @@ margin: 100px auto ;
         width: 100%;
     }
 
+    form{
+        width: 100%;
+        padding: 20px 10px;
+        @media screen and (min-width:700px) {
+            
+            width: 90%;
+          
+    
+        }
+        .button{
+
+            margin: 0 auto;
+        }
+
+    }
 
 
    }
-    .carts{
-        a{
-            text-decoration: none;
-            color: inherit;
-            display: block;
 
-           }
-        margin: 50px auto;
-        
-        justify-content: space-around;
-        flex-wrap: wrap;
-        .links{
-          margin: 20px auto;
-          text-align: center;
-           
-        }
-      
+ .posts{
+
+    span{
+        color: $greenhigh;
     }
+
+ }
    .comments {
     
     flex-wrap: wrap;
