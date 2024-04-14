@@ -4,20 +4,24 @@
 
 {% block body %}
 
-<section class="admin">
+<section class="admin profil">
 
-    <aside>
+    <nav class="barnav">
 
-        <ul>
-            <li> Admin_utilisateurs </li>
-            <li>Admin_articles </li>
-            <li> Admin_categories</li>
-            <li> Admin_commentaires</li>
-        </ul>
-    </aside>
+        <li> <a href="#users" class="active"><span class="material-symbols-outlined">
+            settings_accessibility
+            </span> Utilisateurs</a> </li>
+        <li> <a href="#posts"> <span class="material-symbols-outlined">
+            newsstand
+            </span> Articles </a> </li>
+        <li><a href="#comments"> <span class="material-symbols-outlined">
+            comment
+            </span> Commentaires </a></li>
+
+    </nav>
 
     <div class="main">
-        <div class="users">
+        <div class="users display" id="users">
             <h1>Administration des utilisateurs</h1>
             <table class="table">
 
@@ -48,7 +52,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="posts">
+        <div class="posts" id="posts">
             <h1>Administration des articles</h1>
             <table class="table">
 
@@ -94,7 +98,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="catys">
+        <div class="catys" id="comments">
             <h1>Administration des categories</h1>
             <a href="{{path('admin_categorie_add')}}" class="btn"> Ajouter categorie</a>
             <table class="table">

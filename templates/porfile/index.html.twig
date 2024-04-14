@@ -26,7 +26,7 @@
           <h2>Mon Profil  <span>{{user.nickname}}</span></h2>
 
      </div>
-    <nav class="navprofil">
+    <nav class="barnav">
 
         <li> <a href="#information" class="active"><span class="material-symbols-outlined">
             settings_accessibility
@@ -40,7 +40,7 @@
 
     </nav>
 
-    <main class="main_profil">
+    <main class="main_profil main">
        
         <div id="information" class="information display">
 
@@ -90,13 +90,15 @@
                         {{category.name}}
                         {% endfor %}
                     </td>     
-                    <td>{{post.CreatedAt|date("F j,Y")}}</td>
+                    <td>{{post.CreatedAt|format_datetime('medium','none',locale='fr')}}</td>
 
                     <td>
-                        <a class="modifier" href="{{path('posts_update',{slug:post.slug,id:post.id})}}" data-slug="{{post.slug}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ><span class="material-symbols-outlined">
+                        <a class="modifier" href="{{path('posts_update',{slug:post.slug,id:post.id})}}" data-slug="{{post.slug}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+                            <span class="material-symbols-outlined">
                                 edit
                             </span></a>
-                        <a  class="suprimer" href="{{path('posts_delete',{slug:post.slug,id:post.id})}}" data-slug="{{post.slug}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ><span class="material-symbols-outlined">
+                        <a  class="suprimer" href="{{path('posts_delete',{slug:post.slug,id:post.id})}}" data-slug="{{post.slug}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+                            <span class="material-symbols-outlined">
                                 delete
                             </span></a>
                     </td>
@@ -112,26 +114,44 @@
     <div class="comments" id="comments">
             
                
+        <table class="table">
 
+            <thead>
+                <tr>    
+                    <th scope="col">Titre de l'article</th>
+                    <th scope="col" >Commentaire</th>
+                    <th scope="col"> Créer le </th>
+
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+             
+             <tbody>
                 {% for comment in user.comments %}
-                <div class="comment">
-                {% if comment.parent is  null %}
-                <p class="title"> votre commentaire sur l'article <span>{{comment.posts.title}} </span>
-                {% else %}
-                <p class="title"> votre reponse sur l'article <span>{{comment.posts.title}} </span>
-                {% endif %}
-                     </p class="content">
-                    <p> {{comment.content|raw}} </p>
-                    <div class="links">
-                        <a href="{{path('comments_delete',{id:comment.id})}}"><span class="material-symbols-outlined">
-                                 delete
-                             </span></a>
-                         <a href="{{path('comments_update',{id:comment.id})}}"><span class="material-symbols-outlined">
-                                 edit
-                             </span></a>
-                     </div>
-                </div>
+
+                <tr>
+                    <td>{{comment.posts.title}}</td>
+                    <td> {{comment.content|striptags|slice(0, 100)}} ...</td>
+                    <td > {{comment.CreatedAt|format_datetime('medium','none',locale='fr')}}</td>
+                    <td>
+                        <a class="modifier" href="{{path('comments_update',{id:comment.id})}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <span class="material-symbols-outlined">
+                        edit
+                        </span>
+                        </a>
+                        <a class="suprimer" href="{{path('comments_delete',{id:comment.id})}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </a>
+
+                    </td>
+                </tr>
                 {% endfor %}
+
+             </tbody>
+            </table>
+               
     </div>
 
 

@@ -1,8 +1,8 @@
 .profil {
 
-width: 80%;
-margin: 100px auto ;
-.myprof{
+ width: 80%;
+ margin: 100px auto ;
+ .myprof{
 
     width: 80%;
     display: flex;
@@ -36,7 +36,7 @@ margin: 100px auto ;
    }
    }
 
-   .navprofil{
+   .barnav{
     width: 80%;
     // background: $greenlight2;
     display: flex;
@@ -75,7 +75,7 @@ margin: 100px auto ;
 
    }
 
-.main_profil{
+ .main_profil{
  
     min-height: auto;
     margin-top: 100px;
@@ -128,45 +128,13 @@ margin: 100px auto ;
 
  }
    .comments {
-    
-    flex-wrap: wrap;
-    justify-content: center;
-   .comment {
-    min-width:300px;
-    max-width:400px ;
-    margin: 5px; 
-    justify-items: left;
-
-    border-radius: 10px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    padding: 5px;
-    background: rgb(223, 221, 221);
-    p{
-        margin: 10px auto;
-        text-align: center;
-        font-size: 0.7rem;
-        color: rgb(110, 109, 109);
-        span{
-            font-weight: bold;
-             color: black;
-        }
-
+    span{
+        color: $greenhigh;
     }
-    .links{
-        margin: 5px auto;
-        text-align: center;
-         color: inherit;
-         a{
-            text-decoration: none;
-            color: inherit;
-           }
-      }
-   }
-
 
    }
    
-  }
+   }
 
 }
 
