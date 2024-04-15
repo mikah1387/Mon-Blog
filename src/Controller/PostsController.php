@@ -171,7 +171,7 @@ class PostsController extends AbstractController
           });
         return $this->render('posts/detail.html.twig', [
             'post' => $article,
-            // 'allcomments'=>$comments->findBy(['posts'=>$post],['id'=>'DESC'])
+
         ]);
     }
     #[Route('/update/{slug}_{id}', name: 'update',requirements:['id'=>Requirement::DIGITS])]

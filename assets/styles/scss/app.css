@@ -484,12 +484,6 @@ form button:hover, .btn:hover {
   border-radius: 15px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-@media screen and (min-width: 450px) {
-  .addpost form, form {
-    width: 70%;
-    padding: 50px 10px;
-  }
-}
 @media screen and (min-width: 700px) {
   .addpost form, form {
     width: 60%;
@@ -1444,6 +1438,11 @@ header .navbar.open .burg {
 .admin {
   min-height: 100vh;
 }
+@media screen and (max-width: 1140px) {
+  .admin {
+    width: 100%;
+  }
+}
 .admin .main {
   flex-grow: 1;
   width: 100%;
@@ -1461,6 +1460,46 @@ header .navbar.open .burg {
   text-align: center;
   margin: 20px auto;
 }
+@media screen and (max-width: 1140px) {
+  .admin .posts .table {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 780px) {
+  .admin .posts .table {
+    font-size: 13px;
+  }
+}
+@media screen and (max-width: 660px) {
+  .admin .posts .table {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 1140px) {
+  .admin .posts .table th, .admin .posts .table td {
+    padding: 5px;
+  }
+}
+@media screen and (max-width: 780px) {
+  .admin .posts .table th, .admin .posts .table td {
+    padding: 2px;
+  }
+}
+@media screen and (max-width: 660px) {
+  .admin .posts .table th, .admin .posts .table td {
+    font-size: 10px 0px;
+  }
+}
+@media screen and (max-width: 850px) {
+  .admin .users .table {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 850px) {
+  .admin .users td, .admin .users th {
+    padding: 5px 1px;
+  }
+}
 .admin .btn {
   margin: 20px auto;
 }
@@ -1469,7 +1508,7 @@ header .navbar.open .burg {
   width: 100%;
   border-collapse: collapse;
   font-family: Arial, sans-serif;
-  display: block;
+  margin: 20px auto;
 }
 @media screen and (max-width: 500px) {
   .table {
