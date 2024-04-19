@@ -37,7 +37,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100)]
     #[Assert\NotBlank]
     #[Assert\Length(
-        min: 5,
+        min: 4,
         max: 15,
         minMessage: 'votre pseudo doit avoir au min {{ limit }} caracterés',
         maxMessage: 'votre pseudo doit avoir au max {{ limit }} caracterés',
@@ -53,7 +53,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 200, nullable: true)]
     private ?string $resetToken = null;
 
 
