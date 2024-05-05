@@ -64,7 +64,7 @@ class SecurityController extends AbstractController
                 'url'=>$url
                    ];
                  $mail->send(
-                'ShareArticle@gmail.com',
+                'contact@sharearticle.ah-codeaddict.fr',
                 $user->getEmail(),
                 'Réinitialisation de mot de passe',
                 'resetpass',$context
