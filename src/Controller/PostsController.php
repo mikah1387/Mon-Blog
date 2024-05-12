@@ -178,9 +178,10 @@ class PostsController extends AbstractController
     public function update(Posts $post, Request $request, EntityManagerInterface $em,
     SluggerInterface $slugger, UserInterface $user, CacheInterface $cache,PictureService $pictureService ): Response
     {
+     
       $this->denyAccessUnlessGranted('POST_UPDATE',$post);
           
-          if($user === $post->getUsers()){
+          if($user === $post->getUsers() || $user->getRoles()[0]=== 'ROLE_ADMIN'){
             $form = $this->createForm(PostsFormType::class,$post);
             $form->handleRequest($request);
             
@@ -226,7 +227,7 @@ class PostsController extends AbstractController
     public function delete(Posts $post, EntityManagerInterface $em, UserInterface $user, CacheInterface $cache)
     {
             $this->denyAccessUnlessGranted('POST_DELETE', $post);
-            if($user === $post->getUsers()){
+            if($user === $post->getUsers() || $user->getRoles()[0]=== 'ROLE_ADMIN'){
 
               $em->remove($post);
               $em->flush();
