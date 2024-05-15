@@ -140,6 +140,8 @@ class PostsController extends AbstractController
                 $post->setUsers($user);
                 foreach ($categories as  $categorie) {
                 $post->addCategory($categorie);
+               $cache->delete('posts_of_'.$categorie->getSlug());
+
                 }
                 $post->setFeaturedImage($imageName);
               
@@ -147,6 +149,7 @@ class PostsController extends AbstractController
              $em->flush();
              $cache->delete('my_articles');
              $cache->delete('user_'.$user->getNickname());
+          
              $cache->delete('lastposts');
              $cache->delete('usersMoreActif');
              
