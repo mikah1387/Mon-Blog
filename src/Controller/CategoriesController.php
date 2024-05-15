@@ -30,7 +30,7 @@ class CategoriesController extends AbstractController
           });
           
           $page= $request->query->get('page',1);      
-         $paginations = $paginat->paginate(  $posts,$page,2);
+         $paginations = $paginat->paginate(  $posts,$page,6);
           
         return $this->render('categories/postsbycaty.html.twig', [
             'paginations' => $paginations,
