@@ -521,6 +521,14 @@ justify-content: center;
     }
 }
 
+figure{
+
+    img{
+
+        width: 100%;
+        height: 80%;
+    }
+}
 
 @import '_navbar.scss';
 @import '_main.scss';
