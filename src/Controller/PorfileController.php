@@ -35,6 +35,8 @@ class PorfileController extends AbstractController
        
             $em->persist($userEntity);
             $em->flush();
+            $cache->delete('post_'.$userInter->getNickname());
+
             $this->addFlash('success', 'votre profil  est mis a jour');
             return $this->redirectToRoute('profile_index');
 

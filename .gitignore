@@ -21,6 +21,8 @@
 
 ###> symfony/asset-mapper ###
 /public/assets/
-/public/images/
+/public/images/posts
+/public/images/users
+/public/images/categories
 /assets/vendor
 ###< symfony/asset-mapper ###
