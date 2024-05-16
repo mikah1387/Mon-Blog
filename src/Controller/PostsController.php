@@ -149,7 +149,7 @@ class PostsController extends AbstractController
              $em->flush();
              $cache->delete('my_articles');
              $cache->delete('user_'.$user->getNickname());
-          
+             
              $cache->delete('lastposts');
              $cache->delete('usersMoreActif');
              
@@ -205,6 +205,8 @@ class PostsController extends AbstractController
                 $em->persist($post);
                 $em->flush();
                 $cache->delete('my_articles');
+                $cache->delete('post_'.$post->getSlug());
+
                 $cache->delete('user_'.$user->getNickname());
                 $cache->delete('lastposts');
                 $cache->delete('usersMoreActif');
