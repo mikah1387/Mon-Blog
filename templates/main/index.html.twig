@@ -16,7 +16,7 @@
       {% for user in lastUserSubscrib %}
 
       <div class="image">
-        <img src="{{asset('images/uploads/users/min/300x300-'~ user.image)}}" alt="">
+        <img src="{{asset('./images/uploads/users/min/300x300-'~ user.image)}}" alt="">
       </div>
 
       <h3> {{user.nickname}}</h3>
@@ -39,7 +39,7 @@
           <img src=" " alt="image_article">
           
           {% else %}
-          <img src="{{asset('images/uploads/posts/min/300x300-'~ post.featuredImage)}}" alt="image_article">
+          <img src="{{asset('./images/uploads/posts/min/300x300-'~ post.featuredImage)}}" alt="image_article">
           {% endif %}
          
         </div>
