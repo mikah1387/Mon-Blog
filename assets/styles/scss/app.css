@@ -747,12 +747,20 @@ pre code {
   outline: none !important;
 }
 
+figure img {
+  width: 100%;
+  height: 80%;
+}
+
 header .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(243, 242, 242, 0.694);
+  background-color: rgba(243, 242, 242, 0.8);
   color: white;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
   padding: 10px calc(20px + 7vw);
   width: 100%;
   box-shadow: 0 -20px 10px -20px rgba(177, 177, 177, 0.628) inset;
@@ -958,7 +966,7 @@ header .navbar.open .burg {
 .main {
   min-height: 100vh;
   width: 90%;
-  margin: 0 auto;
+  margin: 100px auto;
 }
 .main .baniere {
   position: relative;
