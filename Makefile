@@ -1,5 +1,5 @@
 
-.PHONY: install deploy 
+.PHONY: install 
 
 
  
