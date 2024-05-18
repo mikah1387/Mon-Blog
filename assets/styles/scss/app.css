@@ -751,7 +751,7 @@ header .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(243, 242, 242, 0.8);
+  background-color: #BDD2A6;
   color: white;
   padding: 10px calc(20px + 7vw);
   width: 100%;
