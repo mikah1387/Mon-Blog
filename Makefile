@@ -2,7 +2,7 @@
 .PHONY: install deploy 
 
 deploy:
-	'cd public_html/sharearticle && git pull && make install'
+	cd public_html/sharearticle && git pull && make install
  
 
 install:
