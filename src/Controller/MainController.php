@@ -74,7 +74,7 @@ class MainController extends AbstractController
         ];
         $mail->send(
           $email,
-          'contact@sharearticle.ah-codeaddict.fr',
+          'contact_us@sharearticle.ah-codeaddict.fr',
           $subject,
           'contact',$context
           );
