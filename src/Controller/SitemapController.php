@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class SitemapController extends AbstractController
 {
-    #[Route('/sitemap', name: 'sitemap',defaults:['format'=>'XML'])]
+    #[Route('/sitemap', name: 'sitemap',defaults: ['_format' => 'xml'])]
     public function index(Request $request,
      PostsRepository $posts, CategoriesRepository $categories ): Response
     {
