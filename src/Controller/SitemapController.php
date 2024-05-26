@@ -20,8 +20,6 @@ class SitemapController extends AbstractController
         $urls[] = ['loc'=>$this->generateUrl('posts_index')];
         $urls[] = ['loc'=>$this->generateUrl('contact')];
         $urls[] = ['loc'=>$this->generateUrl('posts_search')];
-        $urls[] = ['loc'=>$this->generateUrl('login')];
-        $urls[] = ['loc'=>$this->generateUrl('register')];
         $urls[] = ['loc'=>$this->generateUrl('profile_index')];
 
        foreach ($posts->findAll() as $post) {
