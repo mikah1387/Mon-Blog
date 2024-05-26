@@ -21,6 +21,16 @@ class CategoriesRepository extends ServiceEntityRepository
         parent::__construct($registry, Categories::class);
     }
 
+    public function findCategoriesWithParentNotNull()
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.parent IS NOT NULL')
+            ->orderBy('c.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 //    /**
 //     * @return Categories[] Returns an array of Categories objects
 //     */
