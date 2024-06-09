@@ -16,13 +16,37 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 class PostsFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title',TextType::class,[
-                'label'=>'Titre de l\'article'
+                
+                  'label'=>'Titre de l\'article',
+
+                'attr'=>[
+                    
+                    'placeholder'=>'Titre de l\'article',
+                ],     
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Entrez votre titre s\'il vous plait',
+                    ]),
+                    new Length([
+                        'min' => 5, 
+                        'max' => 200,  
+                        'minMessage' => 'Le titre doit contenir au moins {{ limit }} caractères',
+                        'maxMessage' => 'Le titre ne doit pas contenir plus de {{ limit }} caractères',
+
+
+                    ]),
+                ],
+
+             
             ])
             ->add('content', HiddenType::class,[
 
@@ -36,6 +60,7 @@ class PostsFormType extends AbstractType
                 'class' => Categories::class,
                  'choice_label' => 'name',
                  'multiple' => true,
+                //  'expanded'=>true,
                  'mapped'=>false,
                  'group_by'=>'parent.name',
                  'query_builder'=>function(CategoriesRepository $cr){

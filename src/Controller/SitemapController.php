@@ -46,6 +46,7 @@ class SitemapController extends AbstractController
         
         $response->headers->set('Content-type','text/xml');   
        
+        
         return $response;
     
     }
