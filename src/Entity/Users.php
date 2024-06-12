@@ -32,12 +32,20 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 6,
+        max: 15,
+        minMessage: 'votre mot de passe doit avoir au min {{ limit }} caracterés',
+        maxMessage: 'votre mot de passe doit avoir au max {{ limit }} caracterés',
+    )]
+
     private ?string $password = null;
 
     #[ORM\Column(length: 100)]
     #[Assert\NotBlank]
     #[Assert\Length(
-        min: 4,
+        min: 5,
         max: 15,
         minMessage: 'votre pseudo doit avoir au min {{ limit }} caracterés',
         maxMessage: 'votre pseudo doit avoir au max {{ limit }} caracterés',

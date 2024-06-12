@@ -6,6 +6,8 @@ use App\Repository\PostsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PostsRepository::class)]
@@ -18,6 +20,14 @@ class Posts
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[assert\NotBlank]
+    #[assert\Length(
+        min: 4, 
+        max: 100,
+        minMessage: 'Le titre doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le titre ne doit pas contenir plus de {{ limit }} caractères',
+        
+        )]
     private ?string $title = null;
 
     #[ORM\Column(length: 100)]
