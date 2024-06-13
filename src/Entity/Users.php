@@ -32,7 +32,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank]
+    
     #[Assert\Length(
         min: 6,
         max: 15,

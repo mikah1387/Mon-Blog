@@ -36,7 +36,8 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setImage($imageName);
-
+             
+            
             $entityManager->persist($user);
             $entityManager->flush();
             $cache->delete('lastUserSubscrib');

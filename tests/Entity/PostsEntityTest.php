@@ -13,9 +13,9 @@ class PostsEntityTest extends KernelTestCase
      public function getEntity(): Posts
      {
                 $post = new Posts();
-                $post->setTitle('tesrt');
+                $post->setTitle('tes');
                 $post->setSlug('tester');
-                $post->setContent('test content');
+                $post->setContent('');
                 $post->setFeaturedImage('test image');
                 $post->setUsers(new Users());                       
                 $post->setCreatedAt(new \DateTimeImmutable());
@@ -29,7 +29,12 @@ class PostsEntityTest extends KernelTestCase
         $kernel = self::bootKernel();
         $container = static::getContainer();
          $errors = $container->get('validator')->validate($post);
-         $this->assertCount($number, $errors);
+         $messages =[];
+
+         foreach ($errors as  $error) {
+            $messages[]= $error->getPropertyPath() . ' => '. $error->getMessage();
+         }
+         $this->assertCount($number, $errors, implode(',',  $messages));
      }
     public function testValidEntity(): void
     {
