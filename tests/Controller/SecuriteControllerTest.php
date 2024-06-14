@@ -48,6 +48,7 @@ class SecuriteControllerTest extends WebTestCase
         $client->submit($form);
         // $this->assertResponseRedirects('/profile') ;        
        
+        $this->assertResponseRedirects('/profile/') ;        
         $client->followRedirect();
      
         $this->assertSelectorExists('h2');         
