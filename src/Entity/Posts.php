@@ -31,12 +31,11 @@ class Posts
     private ?string $title = null;
 
     #[ORM\Column(length: 100)]
-    #[assert\NotBlank]
+    
 
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[assert\NotBlank]
 
     private ?string $content = null;
 

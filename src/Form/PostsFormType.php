@@ -37,7 +37,7 @@ class PostsFormType extends AbstractType
                         'message' => 'Entrez votre titre s\'il vous plait',
                     ]),
                     new Length([
-                        'min' => 5, 
+                        'min' => 4, 
                         'max' => 200,  
                         'minMessage' => 'Le titre doit contenir au moins {{ limit }} caractères',
                         'maxMessage' => 'Le titre ne doit pas contenir plus de {{ limit }} caractères',
